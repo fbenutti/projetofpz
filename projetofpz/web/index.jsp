@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Index</title>
         <link href="bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
         <style>
             body {
@@ -33,7 +33,7 @@
                     keyboard: true,
                     show: false,
                     backdrop: true
-               });
+                });
             });
         </script>
     </head>
@@ -61,41 +61,24 @@
         <p>Clique aqui para se inscrever.</p>
         <div class="modal hide fade in" id="cadastroModal">
             <div class="modal-header">
-                  <a class="close" data-dismiss="modal">x</a>
-                  <h3>Atualização cadastral</h3>
+                <a class="close" data-dismiss="modal">x</a>
+                <h3>Atualização cadastral</h3>
             </div>
             <div class="modal-body">
-            <form id="cadastroUsuario" name="cadastro" action="" method="post">
-                <p><label>Nome: <input type="text" name="nome"></label></p>
-                <p><label>CPF: <input type="text" name="cpf"></label></p>
-                <p><label>Email: <input type="text" name="email"></label></p>
-                <p><label>Cidade: <input type="text" name="cidade"></label></p>
-                <p><label>Estado: <input type="text" name="estado"></label></p>
-                <input class="btn btn-primary" type="button" value="Enviar"/>
-            </form>
+                <form id="cadastroUsuario" name="cadastro" action="" method="post">
+                    <p><label>Nome: <input type="text" name="nome"></label></p>
+                    <p><label>CPF: <input type="text" name="cpf"></label></p>
+                    <p><label>Email: <input type="text" name="email"></label></p>
+                    <p><label>Cidade: <input type="text" name="cidade"></label></p>
+                    <p><label>Estado: <input type="text" name="estado"></label></p>
+                    <input class="btn btn-primary" type="button" value="Enviar"/>
+                </form>
             </div>
             <div class="modal-footer"> 
             </div>
         </div>
         <!-- Cadastro de palestrantes fornecido pelo Paulo -->
         <div class="container">
-            <h3>Cadastro de Palestrante</h3>
-            <br />
-            <div id="cadastroTex">
-                <form id="cadastroPalestranteDados" name="cadastro" action="" method="post">
-                    <p><label>Nome: <input type="text" name="nome"></label></p>
-                    <p><label>Email: <input type="text" name="email"></label></p>
-                    <p><label>Cidade: <input type="text" name="cidade"></label></p>
-                    <p><label>Estado: <input type="text" name="estado"></label></p>
-                    <input id="Enviar" class="btn btn-primary" type="button" value="Enviar"/>
-                </form>
-            </div>
-            <div class="container" id="cadastroFoto">
-                <form id="cadastroPalestranteFoto" name="cadastro" action="" method="post">
-                    <p><label>Foto: <input type="file" name="upFoto"></label></p>
-                    <p><label><input id="EnviarFoto" class="btn btn-primary" type="button" value="Upload"/></label></p>
-                </form>
-            </div>
         </div>
     </body>
 </html>
