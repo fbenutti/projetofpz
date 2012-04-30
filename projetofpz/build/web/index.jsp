@@ -22,12 +22,21 @@
             #centralEsquerda{
                 width: 49%;
                 float: left;
-                border: solid #121212 medium;
+                border-right: solid #666666 thin;
+                margin-right: 3px;
+                /*border: solid #121212 medium;*/
             }
             #centralDireita{
                 width: 49%;
                 float: left;
-                border: solid #121212 medium;
+                border-left: solid #666666 thin;
+                margin-left: 3px;
+                /*border: solid #121212 medium;*/
+            }
+            .noticia{
+                margin-left: 10px;
+                text-align: justify;
+                text-indent: 24px;
             }
         </style>
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -68,7 +77,7 @@
                 </div>
             </div>
         </div>
-        <p>Clique aqui para se inscrever.</p>
+        <a href="formulario/cadastroPalestrante.jsp"> Clique aqui para se inscrever.</a>
         <div class="modal hide fade in" id="cadastroModal">
             <div class="modal-header">
                 <a class="close" data-dismiss="modal">x</a>
@@ -91,12 +100,36 @@
         <!-- Cadastro de palestrantes fornecido pelo Paulo -->
         <div class="container">
             <div id="centralEsquerda">
-                <img src="imagens/banners/bannerIVEngMec.gif" />
-                <img src="imagens/banners/bannerPalestraMonografia.gif" />
+                <a href="#">
+                <img src="imagens/banners/bannerIVEngMec.png" />
+                </a>
+                <br /><br /><br />
+                <img src="imagens/banners/bannerPalestraMonografia.png" />
             </div>
             <div id="centralDireita">
-                teste
+                <h3 style="text-align: center;">I SIMPÓSIO DE MEDICINA DA UNIVERSIDADE FEDERAL DE SÃO PAULO FOI UM SUCESSO</h3>
+                <br />
+                <p class="noticia"><img src="imagens/fotos/medico.jpg" style="float: left;margin-right: 5px;">
+                    Primeiro simpósio de medicina da Universidade Federal de São 
+                    Paulo foi considerado um sucesso por Eduardo Ferreirado Mendes,
+                    reitor da universidade.
+                </p>
+                <p class="noticia">
+                    Com média de publico de 350 pessoas por dia, o evento realmente
+                    deu novos ares para os estudantes e interessados na área. 
+                    Com duração de três dia o simpósio abordou no primeiro dia o
+                    assunto da medicina emergêncial. No segundo e terceiro dia 
+                    foram abordados os assunto de medicina preventiva e da 
+                    importância de uma boa alimentação e exercícios regulares.
+                </p>
+                <p class="noticia">
+                    O evento também contou com a presença do famoso cardiologista
+                    Fernando Pessoa Pires e da Sexóloga Amanda Silveira de Carneiro.
+                </p>
             </div>
+        </div>
+        <div id="rodape">
+            | Desevolvido por FPZ Software Solutions &COPY; Todos os direitos reservados | 
         </div>
     </body>
 </html>
