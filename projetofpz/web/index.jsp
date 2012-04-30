@@ -19,6 +19,16 @@
             #cadastroModal{
                 display: none;
             }
+            #centralEsquerda{
+                width: 49%;
+                float: left;
+                border: solid #121212 medium;
+            }
+            #centralDireita{
+                width: 49%;
+                float: left;
+                border: solid #121212 medium;
+            }
         </style>
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -49,7 +59,7 @@
                     <a class="brand" href="#">fpzCongressos</a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
+                            <li class="active"><a href="index.jsp">Home</a></li>
                             <li><a href="#about">Sobre</a></li>
                             <li><a href="#contact">Contato</a></li>
                         </ul>
@@ -71,14 +81,22 @@
                     <p><label>Email: <input type="text" name="email"></label></p>
                     <p><label>Cidade: <input type="text" name="cidade"></label></p>
                     <p><label>Estado: <input type="text" name="estado"></label></p>
+
                     <input class="btn btn-primary" type="button" value="Enviar"/>
                 </form>
             </div>
-            <div class="modal-footer"> 
+            <div class="modal-footer">
             </div>
         </div>
         <!-- Cadastro de palestrantes fornecido pelo Paulo -->
         <div class="container">
+            <div id="centralEsquerda">
+                <img src="imagens/banners/bannerIVEngMec.gif" />
+                <img src="imagens/banners/bannerPalestraMonografia.gif" />
+            </div>
+            <div id="centralDireita">
+                teste
+            </div>
         </div>
     </body>
 </html>

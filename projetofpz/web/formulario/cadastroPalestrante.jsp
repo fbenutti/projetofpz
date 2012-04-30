@@ -11,8 +11,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="../bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-        <script type="text/javascript" src="jQueryUI/js/jquery-1.7.1.min.js"></script>
-        <script type="text/javascript" src="bootstrap/js/bootstrap-modal.js"></script>
+        <style type="text/css">
+            #cadastroFoto {
+                display: none;
+            }
+        </style>
+        <script type="text/javascript" src="../jQueryUI/js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="../bootstrap/js/bootstrap-modal.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#EnviarTexto').click(function(){
+                    $('#cadastroTex').fadeOut("slow", function(){
+                        $('#cadastroFoto').fadeIn("slow");
+                    });
+
+                });
+
+            });
+        </script>
     </head>
     <body>
         <div class="navbar navbar-fixed-top">
@@ -23,7 +39,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="#">fpzCongressos</a>
+                    <a class="brand" href="../index.jsp">fpzCongressos</a>
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li class="active"><a href="#">Home</a></li>
@@ -38,13 +54,13 @@
         <h1>Hello World!</h1>
         <h3>Cadastro de Palestrante</h3>
         <br />
-        <div id="cadastroTex">
+        <div class="container" id="cadastroTex">
             <form id="cadastroPalestranteDados" name="cadastro" action="" method="post">
                 <p><label>Nome: <input type="text" name="nome"></label></p>
                 <p><label>Email: <input type="text" name="email"></label></p>
-                <p><label>Cidade: <input type="text" name="cidade"></label></p>
                 <p><label>Estado: <input type="text" name="estado"></label></p>
-                <input id="Enviar" class="btn btn-primary" type="button" value="Enviar"/>
+                <p><label>Cidade: <input type="text" name="cidade"></label></p>
+                <input id="EnviarTexto" class="btn btn-primary" type="button" value="Enviar"/>
             </form>
         </div>
         <div class="container" id="cadastroFoto">
