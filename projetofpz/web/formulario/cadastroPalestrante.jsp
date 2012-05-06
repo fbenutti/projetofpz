@@ -42,7 +42,8 @@
                     <a class="brand" href="../index.jsp">fpzCongressos</a>
                     <div class="nav-collapse">
                         <ul class="nav">
-                            <li class="active"><a href="#">Home</a></li>
+                            <li><a href="../index.jsp">Home</a></li>
+                            <li class="active"><a href="formulario/cadastroPalestrante.jsp">Cadastro de Palestrante</a></li>
                             <li><a href="#about">Sobre</a></li>
                             <li><a href="#contact">Contato</a></li>
                         </ul>
