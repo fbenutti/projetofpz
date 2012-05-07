@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!-- teste comite, so por deus pra funcionar-->
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -47,6 +46,7 @@
         <![endif]-->
         <script type="text/javascript" src="jQueryUI/js/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap-modal.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap-dropdown.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#cadastroModal').modal({
@@ -75,8 +75,19 @@
                                 <li><a href="#about">Sobre</a></li>
                                 <li><a href="#contact">Contato</a></li>
                             </ul>
+                            <div class="btn-group pull-right">
+                                <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> Wellington</a>
+                                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#"><i class="icon-pencil"></i> Editar</a></li>
+                                    <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+                                    <li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#"><i class="i"></i> Make admin</a></li>
+                                </ul>
+                            </div>
                         </div><!--/.nav-collapse -->
-                        <p class="navbar-text pull-right">Autenticado como <a data-toggle="modal" href="#cadastroModal">Wellington</a></p>
+                        <!--<p class="navbar-text pull-right">Autenticado como <a data-toggle="modal" href="#cadastroModal">Wellington</a></p>-->
                     </div>
                 </div>
             </div>
