@@ -38,6 +38,9 @@
                 text-align: justify;
                 text-indent: 24px;
             }
+            #loading, #erro{
+                display: none;
+            }
         </style>
         <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -47,6 +50,8 @@
         <script type="text/javascript" src="jQueryUI/js/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap-modal.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap-dropdown.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap-popover.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap-transition.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#cadastroModal').modal({
@@ -58,31 +63,44 @@
                 //Consulta do CEP
                 //Preenche os campos na ação "Blur" (mudar de campo)
                 $("#cep").blur(function(){
-                    $("#rua").val("...")
-                    $("#bairro").val("...")
-                    $("#cidade").val("...")
-                    $("#uf").val("...")
+                    $("#loading").fadeIn("fast");
+                    
+                    /*$("#endereco").attr("class", "fade in")
+                    $("#rua").val("Aguarde...");
+                    $("#bairro").val("...");
+                    $("#cidade").val("...");
+                    $("#uf").val("...");*/
 
                     // seta a variavel requisitada no campo cep
-                    consulta = $("#cep").val()
+                    consulta = $("#cep").val();
 
                     //Realiza a consulta
-                    /*Realiza a consulta através do toolsweb passando o cep como parametro
-                  e informando que vamos consultar no tipo javascript
-                     */
-                    $.getScript("http://www.toolsweb.com.br/webservice/clienteWebService.php?cep="+consulta+"&formato=javascript", function(){
+                    $.getScript("http://cep.republicavirtual.com.br/web_cep.php?formato=javascript&cep="+consulta, function(){
 
                         //unescape - Decodifica uma string codificada com o método escape.
-                        rua=unescape(resultadoCEP.logradouro)
-                        bairro=unescape(resultadoCEP.bairro)
-                        cidade=unescape(resultadoCEP.cidade)
-                        uf=unescape(resultadoCEP.uf)
+                        rua=unescape(resultadoCEP.tipo_logradouro) +" "+ unescape(resultadoCEP.logradouro);
+                        bairro=unescape(resultadoCEP.bairro);
+                        cidade=unescape(resultadoCEP.cidade);
+                        uf=unescape(resultadoCEP.uf);
+                        resultado=unescape(resultadoCEP.resultado);
 
                         // preenche os campos
-                        $("#rua").val(rua)
-                        $("#bairro").val(bairro)
-                        $("#cidade").val(cidade)
-                        $("#estado").val(uf)
+                        if (resultado == 1){
+                            $("#erro").fadeOut("fast");
+                            $("#rua").val(rua);
+                            $("#bairro").val(bairro);
+                            $("#cidade").val(cidade);
+                            $("#estado").val(uf);
+                            $("#loading").fadeOut("fast");
+                            $("#endereco").attr("class", "fade in");
+                            $("#endereco").fadeIn("fast");
+                            $("#numero").focus();
+                        } else{
+                            $("#endereco").fadeOut("fast");
+                            $("#loading").fadeOut("fast");
+                            $("#erro").fadeIn("fast");
+                            $("#cep").val('');
+                        }
 
                     });
                 });
@@ -133,11 +151,19 @@
                         <p><label>Nome: <input type="text" name="nome"></label></p>
                         <p><label>CPF: <input type="text" name="cpf"></label></p>
                         <p><label>Email: <input type="text" name="email"></label></p>
-                        <p><label>CEP: <input type="text" name="cep" id="cep"></label></p>
-                        <p><label>Rua: <input type="text" name="rua" id="rua"></label></p>
-                        <p><label>Bairro: <input type="text" name="bairro" id="bairro"></label></p>
-                        <p><label>Cidade: <input type="text" name="cidade" id="cidade"></label></p>
-                        <p><label>Estado: <input type="text" name="estado" id="estado"></label></p>
+                        <label>CEP:  </label>
+                        <p class="input-append">
+                            <input name="cep" id="cep" size="10" type="text" class="input-medium span2"><button class="btn" type="button">Validar</button>
+                        </p>
+                        <div id="loading"><img src="bootstrap/img/loader.gif"/></div>
+                        <div id="erro">Erro ao carregar os dados.</div>
+                        <div id="endereco" class="hidden">
+                            <p><label>Rua: <input type="text" name="rua" id="rua" disabled="" title="Rua"></label></p>
+                            <p><label>Número: <input type="text" name="numero" id="numero" title="Número"></label></p>
+                            <p><label>Bairro: <input type="text" name="bairro" id="bairro" disabled="" title="Bairro"></label></p>
+                            <p><label>Cidade: <input type="text" name="cidade" id="cidade" disabled="" title="Cidade"></label></p>
+                            <p><label>Estado: <input type="text" name="estado" id="estado" disabled="" title="Estado"></label></p>
+                        </div>
 
                         <input class="btn btn-primary" type="button" value="Enviar"/>
                     </form>
