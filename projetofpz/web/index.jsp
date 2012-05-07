@@ -54,6 +54,38 @@
                     show: false,
                     backdrop: true
                 });
+                
+                //Consulta do CEP
+                //Preenche os campos na ação "Blur" (mudar de campo)
+                $("#cep").blur(function(){
+                    $("#rua").val("...")
+                    $("#bairro").val("...")
+                    $("#cidade").val("...")
+                    $("#uf").val("...")
+
+                    // seta a variavel requisitada no campo cep
+                    consulta = $("#cep").val()
+
+                    //Realiza a consulta
+                    /*Realiza a consulta através do toolsweb passando o cep como parametro
+                  e informando que vamos consultar no tipo javascript
+                     */
+                    $.getScript("http://www.toolsweb.com.br/webservice/clienteWebService.php?cep="+consulta+"&formato=javascript", function(){
+
+                        //unescape - Decodifica uma string codificada com o método escape.
+                        rua=unescape(resultadoCEP.logradouro)
+                        bairro=unescape(resultadoCEP.bairro)
+                        cidade=unescape(resultadoCEP.cidade)
+                        uf=unescape(resultadoCEP.uf)
+
+                        // preenche os campos
+                        $("#rua").val(rua)
+                        $("#bairro").val(bairro)
+                        $("#cidade").val(cidade)
+                        $("#estado").val(uf)
+
+                    });
+                });
             });
         </script>
     </head>
@@ -79,7 +111,7 @@
                                 <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> Wellington</a>
                                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#"><i class="icon-pencil"></i> Editar</a></li>
+                                    <li><a data-toggle="modal" href="#cadastroModal"><i class="icon-pencil"></i> Editar</a></li>
                                     <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
                                     <li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
                                     <li class="divider"></li>
@@ -93,7 +125,7 @@
             </div>
             <div class="modal hide fade in" id="cadastroModal">
                 <div class="modal-header">
-                    <a class="close" data-dismiss="modal">x</a>
+                    <a class="close" data-dismiss="modal">&times;</a>
                     <h3>Atualização cadastral</h3>
                 </div>
                 <div class="modal-body">
@@ -101,8 +133,11 @@
                         <p><label>Nome: <input type="text" name="nome"></label></p>
                         <p><label>CPF: <input type="text" name="cpf"></label></p>
                         <p><label>Email: <input type="text" name="email"></label></p>
-                        <p><label>Cidade: <input type="text" name="cidade"></label></p>
-                        <p><label>Estado: <input type="text" name="estado"></label></p>
+                        <p><label>CEP: <input type="text" name="cep" id="cep"></label></p>
+                        <p><label>Rua: <input type="text" name="rua" id="rua"></label></p>
+                        <p><label>Bairro: <input type="text" name="bairro" id="bairro"></label></p>
+                        <p><label>Cidade: <input type="text" name="cidade" id="cidade"></label></p>
+                        <p><label>Estado: <input type="text" name="estado" id="estado"></label></p>
 
                         <input class="btn btn-primary" type="button" value="Enviar"/>
                     </form>
