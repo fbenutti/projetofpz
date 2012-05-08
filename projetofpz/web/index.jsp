@@ -118,7 +118,7 @@
                             <span class="icon-bar"></span>
                         </a>
                         <a class="brand" href="#">fpzCongressos</a>
-                        <div class="nav-collapse">
+                        <div class="nav-collapse collapse">
                             <ul class="nav">
                                 <li class="active"><a href="index.jsp">Home</a></li>
                                 <li><a href="formulario/cadastroPalestrante.jsp">Cadastro de Palestrante</a></li>
