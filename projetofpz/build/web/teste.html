@@ -9,7 +9,7 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -47,11 +47,28 @@
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
-          </div><!--/.nav-collapse -->
+          </div>
+                                  <div class="btn-group pull-right">
+                            <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> Wellington</a>
+                            <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a data-toggle="modal" href="#cadastroModal"><i class="icon-pencil"></i> Editar</a></li>
+                                <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+                                <li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#"><i class="i"></i> Make admin</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
+      
+      <!--/.nav-collapse -->
+                    <!--<p class="navbar-text pull-right">Autenticado como <a data-toggle="modal" href="#cadastroModal">Wellington</a></p>-->
+      
+      
+      
     <div class="container">
 
       <!-- Main hero unit for a primary marketing message or call to action -->
