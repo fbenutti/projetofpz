@@ -22,23 +22,26 @@
                         <li><a href="#contact">Contato</a></li>
                     </ul>
                     <%-- if logado --%>
-                    <!--<div class="btn-group pull-right">
+                    <div class="btn-group pull-right" id="logado">
                         <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> Wellington</a>
                         <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu dropdown-form">
+                            <li class="dropdown-caret right">
+                                <span class="caret-outer"></span>
+                                <span class="caret-inner"></span>
+                            </li>
                             <li><a data-toggle="modal" href="#cadastroModal"><i class="icon-pencil"></i> Editar</a></li>
-                            <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                            <li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
+                            <li id="deslogar"><a href="#"><i class="icon-ban-circle"></i> Sair</a></li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="i"></i> Make admin</a></li>
+                            <li><a href="#"><i class="icon-list"></i> Minhas inscrições</a></li>
                         </ul>
-                    </div>-->
+                    </div>
                     <%-- else --%>
-                    <div class="pull-right">
+                    <div class="pull-right" id="deslogado">
                         <form class="form-inline navbar-form">
                             <input type="text" id="login" name="login" class="input-small" placeholder="Login"/>
                             <input type="password" id="senha" name="senha" class="input-small" placeholder="Senha" />
-                            <input type="submit" value="Entrar" class="btn btn-primary"/>
+                            <input type="button" value="Entrar" class="btn btn-primary" id="logar" />
                         </form>
                     </div>
                     <%-- end if //logado --%>

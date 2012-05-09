@@ -17,7 +17,7 @@
             body {
                 padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
             }
-            #loading, #erro, #cadastroModal{
+            #loading, #erro, #cadastroModal, #logado{
                 display: none;
             }
         </style>
@@ -38,6 +38,16 @@
                     keyboard: true,
                     show: false,
                     backdrop: true
+                });
+                
+                //Login fake
+                $('#logar').click(function(){
+                    $('#deslogado').hide();
+                    $('#logado').fadeIn("slow");
+                });
+                $('#deslogar').click(function(){
+                    $('#logado').hide();
+                    $('#deslogado').fadeIn("slow");
                 });
                 
                 //Consulta do CEP
