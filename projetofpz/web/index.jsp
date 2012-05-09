@@ -17,25 +17,6 @@
             body {
                 padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
             }
-            #centralEsquerda{
-                width: 49%;
-                float: left;
-                border-right: solid #666666 thin;
-                margin-right: 3px;
-                /*border: solid #121212 medium;*/
-            }
-            #centralDireita{
-                width: 49%;
-                float: left;
-                border-left: solid #666666 thin;
-                margin-left: 3px;
-                /*border: solid #121212 medium;*/
-            }
-            .noticia{
-                margin-left: 10px;
-                text-align: justify;
-                text-indent: 24px;
-            }
             #loading, #erro, #cadastroModal{
                 display: none;
             }
@@ -50,6 +31,7 @@
         <script type="text/javascript" src="bootstrap/js/bootstrap-dropdown.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap-popover.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap-transition.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap-collapse.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#cadastroModal').modal({
@@ -145,7 +127,7 @@
                 <div class="span6 well">
                     <h3 style="text-align: center;">I SIMPÓSIO DE MEDICINA DA UNIVERSIDADE FEDERAL DE SÃO PAULO FOI UM SUCESSO</h3>
                     <br />
-                    <p class="noticia"><img src="imagens/fotos/medico.jpg" style="float: left;margin-right: 5px;">
+                    <p class="noticia"><img src="imagens/fotos/medico.jpg" style="float: left;margin-right: 5px;"/>
                         Primeiro simpósio de medicina da Universidade Federal de São
                         Paulo foi considerado um sucesso por Eduardo Ferreirado Mendes,
                         reitor da universidade.

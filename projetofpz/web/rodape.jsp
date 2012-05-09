@@ -4,7 +4,7 @@
     Author     : Wellington
 --%>
 
-<div id="rodape">
+<div>
     | Desevolvido por FPZ Software Solutions &COPY; Todos os direitos reservados |
 </div>
 </div>
