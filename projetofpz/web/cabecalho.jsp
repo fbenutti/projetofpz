@@ -18,7 +18,7 @@
                     <ul class="nav">
                         <li class="active"><a href="index.jsp">Home</a></li>
                         <li><a href="formulario/cadastroPalestrante.jsp">Cadastro de Palestrante</a></li>
-                        <li><a href="#about">Sobre</a></li>
+                        <li><a href="sobre.jsp">Sobre</a></li>
                         <li><a href="#contact">Contato</a></li>
                     </ul>
                     <%-- if logado --%>
