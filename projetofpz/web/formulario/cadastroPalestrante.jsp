@@ -18,6 +18,11 @@
         </style>
         <script type="text/javascript" src="../jQueryUI/js/jquery-1.7.1.min.js"></script>
         <script type="text/javascript" src="../bootstrap/js/bootstrap-modal.js"></script>
+        <script type="text/javascript" src="../jQueryUI/js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="../bootstrap/js/bootstrap-dropdown.js"></script>
+        <script type="text/javascript" src="../bootstrap/js/bootstrap-popover.js"></script>
+        <script type="text/javascript" src="../bootstrap/js/bootstrap-transition.js"></script>
+        <script type="text/javascript" src="../bootstrap/js/bootstrap-collapse.js"></script>
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#EnviarTexto').click(function(){
@@ -29,30 +34,30 @@
 
             });
         </script>
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#cadastroModal').modal({
+                    keyboard: true,
+                    show: false,
+                    backdrop: true
+                });
+                
+                //Login fake
+                $('#logar').click(function(){
+                    $('#deslogado').hide();
+                    $('#logado').fadeIn("slow");
+                });
+                $('#deslogar').click(function(){
+                    $('#logado').hide();
+                    $('#deslogado').fadeIn("slow");
+                });
+        </script>
     </head>
     <body>
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="../index.jsp">fpzCongressos</a>
-                    <div class="nav-collapse">
-                        <ul class="nav">
-                            <li><a href="../index.jsp">Home</a></li>
-                            <li class="active"><a href="formulario/cadastroPalestrante.jsp">Cadastro de Palestrante</a></li>
-                            <li><a href="#about">Sobre</a></li>
-                            <li><a href="#contact">Contato</a></li>
-                        </ul>
-                    </div><!--/.nav-collapse -->  
-                    <p class="navbar-text pull-right">Autenticado como <a data-toggle="modal" href="#cadastroModal">Wellington</a></p>
-                </div>
-            </div>
-        </div>
         <h1>Hello World!</h1>
+
+        <%@ include file="../cabecalho.jsp" %>
         <h3>Cadastro de Palestrante</h3>
         <br />
         <div class="container" id="cadastroTex">
@@ -70,5 +75,6 @@
                 <p><label><input id="EnviarFoto" class="btn btn-primary" type="button" value="Upload"/></label></p>
             </form>
         </div>
+        <%@include file="../rodape.jsp" %>
     </body>
 </html>
