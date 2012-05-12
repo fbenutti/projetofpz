@@ -16,10 +16,24 @@
                 <a class="brand" href="#">fpzCongressos</a>
                 <div class="nav-collapse collapse" style="height: 0px;">
                     <ul class="nav">
-                        <li class="active"><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/index.jsp">Home</a></li>
+
+
+
+
+
+                        <li <% if (request.getRequestURI().equalsIgnoreCase("/index.jsp")) {
+                                out.print("class='active'");
+                            }%>><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/index.jsp">Home</a></li>
+
                         <li><a data-toggle="modal" id="cadastro" href="#resultado">Cadastre-se</a></li>
-                        <li><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/sobre.jsp">Sobre</a></li>
-                        <li><a href="#contact">Contato</a></li>
+
+                        <li <%    if (request.getRequestURI().equalsIgnoreCase("/sobre.jsp")) {
+                                out.print("class='active'");
+                            }%>><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/sobre.jsp">Sobre</a></li>
+
+                        <li <%    if (request.getRequestURI().equalsIgnoreCase("/formulario/contato.jsp")) {
+                                out.print("class='active'");
+                            }%>   ><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/formulario/contato.jsp">Contato</a></li>
                     </ul>
                     <%-- if logado --%>
                     <div class="btn-group pull-right" id="logado">
@@ -49,4 +63,6 @@
                 <!--<p class="navbar-text pull-right">Autenticado como <a data-toggle="modal" href="#cadastroModal">Wellington</a></p>-->
             </div>
         </div>
+    </div>
+    <div class="modal fade in" id="resultado">
     </div>

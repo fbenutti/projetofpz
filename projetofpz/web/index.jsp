@@ -28,8 +28,6 @@
     <body>
         <%-- Include do cabeçalho (menu superior) --%>
         <%@ include file="cabecalho.jsp" %>
-        <div class="modal fade in" id="resultado">
-        </div>
         <!-- Cadastro de palestrantes fornecido pelo Paulo -->
         <div class="container">
             <div class="row">
