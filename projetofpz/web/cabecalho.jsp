@@ -16,9 +16,10 @@
                 <a class="brand" href="#">fpzCongressos</a>
                 <div class="nav-collapse collapse" style="height: 0px;">
                     <ul class="nav">
-                        <li class="active"><a href="index.jsp">Home</a></li>
-                        <li><a href="formulario/cadastroPalestrante.jsp">Cadastro de Palestrante</a></li>
-                        <li><a href="sobre.jsp">Sobre</a></li>
+                        <li class="active"><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/index.jsp">Home</a></li>
+                        <li><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/formulario/cadastroPalestrante.jsp">Cadastro de Palestrante</a></li>
+                        <li><a data-toggle="modal" id="cadastro" href="#resultado">Cadastre-se</a></li>
+                        <li><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/sobre.jsp">Sobre</a></li>
                         <li><a href="#contact">Contato</a></li>
                     </ul>
                     <%-- if logado --%>
@@ -30,7 +31,7 @@
                                 <span class="caret-outer"></span>
                                 <span class="caret-inner"></span>
                             </li>
-                            <li><a data-toggle="modal" href="#cadastroModal"><i class="icon-pencil"></i> Editar</a></li>
+                            <li><a data-toggle="modal" id="cadastroModal" href="#cadastroModal"><i class="icon-pencil"></i> Editar</a></li>
                             <li id="deslogar"><a href="#"><i class="icon-ban-circle"></i> Sair</a></li>
                             <li class="divider"></li>
                             <li><a href="#"><i class="icon-list"></i> Minhas inscrições</a></li>
