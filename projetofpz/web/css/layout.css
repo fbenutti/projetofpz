@@ -11,3 +11,7 @@ body {
 #loading, #erro, #logado, #resultado{
     display: none;
 }
+
+#cadastroFoto {
+    display: none;
+}

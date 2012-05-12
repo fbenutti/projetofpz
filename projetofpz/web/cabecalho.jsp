@@ -17,7 +17,6 @@
                 <div class="nav-collapse collapse" style="height: 0px;">
                     <ul class="nav">
                         <li class="active"><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/index.jsp">Home</a></li>
-                        <li><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/formulario/cadastroPalestrante.jsp">Cadastro de Palestrante</a></li>
                         <li><a data-toggle="modal" id="cadastro" href="#resultado">Cadastre-se</a></li>
                         <li><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/sobre.jsp">Sobre</a></li>
                         <li><a href="#contact">Contato</a></li>
