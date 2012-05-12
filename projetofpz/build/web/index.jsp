@@ -13,6 +13,7 @@
         <title>Index</title>
         <link href="bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
         <link href="bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet"/>
+        <link href="bootstrap/css/docs.css" type="text/css" rel="stylesheet" />
         <style>
             body {
                 padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -39,7 +40,7 @@
                     show: false,
                     backdrop: true
                 });
-                
+
                 //Login fake
                 $('#logar').click(function(){
                     $('#deslogado').hide();
@@ -49,12 +50,12 @@
                     $('#logado').hide();
                     $('#deslogado').fadeIn("slow");
                 });
-                
+
                 //Consulta do CEP
                 //Preenche os campos na ação "Blur" (mudar de campo)
                 $("#cep").blur(function(){
                     $("#loading").fadeIn("fast");
-                    
+
                     // seta a variavel requisitada no campo cep
                     consulta = $("#cep").val();
 
@@ -128,11 +129,24 @@
         <div class="container">
             <div class="row">
                 <div class="span5">
-                    <a href="#">
-                        <img src="imagens/banners/bannerIVEngMec.png" />
-                    </a>
-                    <br /><br /><br />
-                    <img src="imagens/banners/bannerPalestraMonografia.png" />
+                    <h2 style="text-align: center">Eventos</h2><br /><br />
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <img src="imagens/banners/bannerIVEngMecMin.png" style="float: left;margin-right: 5px;" />
+                                <p style="">IV Congresso dos Engenheiros Mecânicos</p>
+                                <a href="#">Faça sua Inscrição</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="imagens/banners/bannerPalestraMonografiaMin.png" style="float: left;margin-right: 5px;" />
+                                <p style="">Palestra: Técnicas Modernas para Desenvolvimento de
+                                Monografias e Textos Científicos</p>
+                                <a href="#">Faça sua Inscrição</a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="span6 well">
                     <h3 style="text-align: center;">I SIMPÓSIO DE MEDICINA DA UNIVERSIDADE FEDERAL DE SÃO PAULO FOI UM SUCESSO</h3>
