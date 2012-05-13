@@ -15,3 +15,7 @@ body {
 #cadastroFoto {
     display: none;
 }
+
+.noticia{
+    text-align: justify;
+}

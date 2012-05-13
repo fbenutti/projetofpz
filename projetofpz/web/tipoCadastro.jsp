@@ -24,9 +24,9 @@
                     $('#conteudo').load('formulario/cadastroUser.jsp');
                 });
             });
-            
-                       $(document).ready(function(){
-                //Carrega a página de cadastro de usuário
+  
+            $(document).ready(function(){
+                //Carrega a página de cadastro de Palestrante
                 $("#cadastroPalestrante").click(function(){
                     $('#conteudo').modal({
                         keyboard: true,
@@ -34,6 +34,18 @@
                         backdrop: true
                     });
                     $('#conteudo').load('formulario/cadastroPalestrante.jsp');
+                });
+            });
+
+            $(document).ready(function(){
+                //Carrega a página de cadastro dInstituição
+                $("#cadastroInstituicao").click(function(){
+                    $('#conteudo').modal({
+                        keyboard: true,
+                        show: false,
+                        backdrop: true
+                    });
+                    $('#conteudo').load('formulario/cadastroInstituicao.jsp');
                 });
             });
         </script>
@@ -47,7 +59,7 @@
             </div>
             <div class="modal-body">
                 <p><a data-toggle="modal" id="cadastroPalestrante" href="#cadastroPalestrante">Palestrante</a></p>
-                <p><a href="#">Instituição</a></p>
+                <p><a data-toggle="modal" id="cadastroInstituicao" href="#cadastroInstituicao">Instituição</a></p>
                 <p><a data-toggle="modal" id="cadastroUser" href="#cadastroUser">Usuário</a></p>
             </div>
             <div class="modal-footer">
