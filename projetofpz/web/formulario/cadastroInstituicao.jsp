@@ -15,8 +15,12 @@
         <link href="../css/layout.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <h3 class="modal-header">Cadastro de Instituição</h3>
-        <div class="modal-body">
+        <div>
+            <ul class="nav nav-tabs">
+                <li><a id="cadastroUser" href="#cadastroUser">Usuário</a></li>
+                <li class="active"><a id="cadastroInstituicao" href="#cadastroInstituicao">Instituição</a></li>
+                <li><a id="cadastroPalestrante" href="#cadastroPalestrante">Palestrante</a></li>
+            </ul>
             <form id="cadastroInstituição" name="cadastro" action="" method="post">
                 <p><label>Nome: <input type="text" name="nome" /></label></p>
                 <p><label>Email: <input type="text" name="email" /></label></p>
@@ -25,9 +29,6 @@
                 <p><label>Telefone: <input type="text" name="telefone"/></label></p>
                 <input id="EnviarTexto" class="btn btn-primary" type="button" value="Enviar"/>
             </form>
-        </div>
-        <div class="modal-footer">
-            
         </div>
     </body>
 </html>

@@ -51,10 +51,13 @@
         </script>
     </head>
     <body>
-        <div  style="margin-left: 10px;">
-            <h3 class="modal-header">Cadastro de Palestrante</h3>
-            <br />
-            <div id="cadastroTex" class="modal-body">
+        <div>
+            <div id="cadastroTex">
+                <ul class="nav nav-tabs">
+                <li><a id="cadastroUser" href="#cadastroUser">Usuário</a></li>
+                <li><a id="cadastroInstituicao" href="#cadastroInstituicao">Instituição</a></li>
+                <li class="active"><a id="cadastroPalestrante" href="#cadastroPalestrante">Palestrante</a></li>
+            </ul>
                 <form id="cadastroPalestranteDados" name="cadastro" action="" method="post">
                     <p><label>Nome: <input type="text" name="nome"></label></p>
                     <p><label>Email: <input type="text" name="email"></label></p>
@@ -69,8 +72,6 @@
                     <p><label><input id="EnviarFoto" class="btn btn-primary" type="button" value="Upload"/></label></p>
                 </form>
             </div>
-
-            <div class="modal-footer"></div>
         </div>
     </body>
 </html>

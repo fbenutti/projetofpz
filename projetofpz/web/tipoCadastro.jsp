@@ -16,40 +16,34 @@
             $(document).ready(function(){
                 //Carrega a página de cadastro de usuário
                 $("#cadastroUser").click(function(){
-                    $('#conteudo').modal({
+                    /*$('#conteudo').modal({
                         keyboard: true,
                         show: false,
                         backdrop: true
-                    });
-                    $('#conteudo').load('formulario/cadastroUser.jsp');
+                    });*/
+                    $('#cadastros').load('formulario/cadastroUser.jsp');
                 });
-            });
-  
-            $(document).ready(function(){
                 //Carrega a página de cadastro de Palestrante
                 $("#cadastroPalestrante").click(function(){
-                    $('#conteudo').modal({
+                    /*$('#conteudo').modal({
                         keyboard: true,
                         show: false,
                         backdrop: true
-                    });
-                    $('#conteudo').load('formulario/cadastroPalestrante.jsp');
+                    });*/
+                    $('#cadastros').load('formulario/cadastroPalestrante.jsp');
                 });
-            });
-
-            $(document).ready(function(){
                 //Carrega a página de cadastro dInstituição
                 $("#cadastroInstituicao").click(function(){
-                    $('#conteudo').modal({
+                    /*$('#conteudo').modal({
                         keyboard: true,
                         show: false,
                         backdrop: true
-                    });
-                    $('#conteudo').load('formulario/cadastroInstituicao.jsp');
+                    });*/
+                    $('#cadastros').load('formulario/cadastroInstituicao.jsp');
                 });
             });
         </script>
-        <title>JSP Page</title>
+        <title>Cadastro</title>
     </head>
     <body>
         <div id="conteudo">
@@ -57,10 +51,13 @@
                 <a class="close" data-dismiss="modal">&times;</a>
                 <h3>Selecione o tipo de cadastro:</h3>
             </div>
-            <div class="modal-body">
-                <p><a data-toggle="modal" id="cadastroPalestrante" href="#cadastroPalestrante">Palestrante</a></p>
-                <p><a data-toggle="modal" id="cadastroInstituicao" href="#cadastroInstituicao">Instituição</a></p>
-                <p><a data-toggle="modal" id="cadastroUser" href="#cadastroUser">Usuário</a></p>
+            <div id="cadastros" class="modal-body">
+                <ul class="nav nav-tabs">
+                    <li><a id="cadastroUser" href="#cadastroUser">Usuário</a></li>
+                    <li><a id="cadastroInstituicao" href="#cadastroInstituicao">Instituição</a></li>
+                    <li><a id="cadastroPalestrante" href="#cadastroPalestrante">Palestrante</a></li>
+                </ul>
+                <p>Conteúdo diverso inserido aqui(banners, propagandas)...</p>
             </div>
             <div class="modal-footer">
             </div>

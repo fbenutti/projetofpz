@@ -3,7 +3,6 @@
     Created on : May 8, 2012, 9:35:37 PM
     Author     : Wellington
 --%>
-
 <div id="site" style="min-width: 300px ; margin: 0 auto" >
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
@@ -44,7 +43,7 @@
                                 <span class="caret-outer"></span>
                                 <span class="caret-inner"></span>
                             </li>
-                            <li><a data-toggle="modal" id="cadastroModal" href="#cadastroModal"><i class="icon-pencil"></i> Editar</a></li>
+                            <!--<li><a data-toggle="modal" id="cadastroModal" href="#cadastroModal"><i class="icon-pencil"></i> Editar</a></li>-->
                             <li id="deslogar"><a href="#"><i class="icon-ban-circle"></i> Sair</a></li>
                             <li class="divider"></li>
                             <li><a href="#"><i class="icon-list"></i> Minhas inscrições</a></li>
@@ -60,7 +59,6 @@
                     </div>
                     <%-- end if //logado --%>
                 </div><!--/.nav-collapse -->
-                <!--<p class="navbar-text pull-right">Autenticado como <a data-toggle="modal" href="#cadastroModal">Wellington</a></p>-->
             </div>
         </div>
     </div>
