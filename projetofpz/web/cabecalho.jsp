@@ -15,11 +15,6 @@
                 <a class="brand" href="#">fpzCongressos</a>
                 <div class="nav-collapse collapse" style="height: 0px;">
                     <ul class="nav">
-
-
-
-
-
                         <li <% if (request.getRequestURI().equalsIgnoreCase("/index.jsp")) {
                                 out.print("class='active'");
                             }%>><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/index.jsp">Home</a></li>

@@ -3,32 +3,26 @@
     Created on : 12/05/2012, 17:35:25
     Author     : Paulo
 --%>
+<script type="text/javascript" src="js/functions.js"></script>
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h3>Cadastro institucional:</h3>
+</div>
+<div id="cadastros" class="modal-body">
+    <ul class="nav nav-tabs">
+        <li><a id="cadastroUser" href="#">Usu·rio</a></li>
+        <li class="active"><a id="cadastroInstituicao" href="#">InstituiÁ„o</a></li>
+        <li><a id="cadastroPalestrante" href="#">Palestrante</a></li>
+    </ul>
+    <form id="cadastroInstituiÁ„o" name="cadastro" action="" method="post">
+        <p><label>Nome: <input type="text" name="nome" /></label></p>
+        <p><label>Email: <input type="text" name="email" /></label></p>
+        <p><label>Estado: <input type="text" name="estado" /></label></p>
+        <p><label>Cidade: <input type="text" name="cidade" /></label></p>
+        <p><label>Telefone: <input type="text" name="telefone"/></label></p>
+        <input id="EnviarTexto" class="btn btn-primary" type="button" value="Enviar"/>
+    </form>
+</div>
+<div class="modal-footer">
+</div>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastro Institui√ß√£o</title>
-        <link href="../bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-        <link href="../bootstrap/css/bootstrap-responsive.min.css" type="text/css" rel="stylesheet" />
-        <link href="../css/layout.css" rel="stylesheet" type="text/css" />
-    </head>
-    <body>
-        <div>
-            <ul class="nav nav-tabs">
-                <li><a id="cadastroUser" href="#cadastroUser">Usu√°rio</a></li>
-                <li class="active"><a id="cadastroInstituicao" href="#cadastroInstituicao">Institui√ß√£o</a></li>
-                <li><a id="cadastroPalestrante" href="#cadastroPalestrante">Palestrante</a></li>
-            </ul>
-            <form id="cadastroInstitui√ß√£o" name="cadastro" action="" method="post">
-                <p><label>Nome: <input type="text" name="nome" /></label></p>
-                <p><label>Email: <input type="text" name="email" /></label></p>
-                <p><label>Estado: <input type="text" name="estado" /></label></p>
-                <p><label>Cidade: <input type="text" name="cidade" /></label></p>
-                <p><label>Telefone: <input type="text" name="telefone"/></label></p>
-                <input id="EnviarTexto" class="btn btn-primary" type="button" value="Enviar"/>
-            </form>
-        </div>
-    </body>
-</html>
