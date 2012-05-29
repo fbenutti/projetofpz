@@ -103,5 +103,8 @@ public abstract class Inscritos {
         this.uf = uf;
     }
     //Fim getters e setter
-    
+
+    public Inscritos() {
+    }
+
 }
