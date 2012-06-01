@@ -13,8 +13,9 @@ public abstract class Inscritos {
     private int id;
     private String nome;
     private String email;
-    private String cidade;
     private int telefone;
+    private int cep;
+    private String cidade;
     private String uf;
     private String rua;
     private String bairro;
@@ -59,10 +60,6 @@ public abstract class Inscritos {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -102,6 +99,16 @@ public abstract class Inscritos {
     public void setUf(String uf) {
         this.uf = uf;
     }
+
+    public int getCep() {
+        return cep;
+    }
+
+    public void setCep(int cep) {
+        this.cep = cep;
+    }
+    
+    
     //Fim getters e setter
 
     public Inscritos() {

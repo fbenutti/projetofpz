@@ -15,12 +15,11 @@ public class Instituicao extends Inscritos {
     private int cnpj;
     private List<Pessoa> p;
 
-    public Instituicao(int cnpj, List<Pessoa> p, int id, String nome, String email,
+    public Instituicao(int cnpj, List<Pessoa> p, String nome, String email,
             String cidade, int telefone, String uf, String rua, String bairro,
             int numero, String complemento) {
         this.cnpj = cnpj;
         this.p = p;
-        super.setId(id);
         super.setNome(nome);
         super.setEmail(email);
         super.setCidade(cidade);

@@ -9,26 +9,39 @@ package classes;
  * @author Wellington
  */
 public class Pessoa extends Inscritos {
-    
-    private int cpf;
-    private Inscritos i;
+
+    private String cpf;
+    //private Inscritos i;
+
+    //construtor
+    public Pessoa(String cpf, String nome, String email, int telefone, int cep,
+            String cidade, String uf,  String rua, String bairro,
+            int numero, String complemento) {
+        this.cpf = cpf;
+        //this.i = i;
+        super.setNome(nome);
+        super.setEmail(email);
+        super.setTelefone(telefone);
+        super.setCep(cep);
+        super.setCidade(cidade);
+        super.setUf(uf);
+        super.setRua(rua);
+        super.setBairro(bairro);
+        super.setNumero(numero);
+        super.setComplemento(complemento);
+    }
+
+    public Pessoa() {
+    }
+    //fim construtor
 
     //Início getters e setter
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
-    public Inscritos getI() {
-        return i;
-    }
-
-    public void setI(Inscritos i) {
-        this.i = i;
-    }
     //Fim getters e setter
-    
 }

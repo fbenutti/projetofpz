@@ -14,10 +14,11 @@
         <li><a id="cadastroInstituicao" href="#">Instituição</a></li>
         <li><a id="cadastroPalestrante" href="#">Palestrante</a></li>
     </ul>
-    <form id="cadastroUsuario" name="cadastro" action="" method="post">
+    <form id="cadastroUsuario" name="cadastro" action="CadastraPessoa" method="post">
         <p><label>Nome: <input type="text" name="nome"></label></p>
         <p><label>CPF: <input type="text" name="cpf"></label></p>
         <p><label>Email: <input type="text" name="email"></label></p>
+        <p><label>Telefone: <input type="text" name="telefone"></label></p>
         <label for="cep">CEP:  </label>
         <div class="input-append">
             <input name="cep" id="appendedPrependedInput" type="text" class="input-medium cep"><button class="btn concatenado" type="button">Validar</button>
@@ -31,7 +32,7 @@
             <p><label>Cidade: <input type="text" name="cidade" id="cidade" disabled="" title="Cidade"></label></p>
             <p><label>Estado: <input type="text" name="estado" id="estado" disabled="" title="Estado"></label></p>
         </div>
-        <input class="btn btn-primary" type="button" value="Enviar"/>
+        <input class="btn btn-primary" type="submit" value="Enviar"/>
     </form>
 </div>
 <div class="modal-footer">

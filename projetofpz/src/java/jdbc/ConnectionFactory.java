@@ -17,7 +17,7 @@ public class ConnectionFactory {
     public Connection getConnection(){
         System.out.println("Conectando ao banco");
         try{
-            return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/fpz", "root", "");
+            return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/fpz", "root", "1234");
         } catch(SQLException e){
             System.out.println("Não foi possível conectar ao banco!");
             throw new RuntimeException(e);
