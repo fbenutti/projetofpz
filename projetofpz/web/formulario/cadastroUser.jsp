@@ -21,7 +21,7 @@
         <p><label>Telefone: <input type="text" name="telefone"></label></p>
         <label for="cep">CEP:  </label>
         <div class="input-append">
-            <input name="cep" id="appendedPrependedInput" type="text" class="input-medium cep"><button class="btn concatenado" type="button">Validar</button>
+            <input name="cep" id="cep" type="text" class="input-medium cep"><button class="btn concatenado" type="button">Validar</button>
         </div>
         <div id="loading"><img src="bootstrap/img/loader.gif"/></div>
         <div id="erro">Erro ao carregar os dados.</div>
