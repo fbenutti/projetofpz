@@ -3,7 +3,7 @@
     Created on : May 10, 2012, 11:49:48 PM
     Author     : Wellington
 --%>
-<script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="../js/functions.js"></script>
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
     <h3>Cadastro de usuários:</h3>
