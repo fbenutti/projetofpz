@@ -12,11 +12,11 @@ import java.util.List;
  */
 public class Instituicao extends Inscritos {
 
-    private int cnpj;
+    private String cnpj;
     private List<Pessoa> p;
 
-    public Instituicao(int cnpj, List<Pessoa> p, String nome, String email,
-            String cidade, int telefone, String uf, String rua, String bairro,
+    public Instituicao(String cnpj, List<Pessoa> p, String nome, String email,
+            String cidade, String telefone, String uf, String rua, String bairro,
             int numero, String complemento) {
         this.cnpj = cnpj;
         this.p = p;
@@ -31,19 +31,14 @@ public class Instituicao extends Inscritos {
         super.setComplemento(complemento);
     }
     
-    public Instituicao(String nome, String email){
-        super.setNome(nome);
-        super.setEmail(email);
-    }
-
     public Instituicao() {
     }
     
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 

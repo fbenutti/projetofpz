@@ -13,8 +13,8 @@ public abstract class Inscritos {
     private int id;
     private String nome;
     private String email;
-    private int telefone;
-    private int cep;
+    private String telefone;
+    private String cep;
     private String cidade;
     private String uf;
     private String rua;
@@ -84,11 +84,11 @@ public abstract class Inscritos {
         this.rua = rua;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -100,11 +100,11 @@ public abstract class Inscritos {
         this.uf = uf;
     }
 
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
     

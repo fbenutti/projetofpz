@@ -14,7 +14,7 @@ public class Pessoa extends Inscritos {
     //private Inscritos i;
 
     //construtor
-    public Pessoa(String cpf, String nome, String email, int telefone, int cep,
+    public Pessoa(String cpf, String nome, String email, String telefone, String cep,
             String cidade, String uf,  String rua, String bairro,
             int numero, String complemento) {
         this.cpf = cpf;

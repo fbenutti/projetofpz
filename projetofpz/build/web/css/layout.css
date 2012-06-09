@@ -1,0 +1,36 @@
+/* 
+    Document   : layout
+    Created on : May 12, 2012, 4:30:39 PM
+    Author     : Wellington
+    Description:
+        Purpose of the stylesheet follows.
+*/
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+#loading, #erro, #logado, #resultado{
+    display: none;
+}
+
+#cadastroFoto {
+    display: none;
+}
+
+.noticia{
+    text-align: justify;
+}
+
+#rodape{
+    background-color: #EEE;
+    text-align: center;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    min-height: 30px;
+    line-height: 30px;
+    width: 100%;
+}
+
+.concatenado{
+    vertical-align: top;
+}

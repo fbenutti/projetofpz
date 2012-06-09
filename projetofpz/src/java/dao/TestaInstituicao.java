@@ -20,6 +20,14 @@ public class TestaInstituicao {
         Instituicao inst = new Instituicao();
         inst.setNome( "Wellington Institucional" );
         inst.setEmail( "zanellidrummer@gmail.com" );
+        inst.setCep("13.876-460");
+        inst.setBairro("Jardim Magalhães");
+        inst.setCidade("São João da Boa Vista");
+        inst.setCnpj("25.707.439/0001-80");
+        inst.setComplemento("Fundos");
+        inst.setNumero(Integer.parseInt("467"));
+        inst.setRua("Jarbas Amaral Carvalho");
+        inst.setTelefone("9155-2985");
 
         InstituicaoDAO dao = null;
 

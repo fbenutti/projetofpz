@@ -24,12 +24,22 @@ public class InstituicaoDAO extends DAO<Instituicao> {
     @Override
     public void salvar( Instituicao obj ) throws SQLException {
 
-        String sql = "INSERT INTO instituicao( nome, email ) "
-                + "VALUES( ?, ? );";
+        String sql = "INSERT INTO instituicao(nome, email, cep, bairro, cidade,"
+                +"cnpj, complemento, numero, rua, telefone) "
+                + "VALUES( ?,?,?,?,?,?,?,?,?,? );";
 
         PreparedStatement stmt = getConnection().prepareStatement( sql );
         stmt.setString( 1, obj.getNome() );
         stmt.setString( 2, obj.getEmail() );
+        stmt.setString( 3, obj.getCep() );
+        stmt.setString( 4, obj.getBairro() );
+        stmt.setString( 5, obj.getCidade() );
+        stmt.setString( 6, obj.getCnpj() );
+        stmt.setString( 7, obj.getComplemento() );
+        stmt.setInt( 8, obj.getNumero() );
+        stmt.setString( 9, obj.getRua() );
+        stmt.setString( 10, obj.getTelefone() );
+        
 
         stmt.executeUpdate();
         stmt.close();

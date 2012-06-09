@@ -4,18 +4,25 @@
  */
 package servlet;
 
-import classes.Pessoa;
+import classes.Instituicao;
+import dao.InstituicaoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Paulo
+ *
+ * @author Wellington
  */
-public class CadastraPessoa extends HttpServlet {
+@WebServlet(name = "CadastraInstituicao", urlPatterns = {"/CadastraInstituicao"})
+public class CadastraInstituicao extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -31,36 +38,23 @@ public class CadastraPessoa extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
-        //pegando dados do /formulario/cadastroUser
-        String nome = request.getParameter("nome");
-        String cpf = request.getParameter("cpf");
-        String email = request.getParameter("email");
-        String telefone = request.getParameter("telefone");
-        String cep = request.getParameter("cep");
-        String cidade = "teste";//request.getParameter("cidade");
-        String uf = "TT";//request.getParameter("estado");
-        String rua = "Rua Teste"; //request.getParameter("rua");
-        String bairro = "Jardim Teste"; //request.getParameter("bairro");
-        int n = 0;//Integer.parseInt(request.getParameter("numero"));
-        String complemento = " "; //request.getParameter("bairro");
-       
-        
-        Pessoa p = new Pessoa(cpf, nome, email, telefone, cep, cidade, uf, rua, bairro, n, complemento);
-        
-        
-        
         try {
+            Instituicao inst = new Instituicao();
             
+            inst.setNome(request.getParameter("nome"));
+            inst.setEmail(request.getParameter("email"));
+            inst.setUf(request.getParameter("estado"));
+            inst.setCidade(request.getParameter("cidade"));
+            inst.setTelefone("telefone");
             
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CadastraPessoa</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CadastraPessoa at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            try {
+                InstituicaoDAO instDao = new InstituicaoDAO();
+                instDao.salvar(inst);
+                out.println("Instituição cadastrada com sucesso!!");
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastraInstituicao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         } finally {            
             out.close();
         }
