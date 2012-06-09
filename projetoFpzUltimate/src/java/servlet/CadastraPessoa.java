@@ -5,12 +5,15 @@
 package servlet;
 
 import classes.Pessoa;
+import dao.PessoaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.jasper.tagplugins.jstl.core.Catch;
 
 /**
  * @author Paulo
@@ -31,10 +34,10 @@ public class CadastraPessoa extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         //pegando dados do /formulario/cadastroUser
-        String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
+        String nome = request.getParameter("nome");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
         String cep = request.getParameter("cep");
@@ -44,25 +47,34 @@ public class CadastraPessoa extends HttpServlet {
         String bairro = "Jardim Teste"; //request.getParameter("bairro");
         int n = 0;//Integer.parseInt(request.getParameter("numero"));
         String complemento = " "; //request.getParameter("bairro");
-       
-        
+
+
         Pessoa p = new Pessoa(cpf, nome, email, telefone, cep, cidade, uf, rua, bairro, n, complemento);
-        
-        
-        
+        PessoaDAO dao = null;
+
+
         try {
-            
-            
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CadastraPessoa</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CadastraPessoa at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
+
+            dao = new PessoaDAO();
+            dao.salvar(p);
+
+        } catch (SQLException exc) {
+
+            exc.printStackTrace();
+
+        } finally {
+
+            if (dao != null) {
+
+                try {
+                    dao.fecharConexao();
+                } catch (SQLException exc) {
+                    System.err.println("Erro ao fechar a conexão!");
+                    exc.printStackTrace();
+                }
+
+            }
+
         }
     }
 
