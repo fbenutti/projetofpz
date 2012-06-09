@@ -95,6 +95,7 @@ CREATE TABLE atividade(
     horario_fim varchar(15),
     es_evento int(10) not null,
     es_responsavel int(10) not null,
+    PRIMARY KEY (id_atividade),
     CONSTRAINT FOREIGN KEY (es_evento) REFERENCES evento (id_evento),
     CONSTRAINT FOREIGN KEY (es_responsavel) REFERENCES responsavel (id_responsavel)
 )ENGINE=InnoDB;

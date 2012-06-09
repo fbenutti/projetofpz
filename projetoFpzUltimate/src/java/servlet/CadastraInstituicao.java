@@ -47,11 +47,14 @@ public class CadastraInstituicao extends HttpServlet {
             inst.setCidade(request.getParameter("cidade"));
             inst.setTelefone("telefone");
             
+            InstituicaoDAO instDao = null;
+            
             try {
-                InstituicaoDAO instDao = new InstituicaoDAO();
+                instDao = new InstituicaoDAO();
                 instDao.salvar(inst);
                 out.println("Instituição cadastrada com sucesso!!");
             } catch (SQLException ex) {
+                out.println(ex);
                 Logger.getLogger(CadastraInstituicao.class.getName()).log(Level.SEVERE, null, ex);
             }
             

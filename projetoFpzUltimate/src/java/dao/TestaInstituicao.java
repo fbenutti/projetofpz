@@ -15,8 +15,6 @@ public class TestaInstituicao {
 
     public static void main(String[] args) {
         
-        //Instituicao inst = new Instituicao("Wellington", "zanellidrummer@gmail.com");
-        
         Instituicao inst = new Instituicao();
         inst.setNome( "Wellington Institucional" );
         inst.setEmail( "zanellidrummer@gmail.com" );
@@ -28,6 +26,7 @@ public class TestaInstituicao {
         inst.setNumero(Integer.parseInt("467"));
         inst.setRua("Jarbas Amaral Carvalho");
         inst.setTelefone("9155-2985");
+        inst.setUf("SP");
 
         InstituicaoDAO dao = null;
 

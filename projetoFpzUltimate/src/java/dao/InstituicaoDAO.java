@@ -24,8 +24,8 @@ public class InstituicaoDAO extends DAO<Instituicao> {
     @Override
     public void salvar( Instituicao obj ) throws SQLException {
 
-        String sql = "INSERT INTO instituicao(nome, email, cep, bairro, cidade,"
-                +"cnpj, complemento, estado, numero, rua, telefone) "
+        String sql = "INSERT INTO instituicao(cnpj, nome, email, cep, bairro, cidade,"
+                +"uf, complemento, numero, rua, telefone) "
                 + "VALUES( ?,?,?,?,?,?,?,?,?,?,? );";
 
         PreparedStatement stmt = getConnection().prepareStatement( sql );
@@ -41,7 +41,6 @@ public class InstituicaoDAO extends DAO<Instituicao> {
         stmt.setString( 10, obj.getRua() );
         stmt.setString( 11, obj.getTelefone() );
         
-
         stmt.executeUpdate();
         stmt.close();
 
