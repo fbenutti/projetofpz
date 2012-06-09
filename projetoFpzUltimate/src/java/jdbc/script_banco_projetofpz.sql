@@ -1,0 +1,85 @@
+CREATE DATABASE IF NOT EXISTS projetofpz;
+
+USE projetofpz;
+
+CREATE TABLE login (
+    user_name varchar(50) not null,
+    senha varchar(50) not null,
+    tipo varchar (40),
+    PRIMARY KEY (user_name) 
+)ENGINE=InnoDB;
+
+CREATE TABLE instituicao(
+    id_instituicao int(10) not null,
+    nome varchar(100) not null,
+    es_user_name varchar(50),
+    PRIMARY KEY (id_instituicao),
+    CONSTRAINT FOREIGN KEY (es_user_name) REFERENCES login (user_name)
+)ENGINE=InnoDB;
+
+CREATE TABLE pessoa(
+    cpf varchar(18) not null,
+    nome varchar(100),
+    endereco varchar(100),
+    rua varchar(20),
+    bairro varchar(40),
+    numero varchar(20),
+    cep varchar(10),
+    es_user_name varchar(50),
+    PRIMARY KEY (cpf),
+    CONSTRAINT FOREIGN KEY (es_user_name) REFERENCES login (user_name)
+)ENGINE=InnoDB;
+
+CREATE TABLE pessoa_instituicao(
+    id_pessoa_instituicao int (10) not null,
+    es_cpf varchar(18) not null,
+    es_instituicao int(10) not null,
+    PRIMARY KEY (id_pessoa_instituicao),
+    CONSTRAINT FOREIGN KEY (es_cpf) REFERENCES pessoa (cpf),
+    CONSTRAINT FOREIGN KEY (es_instituicao) REFERENCES instituicao (id_instituicao)
+)ENGINE=InnoDB;
+
+CREATE TABLE evento(
+    id_evento int(10) not null,
+    dt_inicio varchar(15),
+    dt_fim varchar(15),
+    PRIMARY KEY (id_evento)
+)ENGINE=InnoDB;
+
+CREATE TABLE inscricao(
+    id_inscricao int(10) not null,
+    es_cpf varchar(18) not null,
+    es_evento int(10) not null,
+    PRIMARY KEY (id_inscricao),
+    CONSTRAINT FOREIGN KEY (es_cpf) REFERENCES pessoa (cpf),
+    CONSTRAINT FOREIGN KEY (es_evento) REFERENCES evento (id_evento)
+)ENGINE=InnoDB;
+
+CREATE TABLE fotos(
+    id_foto int(10),
+    foto longblob,
+    PRIMARY KEY (id_foto)
+)ENGINE=InnoDB;
+
+CREATE TABLE responsavel(
+    id_responsavel int(10) not null,
+    nome varchar(100) not null,
+    email varchar(100),
+    cidade varchar(50),
+    estado char(2),
+    es_foto int(10),
+    PRIMARY KEY (id_responsavel),
+    CONSTRAINT FOREIGN KEY (es_foto) REFERENCES fotos (id_foto)
+)ENGINE=InnoDB;
+
+CREATE TABLE atividade(
+    id_atividade int(10) not null,
+    descricao varchar(400) not null,
+    vagas int(6),
+    horario_inicio varchar(15),
+    horario_fim varchar(15),
+    es_evento int(10) not null,
+    es_responsavel int(10) not null,
+    CONSTRAINT FOREIGN KEY (es_evento) REFERENCES evento (id_evento),
+    CONSTRAINT FOREIGN KEY (es_responsavel) REFERENCES responsavel (id_responsavel)
+)ENGINE=InnoDB;
