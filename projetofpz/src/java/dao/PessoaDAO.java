@@ -1,6 +1,7 @@
 package dao;
 
 import classes.Pessoa;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -15,9 +16,18 @@ public class PessoaDAO extends DAO<Pessoa> {
 
     @Override
     public void salvar(Pessoa obj) throws SQLException {
-        String sql = "INSERT INTO Pessoa()";
+        String sql = "INSERT INTO Pessoa(cpf, nome, rua, bairro, numero, )";
     }
-
+//String sql = "INSERT INTO instituicao( nome, email ) "
+//                + "VALUES( ?, ? );";
+//
+//        PreparedStatement stmt = getConnection().prepareStatement( sql );
+//        stmt.setString( 1, obj.getNome() );
+//        stmt.setString( 2, obj.getEmail() );
+//
+//        stmt.executeUpdate();
+//        stmt.close();
+//
     @Override
     public void atualizar(Pessoa obj) throws SQLException {
        
