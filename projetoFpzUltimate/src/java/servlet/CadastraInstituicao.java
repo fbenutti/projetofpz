@@ -41,11 +41,16 @@ public class CadastraInstituicao extends HttpServlet {
         try {
             Instituicao inst = new Instituicao();
             
+            inst.setCnpj(request.getParameter("cnpj"));
             inst.setNome(request.getParameter("nome"));
             inst.setEmail(request.getParameter("email"));
+            inst.setTelefone("telefone");
+            inst.setRua(request.getParameter("rua"));
+            inst.setNumero(Integer.parseInt(request.getParameter("numero")));
+            inst.setComplemento(request.getParameter("complemento"));
+            inst.setBairro("bairro");
             inst.setUf(request.getParameter("estado"));
             inst.setCidade(request.getParameter("cidade"));
-            inst.setTelefone("telefone");
             
             InstituicaoDAO instDao = null;
             
