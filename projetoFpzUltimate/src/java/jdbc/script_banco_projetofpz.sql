@@ -7,7 +7,7 @@ USE projetofpz;
 CREATE TABLE login (
     user_name varchar(50) not null,
     senha varchar(50) not null,
-    tipo varchar (40),
+    tipo varchar(1) not null,
     PRIMARY KEY (user_name) 
 )ENGINE=InnoDB;
 

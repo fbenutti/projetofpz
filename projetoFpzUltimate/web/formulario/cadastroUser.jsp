@@ -38,4 +38,7 @@
     </form>
 </div>
 <div class="modal-footer">
+    <div id="erro" class="error" style="display: none;">
+        
+    </div>
 </div>

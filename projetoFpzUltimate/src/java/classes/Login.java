@@ -12,7 +12,18 @@ public class Login {
     String login;
     String senha;
     String tipo;
+    
+    //construtores
+    public Login(){
+    }
 
+    public Login(String login, String senha, String tipo) {
+        this.login = login;
+        this.senha = senha;
+        this.tipo = tipo;
+    }
+    
+//inicio gets e sets
     public String getTipo() {
         return tipo;
     }
@@ -36,5 +47,5 @@ public class Login {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
+    //fim gets e sets
 }

@@ -4,7 +4,9 @@
  */
 package servlet;
 
+import classes.Login;
 import classes.Pessoa;
+import dao.LoginDAO;
 import dao.PessoaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,14 +48,21 @@ public class CadastraPessoa extends HttpServlet {
         String bairro = request.getParameter("bairro");
         int n = Integer.parseInt(request.getParameter("numero"));
         String complemento = request.getParameter("complemento");
-
-
+        String senha = request.getParameter("senha");
+        
+        
+        Login l = new Login(cpf, senha, "p");
+        LoginDAO ldao = null;
+        
         Pessoa p = new Pessoa(cpf, nome, email, telefone, cep, cidade, uf, rua, bairro, n, complemento);
         PessoaDAO dao = null;
 
 
         try {
-
+            
+            ldao = new LoginDAO();
+            ldao.salvar(l);
+            
             dao = new PessoaDAO();
             dao.salvar(p);
 
@@ -73,7 +82,7 @@ public class CadastraPessoa extends HttpServlet {
                 }
 
             }
-
+            response.sendRedirect("index.jsp");
         }
     }
 
