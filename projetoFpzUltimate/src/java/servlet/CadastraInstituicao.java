@@ -5,7 +5,9 @@
 package servlet;
 
 import classes.Instituicao;
+import classes.Login;
 import dao.InstituicaoDAO;
+import dao.LoginDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -40,20 +42,21 @@ public class CadastraInstituicao extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             Instituicao inst = new Instituicao();
-            
+
             inst.setCnpj(request.getParameter("cnpj"));
             inst.setNome(request.getParameter("nome"));
             inst.setEmail(request.getParameter("email"));
             inst.setTelefone("telefone");
+            inst.setCep("cep");
             inst.setRua(request.getParameter("rua"));
             inst.setNumero(Integer.parseInt(request.getParameter("numero")));
             inst.setComplemento(request.getParameter("complemento"));
             inst.setBairro("bairro");
             inst.setUf(request.getParameter("estado"));
             inst.setCidade(request.getParameter("cidade"));
-            
+
             InstituicaoDAO instDao = null;
-            
+
             try {
                 instDao = new InstituicaoDAO();
                 instDao.salvar(inst);
@@ -62,10 +65,33 @@ public class CadastraInstituicao extends HttpServlet {
                 out.println(ex);
                 Logger.getLogger(CadastraInstituicao.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-        } finally {            
+        } finally {
             out.close();
         }
+
+        try {
+            Login login = new Login();
+
+            login.setLogin(request.getParameter("login"));
+            login.setSenha(request.getParameter("senha"));
+            login.setTipo("I");
+            
+
+            LoginDAO loginDao = null;
+
+            try {
+                loginDao = new LoginDAO();
+                loginDao.salvar(login);
+                out.println("Login cadastrado com sucesso!!");
+            } catch (SQLException ex) {
+                out.println(ex);
+                Logger.getLogger(CadastraInstituicao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            out.close();
+        }
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

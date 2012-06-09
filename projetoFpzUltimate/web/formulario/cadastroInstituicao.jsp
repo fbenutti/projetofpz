@@ -15,6 +15,9 @@
         <li><a id="cadastroPalestrante" href="#">Palestrante</a></li>
     </ul>
     <form id="cadastroInstituição" name="cadastro" action="CadastraInstituicao" method="post">
+        <p style="margin-left: 40px;"><span class="label">Seu login será o CNPJ.</span></p>
+        <p><label>Senha: <input type="text" name="senha" id="senha" /></label></p>
+        <p><label>Confirmação de senha: <input type="text" name="confsenha" id="confsenha" /></label></p>
         <p><label>CNPJ: <input type="text" name="cnpj" /></label></p>
         <p><label>Nome: <input type="text" name="nome" /></label></p>
         <p><label>Email: <input type="text" name="email" /></label></p>
