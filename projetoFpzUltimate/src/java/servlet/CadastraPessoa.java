@@ -13,7 +13,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.jasper.tagplugins.jstl.core.Catch;
 
 /**
  * @author Paulo
@@ -41,12 +40,12 @@ public class CadastraPessoa extends HttpServlet {
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
         String cep = request.getParameter("cep");
-        String cidade = "teste";//request.getParameter("cidade");
-        String uf = "TT";//request.getParameter("estado");
-        String rua = "Rua Teste"; //request.getParameter("rua");
-        String bairro = "Jardim Teste"; //request.getParameter("bairro");
-        int n = 0;//Integer.parseInt(request.getParameter("numero"));
-        String complemento = " "; //request.getParameter("bairro");
+        String cidade = request.getParameter("cidade");
+        String uf = request.getParameter("uf");
+        String rua = request.getParameter("rua");
+        String bairro = request.getParameter("bairro");
+        int n = Integer.parseInt(request.getParameter("numero"));
+        String complemento = request.getParameter("complemento");
 
 
         Pessoa p = new Pessoa(cpf, nome, email, telefone, cep, cidade, uf, rua, bairro, n, complemento);
