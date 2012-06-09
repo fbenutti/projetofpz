@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS projetofpz;
+
 CREATE DATABASE IF NOT EXISTS projetofpz;
 
 USE projetofpz;
@@ -10,10 +12,19 @@ CREATE TABLE login (
 )ENGINE=InnoDB;
 
 CREATE TABLE instituicao(
-    id_instituicao int(10) not null,
+    cnpj varchar(20) not null,
     nome varchar(100) not null,
+    email varchar(100),
+    cep varchar(10),
+    bairro varchar(100),
+    cidade varchar(100),
+    uf char(2),
+    complemento varchar(40),
+    numero int(10),
+    rua varchar(40),
+    telefone varchar(20),
     es_user_name varchar(50),
-    PRIMARY KEY (id_instituicao),
+    PRIMARY KEY (cnpj),
     CONSTRAINT FOREIGN KEY (es_user_name) REFERENCES login (user_name)
 )ENGINE=InnoDB;
 
@@ -31,12 +42,12 @@ CREATE TABLE pessoa(
 )ENGINE=InnoDB;
 
 CREATE TABLE pessoa_instituicao(
-    id_pessoa_instituicao int (10) not null,
+    id_pessoa_instituicao int (10) not null auto increment,
     es_cpf varchar(18) not null,
-    es_instituicao int(10) not null,
+    es_cnpj varchar(20) not null,
     PRIMARY KEY (id_pessoa_instituicao),
     CONSTRAINT FOREIGN KEY (es_cpf) REFERENCES pessoa (cpf),
-    CONSTRAINT FOREIGN KEY (es_instituicao) REFERENCES instituicao (id_instituicao)
+    CONSTRAINT FOREIGN KEY (es_cnpj) REFERENCES instituicao (cnpj)
 )ENGINE=InnoDB;
 
 CREATE TABLE evento(
@@ -66,7 +77,7 @@ CREATE TABLE responsavel(
     nome varchar(100) not null,
     email varchar(100),
     cidade varchar(50),
-    estado char(2),
+    uf char(2),
     es_foto int(10),
     PRIMARY KEY (id_responsavel),
     CONSTRAINT FOREIGN KEY (es_foto) REFERENCES fotos (id_foto)

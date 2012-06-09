@@ -25,20 +25,21 @@ public class InstituicaoDAO extends DAO<Instituicao> {
     public void salvar( Instituicao obj ) throws SQLException {
 
         String sql = "INSERT INTO instituicao(nome, email, cep, bairro, cidade,"
-                +"cnpj, complemento, numero, rua, telefone) "
-                + "VALUES( ?,?,?,?,?,?,?,?,?,? );";
+                +"cnpj, complemento, estado, numero, rua, telefone) "
+                + "VALUES( ?,?,?,?,?,?,?,?,?,?,? );";
 
         PreparedStatement stmt = getConnection().prepareStatement( sql );
-        stmt.setString( 1, obj.getNome() );
-        stmt.setString( 2, obj.getEmail() );
-        stmt.setString( 3, obj.getCep() );
-        stmt.setString( 4, obj.getBairro() );
-        stmt.setString( 5, obj.getCidade() );
-        stmt.setString( 6, obj.getCnpj() );
-        stmt.setString( 7, obj.getComplemento() );
-        stmt.setInt( 8, obj.getNumero() );
-        stmt.setString( 9, obj.getRua() );
-        stmt.setString( 10, obj.getTelefone() );
+        stmt.setString( 1, obj.getCnpj() );
+        stmt.setString( 2, obj.getNome() );
+        stmt.setString( 3, obj.getEmail() );
+        stmt.setString( 4, obj.getCep() );
+        stmt.setString( 5, obj.getBairro() );
+        stmt.setString( 6, obj.getCidade() );
+        stmt.setString( 7, obj.getUf() );
+        stmt.setString( 8, obj.getComplemento() );
+        stmt.setInt( 9, obj.getNumero() );
+        stmt.setString( 10, obj.getRua() );
+        stmt.setString( 11, obj.getTelefone() );
         
 
         stmt.executeUpdate();
