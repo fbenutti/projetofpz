@@ -18,8 +18,8 @@ public class PessoaDAO extends DAO<Pessoa> {
     @Override
     public void salvar(Pessoa obj) throws SQLException {
         String sql = "INSERT INTO pessoa(cpf, nome, email, cep, bairro, cidade, uf,"
-                + "complemento, numero, rua, telefone) "
-                + "VALUES( ?,?,?,?,?,?,?,?,?,?,? );";
+                + "complemento, numero, rua, telefone, es_user_name) "
+                + "VALUES( ?,?,?,?,?,?,?,?,?,?,?,? );";
 
         PreparedStatement stmt = getConnection().prepareStatement(sql);
         stmt.setString(1, obj.getCpf());
@@ -33,6 +33,7 @@ public class PessoaDAO extends DAO<Pessoa> {
         stmt.setInt(9, obj.getNumero());
         stmt.setString(10, obj.getRua());
         stmt.setString(11, obj.getTelefone());
+        stmt.setString(12, obj.getCpf());
 
 
         stmt.executeUpdate();

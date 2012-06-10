@@ -101,7 +101,7 @@
             },
             onkeyup: false,
             rules: {
-                senha: {required: true},
+                senha: {required: true, minlength: 6},
                 //confsenha: {equalTo: "#senha"},
                 cnpj: {required: true, cnpj: true},
                 nome: {required: true, minlength: 4},
@@ -111,12 +111,12 @@
                 numero: {required: true}
             },
             messages: {
-                senha: {required: 'Informe a senha.'},
+                senha: {required: 'Informe a senha.', minlength: 'A senha deve ter pelo menos 6 caracteres.'},
                 //confsenha: {equalTo: 'A confirmação de senha deve ser igual a senha.'},
                 cnpj: {required: 'Informe o CNPJ.', cnpj: 'CNPJ inválido.'},
                 nome: {required: 'Informe o nome.', minlength: 'O nome deve ter ao menos 4 letras.'},
                 email: {required: 'Informe o e-mail.', email: 'E-mail inválido.'},
-                telefone: {required: true},
+                telefone: {required: 'Informe o telefone.'},
                 cep: {required: 'Informe o CEP'},
                 numero: {required: 'O número deve ser preenchido.'}
             }
@@ -158,7 +158,7 @@
         <div id="endereco" class="hidden">
             <p><label>Rua: <input type="text" name="rua" id="rua" readonly="readonly" title="Rua"></label></p>
             <div id="divnumero"><label>Número: <input type="text" name="numero" id="numero" title="Número"></label></div>
-            <div id="divcomplemento"><label>Complemento: <input type="text" name="complamento" id="complemento" title="Complemento"></label></div>
+            <div id="divcomplemento"><label>Complemento: <input type="text" name="complemento" id="complemento" title="Complemento"></label></div>
             <p><label>Bairro: <input type="text" name="bairro" id="bairro" readonly="readonly" title="Bairro"></label></p>
             <p><label>Cidade: <input type="text" name="cidade" id="cidade" readonly="readonly" title="Cidade"></label></p>
             <p><label>Estado: <input type="text" name="estado" id="estado" readonly="readonly" title="Estado"></label></p>
