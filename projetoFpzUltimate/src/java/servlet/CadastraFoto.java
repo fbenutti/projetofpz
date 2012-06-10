@@ -4,10 +4,11 @@
  */
 package servlet;
 
-import java.io.DataInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.io.*;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +35,10 @@ public class CadastraFoto extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-//        Connection con = null;
-//        ResultSet rs = null;
-//        PreparedStatement psmt = null;
-//        FileInputStream fis;
+            Connection con = null;
+            ResultSet rs = null;
+            PreparedStatement psmt = null;
+            FileInputStream fis;
 
 
             String contentType = request.getContentType();
@@ -115,7 +116,41 @@ public class CadastraFoto extends HttpServlet {
                 fileOut.write(dataBytes, startPos, (endPos - startPos));
                 fileOut.flush();
                 fileOut.close();
+
+                Connection connection = null;
+                String connectionURL = "jdbc:mysql://localhost:3306/projetofpz";
+
+                PreparedStatement psmnt = null;
+
+                try {
+                    Class.forName("com.mysql.jdbc.Driver").newInstance();
+                    connection = DriverManager.getConnection(connectionURL, "root", "1234");
+                    File f = new File(saveFile);
+
+
+                    psmnt = connection.prepareStatement("INSERT INTO fotos(foto, es_responsavel) values(?,?);");
+
+                    fis = new FileInputStream(f);
+
+                    /*
+                     * inseri o arquivo de imagem no banco
+                     */
+
+                    psmnt.setBinaryStream(1, (InputStream) fis, (int) (f.length()));
+                    psmnt.setInt(2, 1);
+
+                    int s = psmnt.executeUpdate();
+
+                    if (s > 0) {
+                        System.out.println("Uploaded successfully !");
+                    } else {
+                        System.out.println("unsucessfull to upload file.");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+
         } finally {
             out.close();
         }
