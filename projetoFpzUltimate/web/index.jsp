@@ -54,7 +54,7 @@
                                 <img src="imagens/banners/bannerACE.gif" width="110" height="70" style="float: left;margin-right: 5px;" />
                                 <p style="">Palestra: ACE de Guarulhos - A importância do 
                                 pequeno e médio empreendedor </p>
-                                <a href="#">Faça sua Inscrição</a>
+                                <a href="formulario/cadastraFoto.jsp">TESTE DA FOTO</a>
                             </td>
                         </tr>
                     </table>

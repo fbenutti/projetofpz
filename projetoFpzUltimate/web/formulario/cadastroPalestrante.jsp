@@ -24,7 +24,7 @@
         </form>
     </div>
     <div id="cadastroFoto" >
-        <form id="cadastroPalestranteFoto" name="cadastro" action="" method="post">
+        <form id="cadastroPalestranteFoto" name="cadastro" action="" method="post" enctype="multipart/form-data">
             <p><label>Foto: <input type="file" name="upFoto"></label></p>
             <p><label><input id="EnviarFoto" class="btn btn-primary" type="button" value="Upload"/></label></p>
         </form>

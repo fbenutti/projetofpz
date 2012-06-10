@@ -4,22 +4,28 @@
         <servlet-name>CadastraPessoa</servlet-name>
         <servlet-class>servlet.CadastraPessoa</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>CadastraPessoa</servlet-name>
-        <url-pattern>/CadastraPessoa</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>CadastraResponsavel</servlet-name>
         <servlet-class>servlet.CadastraResponsavel</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CadastraFoto</servlet-name>
+        <servlet-class>servlet.CadastraFoto</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CadastraPessoa</servlet-name>
+        <url-pattern>/CadastraPessoa</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CadastraResponsavel</servlet-name>
         <url-pattern>/CadastraResponsavel</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastraFoto</servlet-name>
+        <url-pattern>/CadastraFoto</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
