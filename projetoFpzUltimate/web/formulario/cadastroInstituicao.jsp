@@ -4,6 +4,120 @@
     Author     : Paulo
 --%>
 <script type="text/javascript" src="../js/functions.js"></script>
+<script type="text/javascript" src="../jQueryUI/js/jquery.maskedinput-1.2.2.js"></script>
+<script type="text/javascript" src="../jQueryUI/js/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    jQuery.validator.addMethod("cnpj", function(cnpj, element) {
+        cnpj = jQuery.trim(cnpj);// retira espaços em branco
+        // DEIXA APENAS OS NÚMEROS
+        cnpj = cnpj.replace('/','');
+        cnpj = cnpj.replace('.','');
+        cnpj = cnpj.replace('.','');
+        cnpj = cnpj.replace('-','');
+ 
+        var numeros, digitos, soma, i, resultado, pos, tamanho, digitos_iguais;
+        digitos_iguais = 1;
+ 
+        if (cnpj.length < 14 && cnpj.length < 15){
+            return false;
+        }
+        for (i = 0; i < cnpj.length - 1; i++){
+            if (cnpj.charAt(i) != cnpj.charAt(i + 1)){
+                digitos_iguais = 0;
+                break;
+            }
+        }
+ 
+        if (!digitos_iguais){
+            tamanho = cnpj.length - 2
+            numeros = cnpj.substring(0,tamanho);
+            digitos = cnpj.substring(tamanho);
+            soma = 0;
+            pos = tamanho - 7;
+ 
+            for (i = tamanho; i >= 1; i--){
+                soma += numeros.charAt(tamanho - i) * pos--;
+                if (pos < 2){
+                    pos = 9;
+                }
+            }
+            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+            if (resultado != digitos.charAt(0)){
+                return false;
+            }
+            tamanho = tamanho + 1;
+            numeros = cnpj.substring(0,tamanho);
+            soma = 0;
+            pos = tamanho - 7;
+            for (i = tamanho; i >= 1; i--){
+                soma += numeros.charAt(tamanho - i) * pos--;
+                if (pos < 2){
+                    pos = 9;
+                }
+            }
+            resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+            if (resultado != digitos.charAt(1)){
+                return false;
+            }
+            return true;
+        }else{
+            return false;
+        }
+    }, "Informe um CNPJ válido."); // Mensagem padrão 
+    
+    $.validator.setDefaults({
+        //submitHandler: function() { alert("submitted!"); },
+        highlight: function(input) {
+            $("#div"+input.name).addClass("control-group error");
+        },
+        unhighlight: function(input) {
+            $("#div"+input.name).removeClass("control-group error");
+        }
+    });
+ 
+ 
+ 
+    // Escopo para o conteúdo ser executado quando o documento estiver pronto
+    $(document).ready(function(){
+        
+        //Máscaras
+        $("#cnpj").mask('99.999.999/9999-99');
+
+ 
+        // CONFIGURA A VALIDACAO DO FORMULARIO
+        $("#cadastroInstituição").validate({
+            invalidHandler: function(e, validator) {
+                var errors = validator.numberOfInvalids();
+                if (errors) {
+                    var message = errors == 1
+                        ? 'Você não preencheu corretamente 1 campo. Ele está destacado acima.'
+                    : 'Você não preencheu corretamente ' + errors + ' campos.  Eles estão destacados acima.';
+                    $("div.erros span").html(message);
+                    $("div.erros").show();
+                } else {
+                    $("div.erros").hide();
+                }
+            },
+            onkeyup: false,
+            rules: {
+                senha: {required: true},
+                cnpj: {cnpj: true},
+                nome: {required: true}
+            },
+            messages: {
+                senha: {required: 'Informe a senha.'},
+                cnpj: {required: 'Informe o CNPJ.', cnpj: 'CNPJ inválido.'},
+                nome: {required: 'Informe o nome.'}
+            }
+            //,submitHandler:function(form) {
+               // alert('ok');
+            //}
+        });
+ 
+        //$('#result').html('jQuery Validate com novos métodos: cpf, cnpj, dateBR e dateTimeBR');
+    });
+
+</script>
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
     <h3>Cadastro institucional:</h3>
@@ -16,10 +130,10 @@
     </ul>
     <form id="cadastroInstituição" name="cadastro" action="CadastraInstituicao" method="post">
         <p style="margin-left: 40px;"><span class="label">Seu login será o CNPJ.</span></p>
-        <p><label>Senha: <input type="text" name="senha" id="senha" /></label></p>
+        <div id="divsenha"><label>Senha: <input type="text" name="senha" id="senha" /></label></div>
         <p><label>Confirmação de senha: <input type="text" name="confsenha" id="confsenha" /></label></p>
-        <p><label>CNPJ: <input type="text" name="cnpj" /></label></p>
-        <p><label>Nome: <input type="text" name="nome" /></label></p>
+        <div id="divcnpj"><label>CNPJ: <input type="text" name="cnpj" id="cnpj"/></label></div>
+        <div id="divnome"><label>Nome: <input type="text" name="nome" /></label></div>
         <p><label>Email: <input type="text" name="email" /></label></p>
         <p><label>Telefone: <input type="text" name="telefone" /></label></p>
         <label for="cep">CEP:  </label>
@@ -37,8 +151,10 @@
             <p><label>Estado: <input type="text" name="estado" id="estado" readonly="readonly" title="Estado"></label></p>
         </div>
         <input id="EnviarTexto" class="btn btn-primary" type="submit" value="Enviar"/>
+        </div>
     </form>
 </div>
-<div class="modal-footer">
+<div class="modal-footer left">
+    <div class="erros alert alert-error left" style="display: none;"><span></span></div>
 </div>
 

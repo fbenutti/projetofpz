@@ -79,33 +79,6 @@ $(document).ready(function(){
         });
     });
                 
-    $("#cadastroUsuario").submit(function(){
-        var erros;
-        erros="";
-        if($("#numero").val()==""){
-            erros = erros + "O campo Numero é obrigatorio\n";
-        }
-        
-        if($("#cep").val()==""){
-            erros = erros + "O campo CEP é obrigatorio\n";
-        }
-        
-        if($("#nome").val()==""){
-            erros = erros + "O campo Nome é obrigatorio\n";
-        }
-        
-        if($("#senha").val()!=$("#confSenha").val()){
-            erros = erros + "Senhas não coincidem\n";
-        }
-        if($("#email").val()==""){
-            erros = erros + "O campo Email é obrigatorio\n";
-        }
-        alert(erros);
-        if(erros!=""){
-            $("#erro").html(erros);
-            $("#erro").fadeIn(slow);
-            return false;
-        }
-
-    });    
+    
+    
 });
