@@ -8,6 +8,14 @@
         <servlet-name>CadastraPessoa</servlet-name>
         <url-pattern>/CadastraPessoa</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>CadastraResponsavel</servlet-name>
+        <servlet-class>servlet.CadastraResponsavel</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CadastraResponsavel</servlet-name>
+        <url-pattern>/CadastraResponsavel</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

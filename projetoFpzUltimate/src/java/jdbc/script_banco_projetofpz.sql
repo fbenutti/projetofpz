@@ -70,21 +70,21 @@ CREATE TABLE inscricao(
     CONSTRAINT FOREIGN KEY (es_evento) REFERENCES evento (id_evento)
 )ENGINE=InnoDB;
 
-CREATE TABLE fotos(
-    id_foto int(10),
-    foto longblob,
-    PRIMARY KEY (id_foto)
-)ENGINE=InnoDB;
-
 CREATE TABLE responsavel(
     id_responsavel int(10) not null auto_increment,
     nome varchar(100) not null,
     email varchar(100),
     cidade varchar(50),
     uf char(2),
-    es_foto int(10),
-    PRIMARY KEY (id_responsavel),
-    CONSTRAINT FOREIGN KEY (es_foto) REFERENCES fotos (id_foto)
+    PRIMARY KEY (id_responsavel)
+)ENGINE=InnoDB;
+
+CREATE TABLE fotos(
+    id_foto int(10) not null auto_increment,
+    foto longblob,
+    es_responsavel int(10) not null,
+    PRIMARY KEY (id_foto),
+    CONSTRAINT FOREIGN KEY (es_responsavel) REFERENCES responsavel (id_responsavel)
 )ENGINE=InnoDB;
 
 CREATE TABLE atividade(

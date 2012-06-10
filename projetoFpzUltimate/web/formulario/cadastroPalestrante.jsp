@@ -15,12 +15,12 @@
             <li><a id="cadastroInstituicao" href="#">Instituição</a></li>
             <li class="active"><a id="cadastroPalestrante" href="#">Palestrante</a></li>
         </ul>
-        <form id="cadastroPalestranteDados" name="cadastro" action="" method="post">
+        <form id="cadastroPalestranteDados" name="cadastro" action="CadastraResponsavel" method="post">
             <p><label>Nome: <input type="text" name="nome"></label></p>
             <p><label>Email: <input type="text" name="email"></label></p>
             <p><label>Estado: <input type="text" name="estado"></label></p>
             <p><label>Cidade: <input type="text" name="cidade"></label></p>
-            <input id="EnviarTexto" class="btn btn-primary" type="button" value="Enviar"/>
+            <input id="EnviarTexto" class="btn btn-primary" type="submit" value="Enviar"/>
         </form>
     </div>
     <div id="cadastroFoto" >
