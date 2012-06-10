@@ -25,8 +25,8 @@ public class InstituicaoDAO extends DAO<Instituicao> {
     public void salvar( Instituicao obj ) throws SQLException {
 
         String sql = "INSERT INTO instituicao(cnpj, nome, email, cep, bairro, cidade,"
-                +"uf, complemento, numero, rua, telefone) "
-                + "VALUES( ?,?,?,?,?,?,?,?,?,?,? );";
+                +"uf, complemento, numero, rua, telefone, es_user_name) "
+                + "VALUES( ?,?,?,?,?,?,?,?,?,?,?,? );";
 
         PreparedStatement stmt = getConnection().prepareStatement( sql );
         stmt.setString( 1, obj.getCnpj() );
@@ -40,6 +40,7 @@ public class InstituicaoDAO extends DAO<Instituicao> {
         stmt.setInt( 9, obj.getNumero() );
         stmt.setString( 10, obj.getRua() );
         stmt.setString( 11, obj.getTelefone() );
+        stmt.setString( 12, obj.getCnpj() );
         
         stmt.executeUpdate();
         stmt.close();

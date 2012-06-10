@@ -82,7 +82,8 @@
         
         //Máscaras
         $("#cnpj").mask('99.999.999/9999-99');
-
+        $("#telefone").mask('(99) 9999-9999');
+        $("#cep").mask('99999-999');
  
         // CONFIGURA A VALIDACAO DO FORMULARIO
         $("#cadastroInstituição").validate({
@@ -101,16 +102,26 @@
             onkeyup: false,
             rules: {
                 senha: {required: true},
-                cnpj: {cnpj: true},
-                nome: {required: true}
+                //confsenha: {equalTo: "#senha"},
+                cnpj: {required: true, cnpj: true},
+                nome: {required: true, minlength: 4},
+                email: {required: true, email: true},
+                telefone: {required: true},
+                cep: {required: true},
+                numero: {required: true}
             },
             messages: {
                 senha: {required: 'Informe a senha.'},
+                //confsenha: {equalTo: 'A confirmação de senha deve ser igual a senha.'},
                 cnpj: {required: 'Informe o CNPJ.', cnpj: 'CNPJ inválido.'},
-                nome: {required: 'Informe o nome.'}
+                nome: {required: 'Informe o nome.', minlength: 'O nome deve ter ao menos 4 letras.'},
+                email: {required: 'Informe o e-mail.', email: 'E-mail inválido.'},
+                telefone: {required: true},
+                cep: {required: 'Informe o CEP'},
+                numero: {required: 'O número deve ser preenchido.'}
             }
             //,submitHandler:function(form) {
-               // alert('ok');
+            // alert('ok');
             //}
         });
  
@@ -130,29 +141,31 @@
     </ul>
     <form id="cadastroInstituição" name="cadastro" action="CadastraInstituicao" method="post">
         <p style="margin-left: 40px;"><span class="label">Seu login será o CNPJ.</span></p>
-        <div id="divsenha"><label>Senha: <input type="text" name="senha" id="senha" /></label></div>
-        <p><label>Confirmação de senha: <input type="text" name="confsenha" id="confsenha" /></label></p>
+        <div id="divsenha"><label>Senha: <input type="password" name="senha" id="senha" /></label></div>
+        <div id="divconfsenha"><label>Confirmação de senha: <input type="password" name="confsenha" id="confsenha" /></label></div>
         <div id="divcnpj"><label>CNPJ: <input type="text" name="cnpj" id="cnpj"/></label></div>
         <div id="divnome"><label>Nome: <input type="text" name="nome" /></label></div>
-        <p><label>Email: <input type="text" name="email" /></label></p>
-        <p><label>Telefone: <input type="text" name="telefone" /></label></p>
-        <label for="cep">CEP:  </label>
-        <div class="input-append">
-            <input name="cep" id="cep" type="text" class="input-medium cep"><button class="btn concatenado" type="button">Validar</button>
+        <div id="divemail"><label>Email: <input type="text" name="email" /></label></div>
+        <div id="divtelefone"><label>Telefone: <input type="text" name="telefone" id="telefone"/></label></div>
+        <div id="divcep">
+            <label for="cep">CEP:  </label>
+            <div class="input-append">
+                <input name="cep" id="cep" type="text" class="input-medium cep"><button class="btn concatenado" type="button">Validar</button>
+            </div>
         </div>
         <div id="loading"><img src="bootstrap/img/loader.gif"/></div>
         <div id="erro">Erro ao carregar os dados.</div>
         <div id="endereco" class="hidden">
             <p><label>Rua: <input type="text" name="rua" id="rua" readonly="readonly" title="Rua"></label></p>
-            <p><label>Número: <input type="text" name="numero" id="numero" title="Número"></label></p>
-            <p><label>Complemento: <input type="text" name="complamento" id="complemento" title="Complemento"></label></p>
+            <div id="divnumero"><label>Número: <input type="text" name="numero" id="numero" title="Número"></label></div>
+            <div id="divcomplemento"><label>Complemento: <input type="text" name="complamento" id="complemento" title="Complemento"></label></div>
             <p><label>Bairro: <input type="text" name="bairro" id="bairro" readonly="readonly" title="Bairro"></label></p>
             <p><label>Cidade: <input type="text" name="cidade" id="cidade" readonly="readonly" title="Cidade"></label></p>
             <p><label>Estado: <input type="text" name="estado" id="estado" readonly="readonly" title="Estado"></label></p>
         </div>
         <input id="EnviarTexto" class="btn btn-primary" type="submit" value="Enviar"/>
-        </div>
-    </form>
+</div>
+</form>
 </div>
 <div class="modal-footer left">
     <div class="erros alert alert-error left" style="display: none;"><span></span></div>

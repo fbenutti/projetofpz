@@ -36,6 +36,6 @@ body {
 }
 
 .error{
-    border-color: #B94A48;
     color: #B94A48;
+    font-weight: bold; 
 }
