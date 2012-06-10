@@ -72,7 +72,7 @@ public class CadastraInstituicao extends HttpServlet {
         try {
             Login login = new Login();
 
-            login.setLogin(request.getParameter("login"));
+            login.setLogin(request.getParameter("cnpj"));
             login.setSenha(request.getParameter("senha"));
             login.setTipo("I");
             
