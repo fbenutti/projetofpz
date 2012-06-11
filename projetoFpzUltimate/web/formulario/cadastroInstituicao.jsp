@@ -75,8 +75,6 @@
         }
     });
  
- 
- 
     // Escopo para o conteúdo ser executado quando o documento estiver pronto
     $(document).ready(function(){
         
