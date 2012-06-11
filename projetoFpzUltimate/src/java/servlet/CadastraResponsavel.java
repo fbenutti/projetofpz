@@ -69,7 +69,11 @@ public class CadastraResponsavel extends HttpServlet {
 
             }
         out.println("<script type=\"text/javascript\">alert(\"Cadastro Inserido com Sucesso!!\")</script>");
-        response.sendRedirect("index.jsp");
+        request.setAttribute("id", r.getId());
+        request.setAttribute("nome", r.getNome());
+        request.setAttribute("obj", r);
+        request.getRequestDispatcher("\\formulario\\cadastraFoto.jsp").forward(request, response);
+        //response.sendRedirect("\\formulario\\cadastraFoto.jsp");
         }
     }
 

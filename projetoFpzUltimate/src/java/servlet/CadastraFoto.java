@@ -4,15 +4,24 @@
  */
 package servlet;
 
+import java.awt.image.BufferedImage;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.io.*;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.util.Iterator;
+import java.util.List;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileItemFactory;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -135,6 +144,34 @@ public class CadastraFoto extends HttpServlet {
                     /*
                      * inseri o arquivo de imagem no banco
                      */
+
+                    boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+
+                    if (!isMultipart) {
+                        out.println("Arquivo não enviado");
+                        JOptionPane.showMessageDialog(null,"Arquivo não enviado");
+                    } else {
+                        FileItemFactory factory = new DiskFileItemFactory();
+                        ServletFileUpload upload = new ServletFileUpload(factory);
+                        List items = upload.parseRequest(request);
+                        Iterator itr = items.iterator();
+                        
+                        while (itr.hasNext()) {
+                            FileItem item = (FileItem) itr.next();
+                            if (item.isFormField()) {
+                                // é um item de formulário
+                                String name = item.getFieldName();
+                                String value = item.getString();
+                                JOptionPane.showMessageDialog(null, name + "\n" + value +"\n");
+                                // aqui vc vai fazer os ifs testando os name                              
+                            } else {
+                                // aqui vem a sua imagem
+                                InputStream imageStream = item.getInputStream();
+                                BufferedImage imageBuffer = ImageIO.read(imageStream);
+                            }
+                        }
+                    }
+
 
                     psmnt.setBinaryStream(1, (InputStream) fis, (int) (f.length()));
                     psmnt.setInt(2, 1);
