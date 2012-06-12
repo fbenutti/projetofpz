@@ -100,6 +100,7 @@
             onkeyup: false,
             rules: {
                 senha: {required: true, minlength: 6},
+                confsenha: {required: true},
                 //confsenha: {equalTo: "#senha"},
                 cnpj: {required: true, cnpj: true},
                 nome: {required: true, minlength: 4},
@@ -110,6 +111,7 @@
             },
             messages: {
                 senha: {required: 'Informe a senha.', minlength: 'A senha deve ter pelo menos 6 caracteres.'},
+                confsenha: {required: 'Informe a confirmação de senha.'},
                 //confsenha: {equalTo: 'A confirmação de senha deve ser igual a senha.'},
                 cnpj: {required: 'Informe o CNPJ.', cnpj: 'CNPJ inválido.'},
                 nome: {required: 'Informe o nome.', minlength: 'O nome deve ter ao menos 4 letras.'},
@@ -125,7 +127,6 @@
  
         //$('#result').html('jQuery Validate com novos métodos: cpf, cnpj, dateBR e dateTimeBR');
     });
-
 </script>
 <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
@@ -140,7 +141,7 @@
     <form id="cadastroInstituição" name="cadastro" action="CadastraInstituicao" method="post">
         <p style="margin-left: 40px;"><span class="label">Seu login será o CNPJ.</span></p>
         <div id="divsenha"><label>Senha: <input type="password" name="senha" id="senha" /></label></div>
-        <div id="divconfsenha"><label>Confirmação de senha: <input type="password" name="confsenha" id="confsenha" /></label></div>
+        <div id="divconfsenha"><label>Confirmação de senha: <input onblur="testaSenha()" type="password" name="confsenha" id="confsenha" /></label></div>
         <div id="divcnpj"><label>CNPJ: <input type="text" name="cnpj" id="cnpj"/></label></div>
         <div id="divnome"><label>Nome: <input type="text" name="nome" /></label></div>
         <div id="divemail"><label>Email: <input type="text" name="email" /></label></div>

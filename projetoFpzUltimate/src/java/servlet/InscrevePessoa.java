@@ -4,22 +4,19 @@
  */
 package servlet;
 
-import classes.Login;
-import classes.Pessoa;
-import dao.LoginDAO;
-import dao.PessoaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 
 /**
- * @author Paulo
+ *
+ * @author Wellington
  */
-public class CadastraPessoa extends HttpServlet {
+public class InscrevePessoa extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -35,56 +32,22 @@ public class CadastraPessoa extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-
-        //pegando dados do /formulario/cadastroUser
+        
         String cpf = request.getParameter("cpf");
-        String nome = request.getParameter("nome");
-        String email = request.getParameter("email");
-        String telefone = request.getParameter("telefone");
-        String cep = request.getParameter("cep");
-        String cidade = request.getParameter("cidade");
-        String uf = request.getParameter("uf");
-        String rua = request.getParameter("rua");
-        String bairro = request.getParameter("bairro");
-        int n = 0;//Integer.parseInt(request.getParameter("numero"));
-        String complemento = request.getParameter("complemento");
-        String senha = request.getParameter("senha");
+        String atividade = request.getParameter("atividade");
         
+        JOptionPane.showMessageDialog(null, atividade);
         
-        Login l = new Login(cpf, senha, "p");
-        LoginDAO ldao = null;
+        String[] a = atividade.split(",");
         
-        Pessoa p = new Pessoa(cpf, nome, email, telefone, cep, cidade, uf, rua, bairro, n, complemento);
-        PessoaDAO dao = null;
-
-
+        JOptionPane.showMessageDialog(null, a[0]);
+        
         try {
+         
             
-            ldao = new LoginDAO();
-            ldao.salvar(l);
             
-            dao = new PessoaDAO();
-            dao.salvar(p);
-
-        } catch (SQLException exc) {
-
-            exc.printStackTrace();
-
-        } finally {
-
-            if (dao != null) {
-
-                try {
-                    dao.fecharConexao();
-                } catch (SQLException exc) {
-                    System.err.println("Erro ao fechar a conexão!");
-                    exc.printStackTrace();
-                }
-
-            }
-            request.setAttribute("cpf", p.getCpf());
-            request.getRequestDispatcher("atividades.jsp").forward(request, response);
-            
+        } finally {            
+            out.close();
         }
     }
 

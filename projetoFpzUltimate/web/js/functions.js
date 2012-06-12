@@ -82,3 +82,9 @@ $(document).ready(function(){
     
     
 });
+
+function testaSenha(){
+    if ($("#senha").val() != $("#confsenha").val()){
+        $("#confsenha").val("");
+    }
+}

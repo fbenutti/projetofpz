@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,13 +61,13 @@ public class CadastraInstituicao extends HttpServlet {
             try {
                 instDao = new InstituicaoDAO();
                 instDao.salvar(inst);
-                out.println("Instituição cadastrada com sucesso!!");
+                //out.println("Instituição cadastrada com sucesso!!");
             } catch (SQLException ex) {
-                out.println(ex);
+                //out.println(ex);
                 Logger.getLogger(CadastraInstituicao.class.getName()).log(Level.SEVERE, null, ex);
             }
         } finally {
-            out.close();
+            //out.close();
         }
 
         try {
@@ -82,15 +83,17 @@ public class CadastraInstituicao extends HttpServlet {
             try {
                 loginDao = new LoginDAO();
                 loginDao.salvar(login);
-                out.println("Login cadastrado com sucesso!!");
+                //out.println("Login cadastrado com sucesso!!");
             } catch (SQLException ex) {
-                out.println(ex);
+                //out.println(ex);
                 Logger.getLogger(CadastraInstituicao.class.getName()).log(Level.SEVERE, null, ex);
             }
         } finally {
-            out.close();
+            RequestDispatcher rd = request.getRequestDispatcher("/index.jsp"); 
+            rd.forward(request,response); 
         }
-
+        
+        
 
     }
 

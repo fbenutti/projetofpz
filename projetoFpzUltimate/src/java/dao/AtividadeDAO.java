@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -74,19 +75,24 @@ public class AtividadeDAO extends DAO<Atividade> {
     public List<Atividade> listarTodos() throws SQLException {
 
         List<Atividade> lista = new ArrayList<Atividade>();
-        String sql = "SELECT * FROM pais;";
+        String sql = "SELECT * FROM atividade;";
 
         PreparedStatement stmt = getConnection().prepareStatement( sql );
         ResultSet rs = stmt.executeQuery();
+        
+        
 
         while ( rs.next() ) {
 
-           /* Instituicao inst = new Instituicao();
-            inst.setId( rs.getInt( "id" ) );
-            inst.setNome( rs.getString( "nome" ) );
+            Atividade ativ = new Atividade();
+            ativ.setId( rs.getInt( "id_atividade" ) );
+            ativ.setDescricao( rs.getString( "descricao" ) );
+            ativ.setVagas( rs.getInt( "vagas" ) );
+            ativ.setHorario_inicio( rs.getString( "horario_inicio" ) );
+            ativ.setHorario_fim( rs.getString( "horario_fim" ) );
             
 
-            lista.add( inst );*/
+            lista.add( ativ );
 
         }
 

@@ -12,6 +12,10 @@
         <servlet-name>CadastraFoto</servlet-name>
         <servlet-class>servlet.CadastraFoto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InscreveUsuario</servlet-name>
+        <servlet-class>servlet.InscrevePessoa</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CadastraPessoa</servlet-name>
         <url-pattern>/CadastraPessoa</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>CadastraFoto</servlet-name>
         <url-pattern>/CadastraFoto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InscreveUsuario</servlet-name>
+        <url-pattern>/InscreveUsuario</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

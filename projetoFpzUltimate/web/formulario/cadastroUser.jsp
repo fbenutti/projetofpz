@@ -69,24 +69,24 @@
             },
             onkeyup: false,
             rules: {
-                 senha: {required: true, minlength: 6},
-                confsenha: {equalTo: "#senha"},
+                senha: {required: true, minlength: 6},
+                confsenha: {required: true},
                 cpf: {required: true, cpf: true},
                 nome: {required: true, minlength: 4},
                 email: {required: true, email: true},
-                telefone: {required: true},
-                cep: {required: true},
-                numero: {required: true}
+                telefone: {required: true}
+                //cep: {required: true},
+                //numero: {required: true}
             },
             messages: {
                 senha: {required: 'Informe a senha.', minlength: 'A senha deve ter pelo menos 6 caracteres.'},
-                confsenha: {equalTo: 'A confirmação de senha deve ser igual a senha.'},
+                confsenha: {required: 'Informe a confirmação de senha.'},
                 cpf: {required: 'Informe o CPF.', cpf: 'CPF inválido.'},
                 nome: {required: 'Informe o nome.', minlength: 'O nome deve ter ao menos 4 letras.'},
                 email: {required: 'Informe o e-mail.', email: 'E-mail inválido.'},
-                telefone: {required: 'Informe o telefone.'},
-                cep: {required: 'Informe o CEP'},
-                numero: {required: 'O número deve ser preenchido.'}
+                telefone: {required: 'Informe o telefone.'}
+                //cep: {required: 'Informe o CEP'},
+                //numero: {required: 'O número deve ser preenchido.'}
             }
             //,submitHandler:function(form) {
             // alert('ok');
@@ -109,8 +109,8 @@
     </ul>
     <form id="cadastroUsuario" name="cadastro" action="CadastraPessoa" method="post">
         <p style="margin-left: 40px;"><span class="label">Seu login será o CPF.</span></p>
-        <div id="divsenha"><label>Senha: <input type="text" name="senha" id="senha" title="senha"></label></div>
-        <div id="divconfsenha"><label>Confirmar Senha: <input type="text" name="confSenha" id="confSenha" title="confSenha"></label></div>
+        <div id="divsenha"><label>Senha: <input type="password" name="senha" id="senha" title="senha"></label></div>
+        <div id="divconfsenha"><label>Confirmar Senha: <input type="password" name="confsenha" id="confsenha" title="confSenha"></label></div>
         <div id="divnome"><label>Nome: <input type="text" name="nome"></label></div>
         <div id="divcpf"><label>CPF: <input type="text" name="cpf" id="cpf"></label></div>
         <div id="divemail"><label>Email: <input type="text" name="email"></label></div>
