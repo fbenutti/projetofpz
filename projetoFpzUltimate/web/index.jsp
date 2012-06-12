@@ -4,6 +4,7 @@
     Author     : Paulo
 --%>
 
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Param"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -57,8 +58,9 @@
                                 <a href="#">Faça sua Inscrição</a>
                             </td>
                         </tr>
-                    </table>
+                    </table>${nomeR}
                 </div>
+                
                 <div class="span6 well">
                     <h3 style="text-align: center;">I SIMPÓSIO DE MEDICINA DA UNIVERSIDADE FEDERAL DE SÃO PAULO FOI UM SUCESSO</h3>
                     <br />

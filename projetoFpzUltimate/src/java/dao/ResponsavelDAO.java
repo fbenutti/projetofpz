@@ -5,11 +5,18 @@
 package dao;
 
 import classes.Responsavel;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -20,18 +27,32 @@ public class ResponsavelDAO extends DAO<Responsavel> {
     public ResponsavelDAO() throws SQLException {
         super();
     }
-
+    
+    
+    private String getArquivoPorBufferI(BufferedImage b, String tipo){
+        File f;
+        try {
+            f = File.createTempFile("foto", tipo);
+            ImageIO.write(b, tipo, f);
+            return f.getAbsolutePath();
+        } catch (IOException ex) {
+            Logger.getLogger(ResponsavelDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+        
+    }
     @Override
     public void salvar( Responsavel obj ) throws SQLException {
 
-        String sql = "INSERT INTO responsavel(nome, email, cidade, uf ) "
-                + "VALUES( ?,?,?,? );";
+        String sql = "INSERT INTO responsavel(nome, email, cidade, uf, foto ) "
+                + "VALUES( ?,?,?,?,Load_File(?));";
 
         PreparedStatement stmt = getConnection().prepareStatement( sql );
         stmt.setString( 1, obj.getNome() );
         stmt.setString( 2, obj.getEmail() );
         stmt.setString( 3, obj.getCidade() );
         stmt.setString( 4, obj.getUF() );
+        stmt.setString( 5, getArquivoPorBufferI(obj.getFoto(), "jpg"));
         
         stmt.executeUpdate();
         stmt.close();

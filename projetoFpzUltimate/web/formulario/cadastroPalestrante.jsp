@@ -64,11 +64,12 @@
             <li><a id="cadastroInstituicao" href="#">Instituição</a></li>
             <li class="active"><a id="cadastroPalestrante" href="#">Palestrante</a></li>
         </ul>
-        <form id="cadastroPalestranteDados" name="cadastroPalestranteDados" action="CadastraResponsavel" method="post">
+        <form id="cadastroPalestranteDados" action="../CadastraFoto" method="post" enctype="multipart/form-data">
             <div id="divnome"><label>Nome: <input type="text" name="nome"></label></div>
             <div id="divemail"><label>Email: <input type="text" name="email"></label></div>
             <div id="divestado"><label>Estado: <input type="text" name="estado"></label></div>
             <div id="divcidade"><label>Cidade: <input type="text" name="cidade"></label></div>
+            <p><label>Foto: <input type="file" name="file"></label></p>
             <input id="EnviarTexto" class="btn btn-primary" type="submit" value="Enviar"/>
         </form>
     </div>

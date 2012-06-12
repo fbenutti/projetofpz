@@ -68,6 +68,7 @@ public class CadastraResponsavel extends HttpServlet {
                 }
 
             }
+        
         out.println("<script type=\"text/javascript\">alert(\"Cadastro Inserido com Sucesso!!\")</script>");
         request.setAttribute("id", r.getId());
         request.setAttribute("nome", r.getNome());

@@ -76,16 +76,10 @@ CREATE TABLE responsavel(
     email varchar(100),
     cidade varchar(50),
     uf char(2),
+    foto longblob,
     PRIMARY KEY (id_responsavel)
 )ENGINE=InnoDB;
 
-CREATE TABLE fotos(
-    id_foto int(10) not null auto_increment,
-    foto longblob,
-    es_responsavel int(10) not null,
-    PRIMARY KEY (id_foto),
-    CONSTRAINT FOREIGN KEY (es_responsavel) REFERENCES responsavel (id_responsavel)
-)ENGINE=InnoDB;
 
 CREATE TABLE atividade(
     id_atividade int(10) not null auto_increment,

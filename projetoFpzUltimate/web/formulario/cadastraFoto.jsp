@@ -14,8 +14,8 @@
     <body>
     <div id="cadastroFoto" >
         <form id="cadastroPalestranteFoto" name="cadastro" action="../CadastraFoto" method="post" enctype="multipart/form-data">
-            <p>ID:<input type="text" value=" ${id}" /></p>
-            <p>Nome:<input type="text" value=" ${nome}" /></p>
+            <p>ID:<input type="text" value=" ${id}" name="id"/></p>
+            <p>Nome:<input type="text" value=" ${nome}" name="nome" /></p>
             <p>Objeto: ${obj}</p>
             <p><label>Foto: <input type="file" name="file"></label></p>
             <p><label><input id="EnviarFoto" class="btn btn-primary" type="submit" value="Upload"/></label></p>
