@@ -33,14 +33,10 @@ public class InscrevePessoa extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        String cpf = request.getParameter("cpf");
+        String cpf = "363.528.068-21";
         String atividade = request.getParameter("atividade");
         
         JOptionPane.showMessageDialog(null, atividade);
-        
-        String[] a = atividade.split(",");
-        
-        JOptionPane.showMessageDialog(null, a[0]);
         
         try {
          

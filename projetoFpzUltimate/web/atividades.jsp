@@ -27,6 +27,49 @@
         <script type="text/javascript" src="bootstrap/js/bootstrap-transition.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap-collapse.js"></script>
         <script type="text/javascript" src="js/functions.js"></script>
+        <script type="text/javascript">
+            function inscrever(id){
+                $.ajax({
+                    type: 'post',
+                    data: 'atividade='+id,
+                    url: 'InscrevePessoa',
+                    success: function(resultado){
+                        $("#resultado").html(resultado);
+                        $("#resultado").fadeIn("slow");
+                    },
+                    error: function(erro, text){
+                        $("#resultado").html(text);
+                    },
+                    statusCode:{
+                        404: function(){
+                            $("#resultado").html("Página não encontrada!");
+                        }
+                    }
+           
+                });   
+            }
+            
+            function desinscrever(id){
+                $.ajax({
+                    type: 'post',
+                    data: 'atividade='+id,
+                    url: 'InscrevePessoa',
+                    success: function(resultado){
+                        $("#resultado").html(resultado);
+                        $("#resultado").fadeIn("slow");
+                    },
+                    error: function(erro, text){
+                        $("#resultado").html(text);
+                    },
+                    statusCode:{
+                        404: function(){
+                            $("#resultado").html("Página não encontrada!");
+                        }
+                    }
+           
+                });   
+            }
+        </script>
     </head>
     <body>
         <%-- Include do cabeçalho (menu superior) --%>
@@ -36,24 +79,25 @@
                 AtividadeDAO dao = new AtividadeDAO();
                 List<Atividade> atividades = dao.listarTodos();
             %>
-            <form method="post" action="InscreveUsuario">
-            <table>
-                <%
-                    for (int c=0; c < atividades.size(); c++) {
-                %>
-                <tr> 
-                    <td><input type="checkbox" name="atividade" id="atividade" value="<%=atividades.get(c).getId() %>"/></td>
-                    <td><%=atividades.get(c).getDescricao() %></td> 
-                    <td><%=atividades.get(c).getVagas() %></td> 
-                    <td><%=atividades.get(c).getHorario_inicio() %></td> 
-                    <td><%=atividades.get(c).getHorario_fim() %></td> 
-                </tr> 
-                <%                    }
-                %>
-            </table>
-            <input type="hidden" name="cpf" id="cpf" value="${cpf}"/>
-            <input type="submit" value="Enviar"/>
-            </form>
+            <table class="table">
+                    <%
+                        for (int c = 0; c < atividades.size(); c++) {
+                    %>
+                    <tr> 
+                        <td>
+                            <form>
+                                <input type="button" name="op" value="Inscrever" onclick="inscrever(<%=atividades.get(c).getId()%>)"/>
+                            </form>
+                                <div id="resultado<%=atividades.get(c).getId()%>">Teste</div>
+                        </td>
+                        <td><%=atividades.get(c).getDescricao()%></td> 
+                        <td><%=atividades.get(c).getVagas()%></td> 
+                        <td><%=atividades.get(c).getHorario_inicio()%></td> 
+                        <td><%=atividades.get(c).getHorario_fim()%></td> 
+                    </tr> 
+                    <%                    }
+                    %>
+                </table>
         </div>
         <%@ include file="rodape.jsp" %>
     </body>
