@@ -59,6 +59,7 @@ CREATE TABLE evento(
     nome varchar(60) not null,
     dt_inicio varchar(15),
     dt_fim varchar(15),
+    logo longblob,
     PRIMARY KEY (id_evento)
 )ENGINE=InnoDB;
 
