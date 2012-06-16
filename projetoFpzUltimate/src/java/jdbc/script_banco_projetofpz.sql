@@ -61,14 +61,7 @@ CREATE TABLE evento(
     PRIMARY KEY (id_evento)
 )ENGINE=InnoDB;
 
-CREATE TABLE inscricao(
-    id_inscricao int(10) not null auto_increment,
-    es_cpf varchar(18) not null,
-    es_evento int(10) not null,
-    PRIMARY KEY (id_inscricao),
-    CONSTRAINT FOREIGN KEY (es_cpf) REFERENCES pessoa (cpf),
-    CONSTRAINT FOREIGN KEY (es_evento) REFERENCES atividade (id_atividade)
-)ENGINE=InnoDB;
+
 
 CREATE TABLE responsavel(
     id_responsavel int(10) not null auto_increment,
@@ -92,4 +85,13 @@ CREATE TABLE atividade(
     PRIMARY KEY (id_atividade), 
     CONSTRAINT FOREIGN KEY (es_evento) REFERENCES evento (id_evento),
     CONSTRAINT FOREIGN KEY (es_responsavel) REFERENCES responsavel (id_responsavel)
+)ENGINE=InnoDB;
+
+CREATE TABLE inscricao(
+    id_inscricao int(10) not null auto_increment,
+    es_cpf varchar(18) not null,
+    es_atividade int(10) not null,
+    PRIMARY KEY (id_inscricao),
+    CONSTRAINT FOREIGN KEY (es_cpf) REFERENCES pessoa (cpf),
+    CONSTRAINT FOREIGN KEY (es_atividade) REFERENCES atividade (id_atividade)
 )ENGINE=InnoDB;
