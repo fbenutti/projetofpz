@@ -56,6 +56,7 @@ CREATE TABLE pessoa_instituicao(
 
 CREATE TABLE evento(
     id_evento int(10) not null auto_increment,
+    nome varchar(60) not null,
     dt_inicio varchar(15),
     dt_fim varchar(15),
     PRIMARY KEY (id_evento)
