@@ -44,7 +44,7 @@ public class ResponsavelDAO extends DAO<Responsavel> {
     @Override
     public void salvar( Responsavel obj ) throws SQLException {
 
-        String sql = "INSERT IO responsavel(nome, email, cidade, uf, foto ) "
+        String sql = "INSERT INTO responsavel(nome, email, cidade, uf, foto ) "
                 + "VALUES( ?,?,?,?,Load_File(?));";
 
         PreparedStatement stmt = getConnection().prepareStatement( sql );

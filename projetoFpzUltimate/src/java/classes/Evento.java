@@ -1,5 +1,7 @@
 package classes;
 
+import java.awt.image.BufferedImage;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -12,11 +14,13 @@ package classes;
  */
 public class Evento {
     private int id;
+    private String nome;
     private String periodoInicial;
     private String periodoFinal;
-    private String nome;
-    
+    private BufferedImage foto;
 
+    
+    //construtores
     public Evento() {
     }
 
@@ -25,7 +29,9 @@ public class Evento {
         this.periodoInicial = periodoInicial;
         this.periodoFinal = periodoFinal;
     }
-
+    //fim construtores
+    
+    //gets e sets
     public int getId() {
         return id;
     }
@@ -57,5 +63,14 @@ public class Evento {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public BufferedImage getFoto() {
+        return foto;
+    }
+
+    public void setFoto(BufferedImage foto) {
+        this.foto = foto;
+    }
     
+    //fim gets e sets   
 }

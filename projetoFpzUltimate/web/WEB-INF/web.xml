@@ -20,6 +20,14 @@
         <servlet-name>DesinscrevePessoa</servlet-name>
         <servlet-class>servlet.DesinscrevePessoa</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>cadastrarEvento</servlet-name>
+        <servlet-class>servlet.cadastrarEvento</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RenderizarImagem</servlet-name>
+        <servlet-class>servlet.RenderizarImagem</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CadastraPessoa</servlet-name>
         <url-pattern>/CadastraPessoa</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>DesinscrevePessoa</servlet-name>
         <url-pattern>/DesinscrevePessoa</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>cadastrarEvento</servlet-name>
+        <url-pattern>/cadastrarEvento</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenderizarImagem</servlet-name>
+        <url-pattern>/RenderizarImagem</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

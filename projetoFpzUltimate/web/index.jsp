@@ -4,6 +4,9 @@
     Author     : Paulo
 --%>
 
+<%@page import="classes.Evento"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.EventoDAO"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.Param"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
@@ -40,30 +43,23 @@
         <div class="row">
             <div class="span5">
                 <h2 style="text-align: center">Eventos</h2><br /><br />
+                <%
+                    EventoDAO dao = new EventoDAO();
+                    List<Evento> listaEventos = dao.listarTodos();
+                %>
                 <table class="table">
-                    <tr>
+                    <%
+                        for (int c = 0; c < listaEventos.size(); c++) {
+                    %>
+                    <tr> 
                         <td>
-                            <img src="imagens/banners/bannerIVEngMecMin.png" style="float: left;margin-right: 5px;" />
-                            <p style="">IV Congresso dos Engenheiros Mecânicos</p>
+                            <img src="RenderizarImagem?id=<%=listaEventos.get(c).getId()%>" style="float: left;margin-right: 5px;" />
+                            <p style=""><%=listaEventos.get(c).getNome()%></p>
                             <a href="#">Faça sua Inscrição</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <img src="imagens/banners/bannerPalestraMonografiaMin.png" width="110" height="75" style="float: left;margin-right: 5px;" />
-                            <p style="">Palestra: Técnicas Modernas para Desenvolvimento de
-                                Monografias e Textos Científicos</p>
-                            <a href="#">Faça sua Inscrição</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="imagens/banners/bannerACE.gif" width="110" height="70" style="float: left;margin-right: 5px;" />
-                            <p style="">Palestra: ACE de Guarulhos - A importância do 
-                                pequeno e médio empreendedor </p>
-                            <a href="#">Faça sua Inscrição</a>
-                        </td>
-                    </tr>
+                    <%                    }
+                    %>
                 </table>
             </div>
             <div class="span6 well">
