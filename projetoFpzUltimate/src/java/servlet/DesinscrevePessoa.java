@@ -6,6 +6,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,13 @@ public class DesinscrevePessoa extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             
-        } finally {            
+        } catch (Exception ex) {
+            //redirecionando pra erro se executar erroneamente
+            request.setAttribute("tipo", "Exception");
+            request.setAttribute("erro", ex);
+            request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
+
+        } finally {
             out.close();
         }
     }

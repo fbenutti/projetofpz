@@ -10,15 +10,12 @@ import dao.InscricaoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,25 +38,41 @@ public class InscrevePessoa extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        InscricaoDAO dao = null;
         try {
             HttpSession sessao = request.getSession();
             Login l = (Login) sessao.getAttribute("usuario");
-            
+
             Inscricao i = new Inscricao();
             i.setCpf(l.getLogin());
             i.setCodAtividade(Integer.parseInt(request.getParameter("atividade")));
-            
-            InscricaoDAO dao = null;
 
             try {
                 dao = new InscricaoDAO();
                 dao.salvar(i);
 
-            } catch (SQLException exc) {
-                out.println(exc);
+            } catch (SQLException ex) {
+                //redirecionando pra erro se executar erroneamente
+                request.setAttribute("tipo", "SQLException");
+                request.setAttribute("erro", ex);
+                request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
             }
+        } catch (Exception ex) {
+            //redirecionando pra erro se executar erroneamente
+            request.setAttribute("tipo", "Exception");
+            request.setAttribute("erro", ex);
+            request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
         } finally {
-            out.println("Inscrito com sucesso!");
+            if (dao != null) {
+
+                try {
+                    dao.fecharConexao();
+                } catch (SQLException exc) {
+                    System.err.println("Erro ao fechar a conexão!");
+                    exc.printStackTrace();
+                }
+
+            }
         }
     }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -63,11 +63,17 @@ public class CadastraInstituicao extends HttpServlet {
                 instDao.salvar(inst);
                 //out.println("Instituição cadastrada com sucesso!!");
             } catch (SQLException ex) {
-                //out.println(ex);
-                Logger.getLogger(CadastraInstituicao.class.getName()).log(Level.SEVERE, null, ex);
+                //redirecionando pra erro se executar erroneamente
+                request.setAttribute("tipo", "SQLException");
+                request.setAttribute("erro", ex);
+                request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
             }
+        } catch (Exception ex) {
+            //redirecionando pra erro se executar erroneamente
+            request.setAttribute("tipo", "Exception");
+            request.setAttribute("erro", ex);
+            request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
         } finally {
-            //out.close();
         }
 
         try {
@@ -76,7 +82,7 @@ public class CadastraInstituicao extends HttpServlet {
             login.setLogin(request.getParameter("cnpj"));
             login.setSenha(request.getParameter("senha"));
             login.setTipo("I");
-            
+
 
             LoginDAO loginDao = null;
 
@@ -85,15 +91,21 @@ public class CadastraInstituicao extends HttpServlet {
                 loginDao.salvar(login);
                 //out.println("Login cadastrado com sucesso!!");
             } catch (SQLException ex) {
-                //out.println(ex);
-                Logger.getLogger(CadastraInstituicao.class.getName()).log(Level.SEVERE, null, ex);
+                //redirecionando pra erro se executar erroneamente
+                request.setAttribute("tipo", "SQLException");
+                request.setAttribute("erro", ex);
+                request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
             }
+        } catch (Exception ex) {
+            //redirecionando pra erro se executar erroneamente
+            request.setAttribute("tipo", "Exception");
+            request.setAttribute("erro", ex);
+            request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher("/index.jsp"); 
-            rd.forward(request,response); 
+            out.close();
         }
-        
-        
+
+
 
     }
 

@@ -66,9 +66,16 @@ public class CadastraPessoa extends HttpServlet {
             dao = new PessoaDAO();
             dao.salvar(p);
 
-        } catch (SQLException exc) {
-
-            exc.printStackTrace();
+         } catch (SQLException ex) {
+            //redirecionando pra erro se executar erroneamente
+            request.setAttribute("tipo", "SQLException");
+            request.setAttribute("erro", ex);
+            request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
+        } catch (Exception ex) {
+            //redirecionando pra erro se executar erroneamente
+            request.setAttribute("tipo", "Exception");
+            request.setAttribute("erro", ex);
+            request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
 
         } finally {
 

@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -50,107 +51,6 @@ public class CadastraFoto extends HttpServlet {
 
         Responsavel r = new Responsavel();
         try {
-//            Connection con = null;
-//            ResultSet rs = null;
-//            PreparedStatement psmt = null;
-//            FileInputStream fis;
-//
-//
-//            String contentType = request.getContentType();
-//
-//
-//            if ((contentType != null) && (contentType.indexOf("multipart/form-data") >= 0)) {
-//
-//
-//                /*
-//                 * recupera o fluxo de bytes enviados nos pacotes http
-//                 */
-//                DataInputStream in = new DataInputStream(request.getInputStream());
-//
-//                /*
-//                 * detecta a quantidade de bytes recebidas na solicitação
-//                 */
-//                int formDataLength = request.getContentLength();
-//
-//                /*
-//                 * cria um array de bytes com os dados recebidos no servidor
-//                 */
-//                byte dataBytes[] = new byte[formDataLength];
-//                int byteRead = 0;
-//                int totalBytesRead = 0;
-//
-//                /**
-//                 * Realiza a leitura do fluxo de bytes e armazena os bytes da
-//                 * imagem e os códigos de controle na variável dataBytes *
-//                 */
-//                while (totalBytesRead < formDataLength) {
-//                    byteRead = in.read(dataBytes, totalBytesRead, formDataLength);
-//                    totalBytesRead += byteRead;
-//                }
-//
-//
-//                /*
-//                 * atribui a variável file o conteúdo recebido através do upload
-//                 * da imagem
-//                 */
-//                String file = new String(dataBytes);
-//
-//                /*
-//                 * extrai do controle de dados o nome do arquivo
-//                 */
-//                String saveFile = file.substring(file.indexOf("filename=\"") + 10);
-//                saveFile = saveFile.substring(0, saveFile.indexOf("\n"));
-//                saveFile = saveFile.substring(saveFile.lastIndexOf("\\") + 1, saveFile.indexOf("\""));
-//
-//                /*
-//                 * extrai o código de marcação de final de arquivo
-//                 */
-//                int lastIndex = contentType.lastIndexOf("=");
-//                String boundary = contentType.substring(lastIndex + 1, contentType.length());
-//                int pos;
-//
-//                pos = file.indexOf("filename=\"");
-//                pos = file.indexOf("\n", pos) + 1;
-//                pos = file.indexOf("\n", pos) + 1;
-//                pos = file.indexOf("\n", pos) + 1;
-//
-//
-//                int boundaryLocation = file.indexOf(boundary, pos);
-//
-//                /*
-//                 * detecta a posição inicial onde inicia a imagem e o final da
-//                 * imagem
-//                 */
-//                int startPos = ((file.substring(0, pos))).length();
-//                int endPos = totalBytesRead - (boundary.length() - 8);
-//
-//                /*
-//                 * escreve no servidor o arquivo que foi feito upload
-//                 */
-//                FileOutputStream fileOut = new FileOutputStream(saveFile);
-//                fileOut.write(dataBytes, startPos, (endPos - startPos));
-//                fileOut.flush();
-//                fileOut.close();
-//
-//                Connection connection = null;
-//                String connectionURL = "jdbc:mysql://localhost:3306/projetofpz";
-//
-//                PreparedStatement psmnt = null;
-//
-//                try {
-//                    Class.forName("com.mysql.jdbc.Driver").newInstance();
-//                    connection = DriverManager.getConnection(connectionURL, "root", "1234");
-//                    File f = new File(saveFile);
-//
-//
-//                    psmnt = connection.prepareStatement("INSERT INTO fotos(foto, es_responsavel) values(?,?);");
-//
-//                    fis = new FileInputStream(f);
-//
-//                    /*
-//                     * inseri o arquivo de imagem no banco
-//                     */
-
             boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
             if (!isMultipart) {
@@ -194,31 +94,23 @@ public class CadastraFoto extends HttpServlet {
                     i++;
                 }
                 new ResponsavelDAO().salvar(r);
+
+                //redirecionando pra index se exectar com sucesso
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                rd.forward(request, response);
             }
-
-
-//                    psmnt.setBinaryStream(1, (InputStream) fis, (int) (f.length()));
-//                    psmnt.setInt(2, 1);
-//
-//                    int s = psmnt.executeUpdate();
-//
-//                    if (s > 0) {
-//                        System.out.println("Uploaded successfully !");
-//                    } else {
-//                        System.out.println("unsucessfull to upload file.");
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-
+        } catch (SQLException ex) {
+            //redirecionando pra erro se executar erroneamente
+            request.setAttribute("tipo", "SQLException");
+            request.setAttribute("erro", ex);
+            request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
-            Logger.getLogger(CadastraFoto.class.getName()).log(Level.SEVERE, null, ex);
+            //redirecionando pra erro se executar erroneamente
+            request.setAttribute("tipo", "Exception");
+            request.setAttribute("erro", ex);
+            request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
+
         } finally {
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
-            // request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
     }

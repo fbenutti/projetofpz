@@ -49,14 +49,19 @@ public class Logar extends HttpServlet {
 
             HttpSession sessao = request.getSession();
             sessao.setAttribute("usuario", l);
+            response.sendRedirect("index.jsp");
 
         } catch (SQLException ex) {
-
-            Logger.getLogger(Logar.class.getName()).log(Level.SEVERE, null, ex);
+            //redirecionando pra erro se executar erroneamente
+            request.setAttribute("tipo", "SQLException");
+            request.setAttribute("erro", ex);
+            request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
 
         } catch (Exception ex) {
-
-            JOptionPane.showMessageDialog(null, ex);
+            //redirecionando pra erro se executar erroneamente
+            request.setAttribute("tipo", "Exception");
+            request.setAttribute("erro", ex);
+            request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
 
         } finally {
 
@@ -70,7 +75,7 @@ public class Logar extends HttpServlet {
                 }
 
             }
-            response.sendRedirect("index.jsp");
+            
         }
     }
 
