@@ -103,7 +103,7 @@
 </div>
 <div id="cadastros" class="modal-body">
     <form id="cadastroUsuario" name="cadastro" action="CadastraPessoaInstituicao" method="post">
-        <p style="margin-left: 40px;"><span class="label">Seu login será o CPF.</span></p>
+        <p style="margin-left: 40px;"><span class="label">O login será o CPF.</span></p>
         <div id="divsenha"><label>Senha: <input type="password" name="senha" id="senha" title="senha"></label></div>
         <div id="divconfsenha"><label>Confirmar Senha: <input type="password" name="confsenha" id="confsenha" title="confSenha"></label></div>
         <div id="divnome"><label>Nome: <input type="text" name="nome"></label></div>
