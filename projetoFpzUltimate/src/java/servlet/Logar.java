@@ -38,7 +38,6 @@ public class Logar extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-JOptionPane.showMessageDialog(null, "rá");
         
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");
