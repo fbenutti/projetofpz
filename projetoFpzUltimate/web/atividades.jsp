@@ -26,23 +26,30 @@
         <script type="text/javascript" src="bootstrap/js/bootstrap-dropdown.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap-transition.js"></script>
         <script type="text/javascript" src="bootstrap/js/bootstrap-collapse.js"></script>
+        <script type="text/javascript" src="bootstrap/js/bootstrap-button.js"></script>
         <script type="text/javascript" src="js/functions.js"></script>
         <script type="text/javascript">
             function inscrever(id){
+                $("#op"+id).button('loading');
                 $.ajax({
                     type: 'post',
                     data: 'atividade='+id,
                     url: 'InscrevePessoa',
                     success: function(resultado){
-                        $("#resultado").html(resultado);
-                        $("#resultado").fadeIn("slow");
+                        $("#inscrever"+id).hide(0);
+                        $("#desinscrever"+id).fadeIn("fast");
+                        $("#op"+id).button('reset');
+                        $("#resultado"+id).html(resultado);
+                        $("#resultado"+id).fadeIn("slow").delay(1000).fadeOut("slow");
                     },
                     error: function(erro, text){
-                        $("#resultado").html(text);
+                        $("#op"+id).button('reset');
+                        $("#resultado"+id).html(text);
                     },
                     statusCode:{
                         404: function(){
-                            $("#resultado").html("Página não encontrada!");
+                            $("#op"+id).button('reset');
+                            $("#resultado"+id).html("Página não encontrada!");
                         }
                     }
            
@@ -55,15 +62,15 @@
                     data: 'atividade='+id,
                     url: 'InscrevePessoa',
                     success: function(resultado){
-                        $("#resultado").html(resultado);
-                        $("#resultado").fadeIn("slow");
+                        $("#resultado"+id).html(resultado);
+                        $("#resultado"+id).fadeIn("slow");
                     },
                     error: function(erro, text){
-                        $("#resultado").html(text);
+                        $("#resultado"+id).html(text);
                     },
                     statusCode:{
                         404: function(){
-                            $("#resultado").html("Página não encontrada!");
+                            $("#resultado"+id).html("Página não encontrada!");
                         }
                     }
            
@@ -80,24 +87,31 @@
                 List<Atividade> atividades = dao.listarTodos();
             %>
             <table class="table">
-                    <%
-                        for (int c = 0; c < atividades.size(); c++) {
-                    %>
-                    <tr> 
-                        <td>
-                            <form>
-                                <input type="button" name="op" value="Inscrever" onclick="inscrever(<%=atividades.get(c).getId()%>)"/>
+                <%
+                    for (int c = 0; c < atividades.size(); c++) {
+                %>
+                <tr> 
+                    <td>
+                        <div id="inscrever<%=atividades.get(c).getId()%>">
+                             <form>
+                                <input class="btn btn-primary" data-loading-text="Inscrevendo..." type="button" name="op" id="op<%=atividades.get(c).getId()%>" value="Inscrever" onclick="inscrever(<%=atividades.get(c).getId()%>)"/>
                             </form>
-                                <div id="resultado<%=atividades.get(c).getId()%>">Teste</div>
-                        </td>
-                        <td><%=atividades.get(c).getDescricao()%></td> 
-                        <td><%=atividades.get(c).getVagas()%></td> 
-                        <td><%=atividades.get(c).getHorario_inicio()%></td> 
-                        <td><%=atividades.get(c).getHorario_fim()%></td> 
-                    </tr> 
-                    <%                    }
-                    %>
-                </table>
+                        </div>
+                                <div id="desinscrever<%=atividades.get(c).getId()%>" style="display: none;">
+                             <form>
+                                <input class="btn btn-primary" data-loading-text="Excluindo..." type="button" name="op" id="op<%=atividades.get(c).getId()%>" value="Desinscrever" onclick="desinscrever(<%=atividades.get(c).getId()%>)"/>
+                            </form>
+                        </div>
+                        <div class="label label-info span2" id="resultado<%=atividades.get(c).getId()%>" style="display: none;"></div>
+                    </td>
+                    <td><%=atividades.get(c).getDescricao()%></td> 
+                    <td><%=atividades.get(c).getVagas()%></td> 
+                    <td><%=atividades.get(c).getHorario_inicio()%></td> 
+                    <td><%=atividades.get(c).getHorario_fim()%></td> 
+                </tr> 
+                <%                    }
+                %>
+            </table>
         </div>
         <%@ include file="rodape.jsp" %>
     </body>

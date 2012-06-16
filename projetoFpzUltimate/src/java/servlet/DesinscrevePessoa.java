@@ -4,26 +4,18 @@
  */
 package servlet;
 
-import classes.Inscricao;
-import dao.InscricaoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Wellington
  */
-@WebServlet(name = "InscrevePessoa", urlPatterns = {"/InscrevePessoa"})
-public class InscrevePessoa extends HttpServlet {
+public class DesinscrevePessoa extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -41,25 +33,12 @@ public class InscrevePessoa extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             
-            Inscricao i = new Inscricao();
-            i.setCpf("363.528.068-21");
-            i.setCodAtividade(Integer.parseInt(request.getParameter("atividade")));
-            
-            InscricaoDAO dao = null;
-
-            try {
-                dao = new InscricaoDAO();
-                dao.salvar(i);
-
-            } catch (SQLException exc) {
-                Logger.getLogger(CadastraInstituicao.class.getName()).log(Level.SEVERE, null, exc);
-            }
-        } finally {
-            out.println("Inscrito com sucesso!");
+        } finally {            
+            out.close();
         }
     }
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.

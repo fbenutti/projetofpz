@@ -11,14 +11,18 @@ package classes;
 public class Inscricao {
     
     private String cpf;
-    private int id;
+    private int codAtividade;
 
     
     
     public Inscricao() {
     }
 
-    
+    public Inscricao(String cpf, int codAtividade) {
+        this.cpf = cpf;
+        this.codAtividade = codAtividade;
+    }
+
     public String getCpf() {
         return cpf;
     }
@@ -27,12 +31,12 @@ public class Inscricao {
         this.cpf = cpf;
     }
 
-    public int getId() {
-        return id;
+    public int getCodAtividade() {
+        return codAtividade;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCodAtividade(int codAtividade) {
+        this.codAtividade = codAtividade;
     }
     
     

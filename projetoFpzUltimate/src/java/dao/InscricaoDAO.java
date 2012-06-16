@@ -8,6 +8,7 @@ import classes.Inscricao;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,9 +27,8 @@ public class InscricaoDAO extends DAO<Inscricao>{
 
         PreparedStatement stmt = getConnection().prepareStatement(sql);
         stmt.setString(1, obj.getCpf());
-        stmt.setInt(9, obj.getId());
+        stmt.setInt(2, obj.getCodAtividade());
         
-
         stmt.executeUpdate();
         stmt.close();
     }

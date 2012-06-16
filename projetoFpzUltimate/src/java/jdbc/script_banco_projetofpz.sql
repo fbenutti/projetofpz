@@ -67,7 +67,7 @@ CREATE TABLE inscricao(
     es_evento int(10) not null,
     PRIMARY KEY (id_inscricao),
     CONSTRAINT FOREIGN KEY (es_cpf) REFERENCES pessoa (cpf),
-    CONSTRAINT FOREIGN KEY (es_evento) REFERENCES evento (id_evento)
+    CONSTRAINT FOREIGN KEY (es_evento) REFERENCES atividade (id_atividade)
 )ENGINE=InnoDB;
 
 CREATE TABLE responsavel(
