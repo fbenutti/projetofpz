@@ -29,6 +29,16 @@ $(document).ready(function(){
         });
         $('#resultado').load('tipoCadastro.jsp');
     });
+    
+    //Carrega a página de cadastro por instituição
+    $("#cadastroPorInstituicao").click(function(){
+        $('#resultado').modal({
+            keyboard: true,
+            show: false,
+            backdrop: true
+        });
+        $('#resultado').load('cadastroUserInstituicao.jsp');
+    });
                
     //Login fake
     $('#logar').click(function(){

@@ -28,6 +28,7 @@
                         <li <%    if (request.getRequestURI().equalsIgnoreCase("/formulario/contato.jsp")) {
                                 out.print("class='active'");
                             }%>   ><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/formulario/contato.jsp">Contato</a></li>
+                        <li><a data-toggle="modal" id="cadastroPorInstituicao" href="#resultado">Cadastro</a></li>
                     </ul>
                     <%-- if logado --%>
                     <div class="btn-group pull-right" id="logado">
