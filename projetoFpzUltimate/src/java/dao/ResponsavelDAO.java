@@ -56,7 +56,8 @@ public class ResponsavelDAO extends DAO<Responsavel> {
         
         stmt.executeUpdate();
         stmt.close();
-
+        
+        
     }
 
     
@@ -144,6 +145,27 @@ public class ResponsavelDAO extends DAO<Responsavel> {
         stmt.close();
 
         return pais;
+
+    }
+    public int obterIdPorDados( String nome, String email, String cidade, String uf ) throws SQLException {
+
+        int id;
+        String sql = "SELECT id_responsavel FROM responsavel WHERE nome = '?'"
+                + " and email = '?' and cidade = '?' and uf = '?';";
+
+        PreparedStatement stmt = getConnection().prepareStatement( sql );
+        stmt.setString( 1, nome );
+        stmt.setString( 2, email );
+        stmt.setString( 3, cidade );
+        stmt.setString( 4, uf );
+        ResultSet rs = stmt.executeQuery();
+        
+        id = rs.getInt( "id_responsavel" );
+
+        rs.close();
+        stmt.close();
+        
+        return id;
 
     }
 

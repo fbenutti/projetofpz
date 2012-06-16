@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -219,6 +220,7 @@ public class CadastraFoto extends HttpServlet {
             rd.forward(request, response);
             // request.getRequestDispatcher("index.jsp").forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

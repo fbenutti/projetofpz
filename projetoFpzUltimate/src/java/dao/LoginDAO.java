@@ -4,7 +4,6 @@
  */
 package dao;
 
-import classes.Instituicao;
 import classes.Login;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,6 +50,32 @@ public class LoginDAO extends DAO<Login> {
     @Override
     public List<Login> listarTodos() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public Login obterLogin(String userName, String senha) throws SQLException {
+        
+        Login login = null;
+        String sql = "SELECT * FROM login WHERE user_name = ? and senha = ?;";
+
+        PreparedStatement stmt = getConnection().prepareStatement( sql );
+        stmt.setString( 1, userName );
+        stmt.setString( 2, senha );
+
+        ResultSet rs = stmt.executeQuery();
+
+        if ( rs.next() ) {
+
+            login = new Login();
+            login.setLogin( rs.getString( "user_name" ) );
+            login.setSenha( rs.getString( "senha" ) );
+            login.setTipo( rs.getString( "tipo" ) );
+
+        }
+
+        rs.close();
+        stmt.close();
+
+        return login;
     }
 
     @Override

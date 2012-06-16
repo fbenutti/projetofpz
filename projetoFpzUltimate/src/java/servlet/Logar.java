@@ -4,26 +4,25 @@
  */
 package servlet;
 
-import classes.Responsavel;
-import dao.ResponsavelDAO;
+import classes.Login;
+import dao.LoginDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Felipe
  */
-public class CadastraResponsavel extends HttpServlet {
+public class Logar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -39,34 +38,29 @@ public class CadastraResponsavel extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+JOptionPane.showMessageDialog(null, "rá");
         
-        //pegando dados do /formulario/cadastroPalestrante
-        String nome = request.getParameter("nome");
-        String email = request.getParameter("email");
-        String cidade = request.getParameter("cidade");
-        String uf = request.getParameter("estado");
-
-
-        Responsavel r = new Responsavel(nome, email, cidade, uf);
-        ResponsavelDAO dao = null;
-
-
+        String login = request.getParameter("login");
+        String senha = request.getParameter("senha");
+        LoginDAO dao = null;
         try {
 
-            dao = new ResponsavelDAO();
-            dao.salvar(r);
+            dao = new LoginDAO();
+            Login l = dao.obterLogin(login, senha);
 
-            int id;
-            id = dao.obterIdPorDados(nome, email, cidade, uf);
-            JOptionPane.showMessageDialog(null, "id: " + id);
-            out.println("id: " + id);
-            
-        } catch (SQLException exc) {
+            HttpSession sessao = request.getSession();
+            sessao.setAttribute("usuario", l);
 
-            exc.printStackTrace();
+        } catch (SQLException ex) {
+
+            Logger.getLogger(Logar.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (Exception ex) {
+
+            JOptionPane.showMessageDialog(null, ex);
 
         } finally {
-            
+
             if (dao != null) {
 
                 try {
@@ -77,13 +71,7 @@ public class CadastraResponsavel extends HttpServlet {
                 }
 
             }
-        
-        out.println("<script type=\"text/javascript\">alert(\"Cadastro Inserido com Sucesso!!\")</script>");
-        request.setAttribute("id", r.getId());
-        request.setAttribute("nome", r.getNome());
-        request.setAttribute("obj", r);
-        request.getRequestDispatcher("\\formulario\\cadastraFoto.jsp").forward(request, response);
-        //response.sendRedirect("\\formulario\\cadastraFoto.jsp");
+            response.sendRedirect("index.jsp");
         }
     }
 

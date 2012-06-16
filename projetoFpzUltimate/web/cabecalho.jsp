@@ -46,10 +46,10 @@
                     </div>
                     <%-- else --%>
                     <div class="pull-right" id="deslogado">
-                        <form class="form-inline navbar-form">
+                        <form class="form-inline navbar-form" action="Logar">
                             <input type="text" id="login" name="login" class="input-small" placeholder="Login"/>
                             <input type="password" id="senha" name="senha" class="input-small" placeholder="Senha" />
-                            <input type="button" value="Entrar" class="btn btn-primary" id="logar" />
+                            <input type="submit" value="Entrar" class="btn btn-primary" id="logar"/>
                         </form>
                     </div>
                     <%-- end if //logado --%>
