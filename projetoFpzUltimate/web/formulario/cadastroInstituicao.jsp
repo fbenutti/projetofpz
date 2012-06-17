@@ -141,7 +141,7 @@
     <form id="cadastroInstituição" name="cadastro" action="CadastraInstituicao" method="post">
         <p style="margin-left: 40px;"><span class="label">Seu login será o CNPJ.</span></p>
         <div id="divsenha"><label>Senha: <input type="password" name="senha" id="senha" /></label></div>
-        <div id="divconfsenha"><label>Confirmação de senha: <input onblur="testaSenha()" type="password" name="confsenha" id="confsenha" /></label></div>
+        <div id="divconfsenha"><label>Confirmação de senha: <input type="password" name="confsenha" id="confsenha" /></label></div>
         <div id="divcnpj"><label>CNPJ: <input type="text" name="cnpj" id="cnpj"/></label></div>
         <div id="divnome"><label>Nome: <input type="text" name="nome" /></label></div>
         <div id="divemail"><label>Email: <input type="text" name="email" /></label></div>

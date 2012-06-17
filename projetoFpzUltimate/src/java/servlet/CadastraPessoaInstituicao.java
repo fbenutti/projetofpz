@@ -6,12 +6,15 @@ package servlet;
 
 import classes.Login;
 import classes.Pessoa;
+import classes.PessoaInstituicao;
 import dao.LoginDAO;
 import dao.PessoaDAO;
+import dao.PessoaInstituicaoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Wellington
  */
+@WebServlet(name = "CadastraPessoaInstituicao", urlPatterns = {"/CadastraPessoaInstituicao"})
 public class CadastraPessoaInstituicao extends HttpServlet {
 
     /**
@@ -46,7 +50,7 @@ public class CadastraPessoaInstituicao extends HttpServlet {
         String uf = request.getParameter("uf");
         String rua = request.getParameter("rua");
         String bairro = request.getParameter("bairro");
-        int n = 0;//Integer.parseInt(request.getParameter("numero"));
+        int n = Integer.parseInt(request.getParameter("numero"));
         String complemento = request.getParameter("complemento");
         String senha = request.getParameter("senha");
         
@@ -56,6 +60,9 @@ public class CadastraPessoaInstituicao extends HttpServlet {
         
         Pessoa p = new Pessoa(cpf, nome, email, telefone, cep, cidade, uf, rua, bairro, n, complemento);
         PessoaDAO dao = null;
+        
+        PessoaInstituicao pi = new PessoaInstituicao(cpf, "58.135.564/0001-11");
+        PessoaInstituicaoDAO pdao = null;
 
 
         try {
@@ -65,6 +72,9 @@ public class CadastraPessoaInstituicao extends HttpServlet {
             
             dao = new PessoaDAO();
             dao.salvar(p);
+            
+            pdao = new PessoaInstituicaoDAO();
+            pdao.salvar(pi);
 
          } catch (SQLException ex) {
             //redirecionando pra erro se executar erroneamente
