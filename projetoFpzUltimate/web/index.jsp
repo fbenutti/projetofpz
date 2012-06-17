@@ -32,13 +32,6 @@
     <body>
         <%-- Include do cabeçalho (menu superior) --%>
         <%@ include file="cabecalho.jsp" %>
-    <c:choose>
-        <c:when test="${not empty(param.nome)}">
-            Contato ${param.nome} adicionado com sucesso.
-        </c:when>
-    </c:choose>
-
-
     <div class="container">
         <div class="row">
             <div class="span5">
