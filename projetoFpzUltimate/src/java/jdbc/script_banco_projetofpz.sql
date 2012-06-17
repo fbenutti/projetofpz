@@ -79,7 +79,8 @@ CREATE TABLE responsavel(
 CREATE TABLE atividade(
     id_atividade int(10) not null auto_increment,
     descricao varchar(400) not null,
-    vagas int(6),
+    vagas int(4),
+    vagas_restantes int(4),
     horario_inicio varchar(15),
     horario_fim varchar(15),
     es_evento int(10) not null,

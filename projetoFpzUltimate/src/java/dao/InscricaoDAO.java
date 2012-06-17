@@ -10,18 +10,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Wellington
  */
-public class InscricaoDAO extends DAO<Inscricao>{
-    
+public class InscricaoDAO extends DAO<Inscricao> {
+
     public InscricaoDAO() throws SQLException {
         super();
     }
-    
+
     @Override
     public void salvar(Inscricao obj) throws SQLException {
         String sql = "INSERT INTO inscricao(es_cpf, es_atividade) "
@@ -30,7 +29,7 @@ public class InscricaoDAO extends DAO<Inscricao>{
         PreparedStatement stmt = getConnection().prepareStatement(sql);
         stmt.setString(1, obj.getCpf());
         stmt.setInt(2, obj.getCodAtividade());
-        
+
         stmt.executeUpdate();
         stmt.close();
     }
@@ -83,5 +82,4 @@ public class InscricaoDAO extends DAO<Inscricao>{
     public Inscricao obterPorId(int id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
 }

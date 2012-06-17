@@ -12,16 +12,18 @@ public class Atividade {
     private int id;
     private String descricao;
     private int vagas;
+    private int vagasRestantes;
     private String horario_inicio;
     private String horario_fim;
 
     public Atividade() {
     }
 
-    public Atividade(int id, String descricao, int vagas, String horario_inicio, String horario_fim) {
+    public Atividade(int id, String descricao, int vagas,int vagasRestantes, String horario_inicio, String horario_fim) {
         this.id = id;
         this.descricao = descricao;
         this.vagas = vagas;
+        this.vagasRestantes = vagasRestantes;
         this.horario_inicio = horario_inicio;
         this.horario_fim = horario_fim;
     }
@@ -64,6 +66,14 @@ public class Atividade {
 
     public void setVagas(int vagas) {
         this.vagas = vagas;
+    }
+
+    public int getVagasRestantes() {
+        return vagasRestantes;
+    }
+
+    public void setVagasRestantes(int vagasRestantes) {
+        this.vagasRestantes = vagasRestantes;
     }
     
 }

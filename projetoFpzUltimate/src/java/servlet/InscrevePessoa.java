@@ -6,6 +6,7 @@ package servlet;
 
 import classes.Inscricao;
 import classes.Login;
+import dao.AtividadeDAO;
 import dao.InscricaoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,7 +40,9 @@ public class InscrevePessoa extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
         InscricaoDAO dao = null;
+        int quant;
         try {
             HttpSession sessao = request.getSession();
             Login l = (Login) sessao.getAttribute("usuario");
@@ -50,7 +54,6 @@ public class InscrevePessoa extends HttpServlet {
             try {
                 dao = new InscricaoDAO();
                 dao.salvar(i);
-
             } catch (SQLException ex) {
                 //redirecionando pra erro se executar erroneamente
                 request.setAttribute("tipo", "SQLException");
