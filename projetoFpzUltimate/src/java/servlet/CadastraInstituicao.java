@@ -11,9 +11,6 @@ import dao.LoginDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,8 +38,10 @@ public class CadastraInstituicao extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+
         try {
             Instituicao inst = new Instituicao();
+            Login login = new Login();
 
             inst.setCnpj(request.getParameter("cnpj"));
             inst.setNome(request.getParameter("nome"));
@@ -56,46 +55,28 @@ public class CadastraInstituicao extends HttpServlet {
             inst.setUf(request.getParameter("estado"));
             inst.setCidade(request.getParameter("cidade"));
 
-            InstituicaoDAO instDao = null;
-
-            try {
-                instDao = new InstituicaoDAO();
-                instDao.salvar(inst);
-                //out.println("Instituição cadastrada com sucesso!!");
-            } catch (SQLException ex) {
-                //redirecionando pra erro se executar erroneamente
-                request.setAttribute("tipo", "SQLException");
-                request.setAttribute("erro", ex);
-                request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
-            }
-        } catch (Exception ex) {
-            //redirecionando pra erro se executar erroneamente
-            request.setAttribute("tipo", "Exception");
-            request.setAttribute("erro", ex);
-            request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
-        } finally {
-        }
-
-        try {
-            Login login = new Login();
-
             login.setLogin(request.getParameter("cnpj"));
             login.setSenha(request.getParameter("senha"));
             login.setTipo("I");
 
-
-            LoginDAO loginDao = null;
-
             try {
+
+                InstituicaoDAO instDao = null;
+                LoginDAO loginDao = null;
+
                 loginDao = new LoginDAO();
                 loginDao.salvar(login);
-                //out.println("Login cadastrado com sucesso!!");
+
+                instDao = new InstituicaoDAO();
+                instDao.salvar(inst);
+
             } catch (SQLException ex) {
                 //redirecionando pra erro se executar erroneamente
                 request.setAttribute("tipo", "SQLException");
                 request.setAttribute("erro", ex);
                 request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
             }
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (Exception ex) {
             //redirecionando pra erro se executar erroneamente
             request.setAttribute("tipo", "Exception");
@@ -104,8 +85,6 @@ public class CadastraInstituicao extends HttpServlet {
         } finally {
             out.close();
         }
-
-
 
     }
 

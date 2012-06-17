@@ -89,8 +89,8 @@ public class CadastraPessoa extends HttpServlet {
                 }
 
             }
-            request.setAttribute("cpf", p.getCpf());
-            request.getRequestDispatcher("atividades.jsp").forward(request, response);
+            //request.setAttribute("cpf", p.getCpf());
+            request.getRequestDispatcher("index.jsp").forward(request, response);
             
         }
     }

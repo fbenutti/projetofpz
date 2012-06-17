@@ -123,7 +123,7 @@ public class EventoDAO extends DAO<Evento> {
     }
 
     public BufferedImage RetornaLogo(int id) throws IOException, SQLException {
-        BufferedImage logo;
+        //BufferedImage logo;
         File f;
         f = File.createTempFile("foto", "jpg");
 
