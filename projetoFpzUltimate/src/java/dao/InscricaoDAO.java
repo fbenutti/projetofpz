@@ -22,7 +22,7 @@ public class InscricaoDAO extends DAO<Inscricao>{
     
     @Override
     public void salvar(Inscricao obj) throws SQLException {
-        String sql = "INSERT INTO inscricao(es_cpf, es_evento) "
+        String sql = "INSERT INTO inscricao(es_cpf, es_atividade) "
                 + "VALUES( ?,? );";
 
         PreparedStatement stmt = getConnection().prepareStatement(sql);
