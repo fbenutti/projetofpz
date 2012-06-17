@@ -46,9 +46,9 @@
                     %>
                     <tr> 
                         <td>
-                            <img src="RenderizarImagem?id=<%=listaEventos.get(c).getId()%>" style="float: left;margin-right: 5px;" />
+                            <img src="RenderizarImagem?id=<%=listaEventos.get(c).getId()%>" style="float: left;margin-right: 5px;" width="120" height="100"/>
                             <p style=""><%=listaEventos.get(c).getNome()%></p>
-                            <a href="#">Faça sua Inscrição</a>
+                            <a href="atividades.jsp?id=<%=listaEventos.get(c).getId()%>">Faça sua Inscrição</a>
                         </td>
                     </tr>
                     <%                    }

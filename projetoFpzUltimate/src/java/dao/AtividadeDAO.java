@@ -102,6 +102,38 @@ public class AtividadeDAO extends DAO<Atividade> {
         return lista;
 
     }
+    
+    //Lista as atividades de um determinado evento
+     public List<Atividade> listarPorEvento(int id) throws SQLException {
+
+        List<Atividade> lista = new ArrayList<Atividade>();
+        String sql = "SELECT * FROM atividade WHERE es_evento=? ;";
+
+        PreparedStatement stmt = getConnection().prepareStatement( sql );
+        stmt.setInt( 1, id);
+
+        ResultSet rs = stmt.executeQuery();
+        
+        
+        while ( rs.next() ) {
+
+            Atividade ativ = new Atividade();
+            ativ.setId( rs.getInt( "id_atividade" ) );
+            ativ.setDescricao( rs.getString( "descricao" ) );
+            ativ.setVagas( rs.getInt( "vagas" ) );
+            ativ.setHorario_inicio( rs.getString( "horario_inicio" ) );
+            ativ.setHorario_fim( rs.getString( "horario_fim" ) );
+            
+
+            lista.add( ativ );
+
+        }
+
+        rs.close();
+        stmt.close();
+
+        return lista;
+    }
 
     @Override
     public Atividade obterPorId( int id ) throws SQLException {

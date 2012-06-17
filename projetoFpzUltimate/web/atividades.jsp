@@ -84,7 +84,7 @@
         <div class="container">
             <%
                 AtividadeDAO dao = new AtividadeDAO();
-                List<Atividade> atividades = dao.listarTodos();
+                List<Atividade> atividades = dao.listarPorEvento(Integer.parseInt(request.getParameter("id")));
             %>
             <table class="table">
                 <%
