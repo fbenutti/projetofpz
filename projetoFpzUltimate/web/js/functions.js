@@ -40,16 +40,6 @@ $(document).ready(function(){
         $('#resultado').load('cadastroUserInstituicao.jsp');
     });
                
-    //Login fake
-    $('#logar').click(function(){
-        $('#deslogado').hide();
-        $('#logado').fadeIn("slow");
-    });
-    $('#deslogar').click(function(){
-        $('#logado').hide();
-        $('#deslogado').fadeIn("slow");
-    });
-                
     //Consulta do CEP
     //Preenche os campos na ação "Blur" (mudar de campo)
     $(".cep").blur(function(){

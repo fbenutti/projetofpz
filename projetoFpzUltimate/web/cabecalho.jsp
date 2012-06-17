@@ -3,6 +3,7 @@
     Created on : May 8, 2012, 9:35:37 PM
     Author     : Wellington
 --%>
+<%@page import="classes.Login"%>
 <div id="site" style="min-width: 300px ; margin: 0 auto" >
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
@@ -31,9 +32,13 @@
                         <li><a data-toggle="modal" id="cadastroPorInstituicao" href="#resultado">Cadastro</a></li>
                     </ul>
                     <%-- if logado --%>
+                    <%
+                        if (session.getAttribute("usuario") != null) {
+                            Login l = (Login) session.getAttribute("usuario");
+                    %>
                     <div class="btn-group pull-right" id="logado">
-                        <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> Wellington</a>
-                        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+                        <a class="btn btn-primary" href="#"><i class="icon-user icon-white"></i> <%=l.getLogin()%></a>
+                        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="EncerraSessao"><span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-form">
                             <li class="dropdown-caret right">
                                 <span class="caret-outer"></span>
@@ -46,6 +51,8 @@
                         </ul>
                     </div>
                     <%-- else --%>
+                    <%                    } else {
+                    %>
                     <div class="pull-right" id="deslogado">
                         <form class="form-inline navbar-form" action="Logar">
                             <input type="text" id="login" name="login" class="input-small" placeholder="Login"/>
@@ -53,6 +60,8 @@
                             <input type="submit" value="Entrar" class="btn btn-primary" id="logar"/>
                         </form>
                     </div>
+                    <%                        }
+                    %>
                     <%-- end if //logado --%>
                 </div><!--/.nav-collapse -->
             </div>
