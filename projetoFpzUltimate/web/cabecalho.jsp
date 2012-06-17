@@ -47,7 +47,7 @@
                             <!--<li><a data-toggle="modal" id="cadastroModal" href="#cadastroModal"><i class="icon-pencil"></i> Editar</a></li>-->
                             <li id="deslogar"><a href="EncerraSessao.jsp"><i class="icon-ban-circle"></i> Sair</a></li>
                             <li class="divider"></li>
-                            <li><a href="#"><i class="icon-list"></i> Minhas inscrições</a></li>
+                            <li><a href="minhasInscricoes.jsp"><i class="icon-list"></i> Minhas inscrições</a></li>
                         </ul>
                     </div>
                     <%-- else --%>

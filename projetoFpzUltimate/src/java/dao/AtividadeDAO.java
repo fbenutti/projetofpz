@@ -138,8 +138,8 @@ public class AtividadeDAO extends DAO<Atividade> {
     @Override
     public Atividade obterPorId( int id ) throws SQLException {
 
-        Atividade pais = null;
-        String sql = "SELECT * FROM pais WHERE id = ?;";
+        Atividade ativ = null;
+        String sql = "SELECT * FROM atividade WHERE id_atividade = ?;";
 
         PreparedStatement stmt = getConnection().prepareStatement( sql );
         stmt.setInt( 1, id );
@@ -148,17 +148,19 @@ public class AtividadeDAO extends DAO<Atividade> {
 
         if ( rs.next() ) {
 
-           /* inst = new Instituicao();
-            inst.setId( rs.getInt( "id" ) );
-            inst.setNome( rs.getString( "nome" ) );
-            inst.setSigla( rs.getString( "sigla" ) );*/
+            ativ = new Atividade();
+            ativ.setId( rs.getInt( "id_atividade" ) );
+            ativ.setDescricao( rs.getString( "descricao" ) );
+            ativ.setVagas( rs.getInt( "vagas" ) );
+            ativ.setHorario_inicio( rs.getString( "horario_inicio" ) );
+            ativ.setHorario_fim( rs.getString( "horario_fim" ) );
 
         }
 
         rs.close();
         stmt.close();
 
-        return pais;
+        return ativ;
 
     }
 
