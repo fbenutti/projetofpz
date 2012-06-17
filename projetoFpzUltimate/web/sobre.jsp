@@ -46,9 +46,6 @@
                     </div>
                 </div>
             </div>
-        <% Login l = (Login) session.getAttribute("usuario");
-        out.println(l.getLogin());
-        %>
         <%@ include file="rodape.jsp" %>
     </body>
 </html>
