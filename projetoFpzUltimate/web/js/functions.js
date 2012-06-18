@@ -86,8 +86,6 @@ $(document).ready(function(){
         });
     });
     
-    
-    
 });
 
 function testaSenha(){
@@ -104,27 +102,27 @@ function strip( str, c ) {
 }
 
 function CNPJCPFMsk( aWidget ) {
-	var tmp = strip( aWidget.value , "." );
-	tmp = strip( tmp , "/" );
-	tmp = strip( tmp , "-" );
+    var tmp = strip( aWidget.value , "." );
+    tmp = strip( tmp , "/" );
+    tmp = strip( tmp , "-" );
 	
-	var cont = 0;
-	var teste='';
-	while(cont < tmp.length) {			
-		if(!(tmp.charAt(cont)>=0 && tmp.charAt(cont)<=9)){
-			teste+='';					
-		}
-		else
-		{
-			teste+=tmp.charAt(cont);			 
-		}
-		cont++;
-	}
-	tmp = teste;	
+    var cont = 0;
+    var teste='';
+    while(cont < tmp.length) {			
+        if(!(tmp.charAt(cont)>=0 && tmp.charAt(cont)<=9)){
+            teste+='';					
+        }
+        else
+        {
+            teste+=tmp.charAt(cont);			 
+        }
+        cont++;
+    }
+    tmp = teste;	
 	
-	if ( 12 < tmp.length ) aWidget.value = tmp.substr(0,2) + '.' + tmp.substr(2,3) + '.' + tmp.substr(5,3) + '/' + tmp.substr(8,4)+ '-'  + tmp.substr(12,2);
-		else if ( 9 < tmp.length ) aWidget.value = tmp.substr(0,3) + '.' + tmp.substr(3,3) + '.' + tmp.substr(6,3) + '-' + tmp.substr(9,3);
-			else if ( 6 < tmp.length ) aWidget.value = tmp.substr(0,3) + '.' + tmp.substr(3,3) + '.' + tmp.substr(6,3);
-				else if ( 3 < tmp.length )  aWidget.value = tmp.substr(0,3) + '.' + tmp.substr(3,3);
-					else aWidget.value = tmp;
-	}
+    if ( 12 < tmp.length ) aWidget.value = tmp.substr(0,2) + '.' + tmp.substr(2,3) + '.' + tmp.substr(5,3) + '/' + tmp.substr(8,4)+ '-'  + tmp.substr(12,2);
+    else if ( 9 < tmp.length ) aWidget.value = tmp.substr(0,3) + '.' + tmp.substr(3,3) + '.' + tmp.substr(6,3) + '-' + tmp.substr(9,3);
+    else if ( 6 < tmp.length ) aWidget.value = tmp.substr(0,3) + '.' + tmp.substr(3,3) + '.' + tmp.substr(6,3);
+    else if ( 3 < tmp.length )  aWidget.value = tmp.substr(0,3) + '.' + tmp.substr(3,3);
+    else aWidget.value = tmp;
+}
