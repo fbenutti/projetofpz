@@ -4,6 +4,9 @@
     Author     : Wellington
 --%>
 
+<%@page import="classes.Evento"%>
+<%@page import="classes.Evento"%>
+<%@page import="dao.EventoDAO"%>
 <%@page import="classes.Atividade"%>
 <%@page import="dao.AtividadeDAO"%>
 <%@page import="classes.Inscricao"%>
@@ -38,23 +41,31 @@
                 InscricaoDAO dao = new InscricaoDAO();
                 Login l = (Login) session.getAttribute("usuario");
                 List<Inscricao> insc = dao.listarPorUsuario(l.getLogin());
+%><table class="table table-bordered table-striped"><%
+                int codEventoAtual = 0;
+                for (int c = 0; c < insc.size(); c++) {
+                    AtividadeDAO ativDao = new AtividadeDAO();
+                    Atividade ativ = ativDao.obterPorId(insc.get(c).getCodAtividade());
+                    if (codEventoAtual != ativ.getCodEvento()) {
+                        codEventoAtual = ativ.getCodEvento();
+                        EventoDAO evDao = new EventoDAO();
+                        Evento ev = evDao.obterPorId(ativ.getCodEvento());
             %>
-            <table class="table">
-                <tr>
-                    <td>Atividade:</td>
-                    <td>Hora de início:</td>
-                    <td>Hora de término:</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th colspan="3"><%=ev.getNome()%> - <%=ev.getPeriodoInicial()%></th>
+                    </tr>
+                </thead>
                 <%
-                    for (int c = 0; c < insc.size(); c++) {
-                        AtividadeDAO ativDao = new AtividadeDAO();
-                        Atividade ativ = ativDao.obterPorId(insc.get(c).getCodAtividade());
+                    }
                 %>
-                <tr> 
-                    <td><%=ativ.getDescricao()%></td> 
-                    <td><%=ativ.getHorario_inicio()%></td> 
-                    <td><%=ativ.getHorario_fim()%></td> 
-                </tr> 
+                <tbody>
+                    <tr> 
+                        <td><%=ativ.getDescricao()%></td> 
+                        <td><%=ativ.getHorario_inicio()%></td> 
+                        <td><%=ativ.getHorario_fim()%></td> 
+                    </tr> 
+                </tbody>
                 <%                    }
                 %>
             </table>

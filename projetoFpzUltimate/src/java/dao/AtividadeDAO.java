@@ -152,6 +152,7 @@ public class AtividadeDAO extends DAO<Atividade> {
             ativ.setVagas(rs.getInt("vagas"));
             ativ.setHorario_inicio(rs.getString("horario_inicio"));
             ativ.setHorario_fim(rs.getString("horario_fim"));
+            ativ.setCodEvento(rs.getInt("es_evento"));
 
         }
 

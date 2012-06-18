@@ -160,8 +160,8 @@ public class EventoDAO extends DAO<Evento> {
              e = new Evento();
              e.setId( rs.getInt( "id_evento" ) );
              e.setNome( rs.getString( "nome" ) );
-             e.setPeriodoInicial("dt_inicio");
-             e.setPeriodoFinal("dt_fim");
+             e.setPeriodoInicial(rs.getString("dt_inicio"));
+             e.setPeriodoFinal(rs.getString("dt_fim"));
             try {
                 e.setFoto(RetornaLogo(e.getId()));
             } catch (IOException ex) {

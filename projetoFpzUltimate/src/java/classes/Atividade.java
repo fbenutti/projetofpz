@@ -15,17 +15,38 @@ public class Atividade {
     private int vagasRestantes;
     private String horario_inicio;
     private String horario_fim;
+    private int codEvento;
+    private int codResponsavel;
 
     public Atividade() {
     }
 
-    public Atividade(int id, String descricao, int vagas,int vagasRestantes, String horario_inicio, String horario_fim) {
+    public Atividade(int id, String descricao, int vagas, int vagasRestantes, String horario_inicio, String horario_fim, int codEvento, int codResponsavel) {
         this.id = id;
         this.descricao = descricao;
         this.vagas = vagas;
         this.vagasRestantes = vagasRestantes;
         this.horario_inicio = horario_inicio;
         this.horario_fim = horario_fim;
+        this.codEvento = codEvento;
+        this.codResponsavel = codResponsavel;
+    }
+    
+
+    public int getCodEvento() {
+        return codEvento;
+    }
+
+    public void setCodEvento(int codEvento) {
+        this.codEvento = codEvento;
+    }
+
+    public int getCodResponsavel() {
+        return codResponsavel;
+    }
+
+    public void setCodResponsavel(int codResponsavel) {
+        this.codResponsavel = codResponsavel;
     }
 
     public String getDescricao() {
