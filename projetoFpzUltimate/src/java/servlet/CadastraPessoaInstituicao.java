@@ -4,6 +4,7 @@
  */
 package servlet;
 
+import classes.Instituicao;
 import classes.Login;
 import classes.Pessoa;
 import classes.PessoaInstituicao;
@@ -18,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Wellington
@@ -61,7 +63,10 @@ public class CadastraPessoaInstituicao extends HttpServlet {
         Pessoa p = new Pessoa(cpf, nome, email, telefone, cep, cidade, uf, rua, bairro, n, complemento);
         PessoaDAO dao = null;
         
-        PessoaInstituicao pi = new PessoaInstituicao(cpf, "58.135.564/0001-11");
+        HttpSession sessao = request.getSession();
+        Login Logado = (Login) sessao.getAttribute("usuario");
+        
+        PessoaInstituicao pi = new PessoaInstituicao(cpf, Logado.getLogin());
         PessoaInstituicaoDAO pdao = null;
 
 

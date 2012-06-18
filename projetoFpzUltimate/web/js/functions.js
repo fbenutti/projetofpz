@@ -3,8 +3,15 @@
  * and open the template in the editor.
  */
 
+
+
 $(document).ready(function(){
-                
+        
+    /*if ( document.getElementById(url).value == "sim" )
+        var  concatenaUrl = "../";
+    else
+        concatenaUrl = "";*/
+
     //Carrega a página de cadastro de usuário
     $("#cadastroUser").click(function(){
         $('#conteudo').load('formulario/cadastroUser.jsp');
@@ -27,7 +34,7 @@ $(document).ready(function(){
             show: false,
             backdrop: true
         });
-        $('#resultado').load('tipoCadastro.jsp');
+        $('#resultado').load('../tipoCadastro.jsp');
     });
     
     //Carrega a página de cadastro por instituição
@@ -88,3 +95,36 @@ function testaSenha(){
         $("#confsenha").val("");
     }
 }
+
+//abaixo são as funções para fazer a mascara para o login
+function strip( str, c ) {
+    var tmp = str.split( c );
+    return tmp.join("");
+	
+}
+
+function CNPJCPFMsk( aWidget ) {
+	var tmp = strip( aWidget.value , "." );
+	tmp = strip( tmp , "/" );
+	tmp = strip( tmp , "-" );
+	
+	var cont = 0;
+	var teste='';
+	while(cont < tmp.length) {			
+		if(!(tmp.charAt(cont)>=0 && tmp.charAt(cont)<=9)){
+			teste+='';					
+		}
+		else
+		{
+			teste+=tmp.charAt(cont);			 
+		}
+		cont++;
+	}
+	tmp = teste;	
+	
+	if ( 12 < tmp.length ) aWidget.value = tmp.substr(0,2) + '.' + tmp.substr(2,3) + '.' + tmp.substr(5,3) + '/' + tmp.substr(8,4)+ '-'  + tmp.substr(12,2);
+		else if ( 9 < tmp.length ) aWidget.value = tmp.substr(0,3) + '.' + tmp.substr(3,3) + '.' + tmp.substr(6,3) + '-' + tmp.substr(9,3);
+			else if ( 6 < tmp.length ) aWidget.value = tmp.substr(0,3) + '.' + tmp.substr(3,3) + '.' + tmp.substr(6,3);
+				else if ( 3 < tmp.length )  aWidget.value = tmp.substr(0,3) + '.' + tmp.substr(3,3);
+					else aWidget.value = tmp;
+	}

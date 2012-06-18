@@ -20,8 +20,6 @@
                                 out.print("class='active'");
                             }%>><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/index.jsp">Home</a></li>
 
-                        <li><a data-toggle="modal" id="cadastro" href="#resultado">Cadastre-se</a></li>
-
                         <li <%    if (request.getRequestURI().equalsIgnoreCase("/sobre.jsp")) {
                                 out.print("class='active'");
                             }%>><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/sobre.jsp">Sobre</a></li>
@@ -29,7 +27,23 @@
                         <li <%    if (request.getRequestURI().equalsIgnoreCase("/formulario/contato.jsp")) {
                                 out.print("class='active'");
                             }%>   ><a href="http://${pageContext.request.serverName}:${pageContext.request.serverPort}/formulario/contato.jsp">Contato</a></li>
+                        
+                        <%
+                            if (session.getAttribute("usuario") == null) {
+                        %>
+                        <li><a data-toggle="modal" id="cadastro" href="#resultado">Cadastre-se</a></li>
+                        <%                            
+                            }
+                            
+                            if (session.getAttribute("usuario") != null) {
+                            Login verificaTipo = (Login) session.getAttribute("usuario");
+                                if (verificaTipo.getTipo().equalsIgnoreCase("i")){
+                        %>
                         <li><a data-toggle="modal" id="cadastroPorInstituicao" href="#resultado">Cadastro</a></li>
+                        <%
+                                }
+                            }
+                        %>
                     </ul>
                     <%-- if logado --%>
                     <%
@@ -54,8 +68,8 @@
                     <%                    } else {
                     %>
                     <div class="pull-right" id="deslogado">
-                        <form class="form-inline navbar-form" action="Logar">
-                            <input type="text" id="login" name="login" class="input-small" placeholder="Login"/>
+                        <form class="form-inline navbar-form" action="../Logar">
+                            <input type="text" id="login" name="login" class="input-medium" placeholder="Login" onkeyup="CNPJCPFMsk( this )" />
                             <input type="password" id="senha" name="senha" class="input-small" placeholder="Senha" />
                             <input type="submit" value="Entrar" class="btn btn-primary" id="logar"/>
                         </form>
