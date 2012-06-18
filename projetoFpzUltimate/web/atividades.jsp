@@ -4,6 +4,8 @@
     Author     : Wellington
 --%>
 
+<%@page import="classes.Inscricao"%>
+<%@page import="dao.InscricaoDAO"%>
 <%@page import="classes.Atividade"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.AtividadeDAO"%>
@@ -40,7 +42,7 @@
                         $("#desinscrever"+id).fadeIn("fast");
                         $("#op"+id).button('reset');
                         $("#resultado"+id).html(resultado);
-                        $("#resultado"+id).fadeIn("slow").delay(1000).fadeOut("slow");
+                        $("#resultado"+id).fadeIn("slow").delay(10000000).fadeOut("slow");
                     },
                     error: function(erro, text){
                         $("#op"+id).button('reset');
@@ -85,6 +87,10 @@
             <%
                 AtividadeDAO dao = new AtividadeDAO();
                 List<Atividade> atividades = dao.listarPorEvento(Integer.parseInt(request.getParameter("id")));
+                InscricaoDAO DAO2 = new InscricaoDAO();
+                HttpSession sessao = request.getSession();
+                Login l = (Login) sessao.getAttribute("usuario");
+                List<Inscricao> inscricoes = DAO2.listarPorUsuario(l.getLogin());
             %>
             <table class="table">
                 <%
@@ -93,12 +99,17 @@
                 <tr> 
                     <td>
                         <div id="inscrever<%=atividades.get(c).getId()%>">
-                             <form>
+                            <form>
+                                <% int i = 0;
+                                    //for (i = 0; i < inscricoes.size(); i++) {
+                                    //    if (inscricoes.size() > 0 && atividades.get(c).getId() != inscricoes.get(i).getCodAtividade()) {%>
                                 <input class="btn btn-primary" data-loading-text="Inscrevendo..." type="button" name="op" id="op<%=atividades.get(c).getId()%>" value="Inscrever" onclick="inscrever(<%=atividades.get(c).getId()%>)"/>
+                                <%// }
+                                    //}%>
                             </form>
                         </div>
-                                <div id="desinscrever<%=atividades.get(c).getId()%>" style="display: none;">
-                             <form>
+                        <div id="desinscrever<%=atividades.get(c).getId()%>" style="display: none;">
+                            <form>
                                 <input class="btn btn-primary" data-loading-text="Excluindo..." type="button" name="op" id="op<%=atividades.get(c).getId()%>" value="Desinscrever" onclick="desinscrever(<%=atividades.get(c).getId()%>)"/>
                             </form>
                         </div>

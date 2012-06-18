@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -153,7 +152,6 @@ public class AtividadeDAO extends DAO<Atividade> {
             ativ.setHorario_inicio(rs.getString("horario_inicio"));
             ativ.setHorario_fim(rs.getString("horario_fim"));
             ativ.setCodEvento(rs.getInt("es_evento"));
-
         }
 
         rs.close();
@@ -175,11 +173,9 @@ public class AtividadeDAO extends DAO<Atividade> {
         ResultSet rs = stmt.executeQuery();
 
         if (rs.next()) {
-
             ativ = new Atividade();
             ativ.setVagas(rs.getInt("vagas"));
             ativ.setVagasRestantes(rs.getInt("vagas_restantes"));
-
         }
 
         if (ativ.getVagasRestantes() > 0) {
