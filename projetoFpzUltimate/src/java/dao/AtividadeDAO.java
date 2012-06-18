@@ -188,13 +188,14 @@ public class AtividadeDAO extends DAO<Atividade> {
                     + "WHERE id_atividade=?;";
 
             PreparedStatement stmt2 = getConnection().prepareStatement(sql2);
-            stmt2.setInt(1, id);
-            stmt2.setInt(2, (ativ.getVagasRestantes()-1));
+            int a2 = ativ.getVagasRestantes() - 1;
+            stmt2.setInt(1, a2);
+            stmt2.setInt(2, id);
             stmt2.executeUpdate();
             return true;
-            
 
-        } else{
+
+        } else {
             return false;
         }
     }

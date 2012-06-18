@@ -40,20 +40,30 @@ public class InscrevePessoa extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
+        int idAtividade = Integer.parseInt(request.getParameter("atividade"));
+
         InscricaoDAO dao = null;
-        int quant;
+        AtividadeDAO daoA = null;
+
         try {
             HttpSession sessao = request.getSession();
             Login l = (Login) sessao.getAttribute("usuario");
 
             Inscricao i = new Inscricao();
             i.setCpf(l.getLogin());
-            i.setCodAtividade(Integer.parseInt(request.getParameter("atividade")));
+            i.setCodAtividade(idAtividade);
 
             try {
-                dao = new InscricaoDAO();
-                dao.salvar(i);
+                daoA = new AtividadeDAO();
+                if (daoA.decrementeVagasRestantes(idAtividade)) {
+                    dao = new InscricaoDAO();
+                    dao.salvar(i);
+                } else {
+                    request.setAttribute("erro", "Vagas Enceradas");
+                    request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
+                }
+
             } catch (SQLException ex) {
                 //redirecionando pra erro se executar erroneamente
                 request.setAttribute("tipo", "SQLException");
