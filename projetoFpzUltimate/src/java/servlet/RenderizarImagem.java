@@ -42,14 +42,15 @@ public class RenderizarImagem extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("image/jpeg");
-        OutputStream out = response.getOutputStream();//so o tiago sabe o q isso faz
-        int width=130, height=100;
+        response.setContentType("image/jpeg");//muda o tipo de retorno pra arquivos jpg
+        OutputStream out = response.getOutputStream();
+        int width = Integer.parseInt(request.getParameter("width"));
+        int height = Integer.parseInt(request.getParameter("height"));
         
         try {
             EventoDAO ev = new EventoDAO();
             Evento e = ev.obterPorId(Integer.parseInt(request.getParameter("id")));
-            
+            //o metodo abaixo pega o BufferedImage e redimenciona 
             BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             Graphics2D g = bi.createGraphics();
             try {

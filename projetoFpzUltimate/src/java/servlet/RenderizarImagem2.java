@@ -6,6 +6,9 @@ package servlet;
 
 import classes.Responsavel;
 import dao.ResponsavelDAO;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -35,12 +38,25 @@ public class RenderizarImagem2 extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("image/jpeg");
+        
         OutputStream out = response.getOutputStream();
+        int width = Integer.parseInt(request.getParameter("width"));
+        int height = Integer.parseInt(request.getParameter("height"));
+        
         try {
             ResponsavelDAO re = new ResponsavelDAO();
             Responsavel r = re.obterPorId(Integer.parseInt(request.getParameter("id")));
-
-            ImageIO.write(r.getFoto(), "jpg", response.getOutputStream());//passa a imagem pra quem requesita o servlet
+            //o metodo abaixo pega o BufferedImage e redimenciona 
+            BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g = bi.createGraphics();
+            try {
+                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+                g.clearRect(0, 0, width, height);
+                g.drawImage(r.getFoto(), 0, 0, width, height, null);
+            } finally {
+                g.dispose();
+            }
+            ImageIO.write(bi, "jpg", response.getOutputStream());//passa a imagem pra quem requesita o servlet
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
