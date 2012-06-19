@@ -73,7 +73,7 @@
                                 </td>
                                 <td>
                                     <p style=""><%=listaResposanveis.get(c).getNome()%></p>
-                                    <img src="../RenderizarImagem2?id=<%=listaResposanveis.get(c).getId()%>" style="float: left;margin-right: 5px;" width="50" height="50"/>
+                                    <img src="../RenderizarImagem2?id=<%=listaResposanveis.get(c).getId()%>&width=180&height=160" style="float: left;margin-right: 5px;"/>
                                 </td>
                             </tr>
                             <%
@@ -109,7 +109,7 @@
                                     <p style=""><%=listaResposanveis.get(c).getId()%></p>
                                 </td>
                                 <td>
-                                    <img src="../RenderizarImagem?id=<%=listaEventos.get(c).getId()%>" style="float: left;margin-right: 5px;" width="50" height="50"/>
+                                    <img src="../RenderizarImagem?id=<%=listaEventos.get(c).getId()%>&width=100&height=70" style="float: left;margin-right: 5px;"/>
                                     <p style=""><%=listaEventos.get(c).getNome()%></p>
                                 </td>
                             </tr>

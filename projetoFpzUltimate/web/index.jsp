@@ -46,7 +46,7 @@
                         %>
                         <tr> 
                             <td>
-                                <img src="RenderizarImagem?id=<%=listaEventos.get(c).getId()%>" style="float: left;margin-right: 5px;" />
+                                <img src="RenderizarImagem?id=<%=listaEventos.get(c).getId()%>&width=130&height=100" style="float: left;margin-right: 5px;" />
                                 <p style=""><%=listaEventos.get(c).getNome()%></p>
                                 <% HttpSession sessao = request.getSession();
                                     Login l = (Login) sessao.getAttribute("usuario");
