@@ -4,22 +4,36 @@
  */
 package servlet;
 
-import classes.Login;
-import classes.Pessoa;
-import dao.LoginDAO;
-import dao.PessoaDAO;
+import classes.Atividade;
+import classes.Evento;
+import classes.Responsavel;
+import dao.AtividadeDAO;
+import dao.EventoDAO;
+import dao.ResponsavelDAO;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.List;
+import javax.imageio.ImageIO;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.FileItemFactory;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /**
+ *
  * @author Paulo
  */
-public class CadastraPessoa extends HttpServlet {
+public class cadastrarAtividade extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -36,37 +50,42 @@ public class CadastraPessoa extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        //pegando dados do /formulario/cadastroUser
-        String cpf = request.getParameter("cpf");
-        String nome = request.getParameter("nome");
-        String email = request.getParameter("email");
-        String telefone = request.getParameter("telefone");
-        String cep = request.getParameter("cep");
-        String cidade = request.getParameter("cidade");
-        String uf = request.getParameter("uf");
-        String rua = request.getParameter("rua");
-        String bairro = request.getParameter("bairro");
-        int n = Integer.parseInt(request.getParameter("numero"));
-        String complemento = request.getParameter("complemento");
+        int vagas = 40;
+        int vagasRestantes = 30;
+        //Esse dado testa para ver se o criante realmente é administrador do sistema
+        String usuario = request.getParameter("usuario"); //Não vi necessidade de haver mais de um adm por isso o fiz fixo
         String senha = request.getParameter("senha");
+        String descricao = request.getParameter("descricao");
+        String vagasS = request.getParameter("vagas");
+        String vagasRestantesS = request.getParameter("vagas_restantes");
+        String horarioInicio = request.getParameter("horario_inicio");
+        String horarioFim = request.getParameter("horario_fim");
+        int idPalestrante = Integer.parseInt(request.getParameter("palestrante"));
+        int idEvento = Integer.parseInt(request.getParameter("evento"));
         
-        
-        Login l = new Login(cpf, senha, "p");
-        LoginDAO ldao = null;
-        
-        Pessoa p = new Pessoa(cpf, nome, email, telefone, cep, cidade, uf, rua, bairro, n, complemento);
-        PessoaDAO dao = null;
+        Atividade atv = new Atividade(descricao, vagas, vagasRestantes, horarioInicio,
+                horarioFim, idEvento, idPalestrante);
 
-
+        AtividadeDAO dao = null;
         try {
             
-            ldao = new LoginDAO();
-            ldao.salvar(l);
-            
-            dao = new PessoaDAO();
-            dao.salvar(p);
+            dao = new AtividadeDAO();
 
-         } catch (SQLException ex) {
+            //Testa se o usuario e senha estão corretos antes salvar o evento
+            if (usuario.equalsIgnoreCase("adm") && senha.equals("123y4567")) {
+                dao.salvar(atv);
+
+                //redirecionando pra index se exectar com sucesso
+                RequestDispatcher rd = request.getRequestDispatcher("adm.jsp");
+                rd.forward(request, response);
+            } else {
+                request.setAttribute("tipo", "Exception");
+                request.setAttribute("erro", "Usuario e Senha invalidos");
+                request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
+            }
+
+
+        } catch (SQLException ex) {
             //redirecionando pra erro se executar erroneamente
             request.setAttribute("tipo", "SQLException");
             request.setAttribute("erro", ex);
@@ -78,20 +97,6 @@ public class CadastraPessoa extends HttpServlet {
             request.getRequestDispatcher("\\erros\\erro.jsp").forward(request, response);
 
         } finally {
-
-            if (dao != null) {
-
-                try {
-                    dao.fecharConexao();
-                } catch (SQLException exc) {
-                    System.err.println("Erro ao fechar a conexão!");
-                    exc.printStackTrace();
-                }
-
-            }
-            //request.setAttribute("cpf", p.getCpf());
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-            
         }
     }
 

@@ -4,8 +4,8 @@ LIMIT 0, 1000
 
 -- Date: 2012-06-16 11:15
 */
-INSERT INTO `atividade` (`id_atividade`,`descricao`,`vagas`,`vagas_restantes`,`horario_inicio`,`horario_fim`,`es_evento`,`es_responsavel`) VALUES (1,'Apresentação das atividade',30,30,'18:00','19:00',1,1);
-INSERT INTO `atividade` (`id_atividade`,`descricao`,`vagas`,`vagas_restantes`,`horario_inicio`,`horario_fim`,`es_evento`,`es_responsavel`) VALUES (2,'Palestra: O Empreendedor do Seculo XXI',30,30,'19:00','20:00',1,2);
+INSERT INTO `atividade` (`id_atividade`,`descricao`,`vagas`,`vagas_restantes`,`horario_inicio`,`horario_fim`,`es_evento`,`es_responsavel`) VALUES (1,'Apresentação das atividade',30,0,'18:00','19:00',1,1);
+INSERT INTO `atividade` (`id_atividade`,`descricao`,`vagas`,`vagas_restantes`,`horario_inicio`,`horario_fim`,`es_evento`,`es_responsavel`) VALUES (2,'Palestra: O Empreendedor do Seculo XXI',54,30,'19:00','20:00',1,2);
 INSERT INTO `atividade` (`id_atividade`,`descricao`,`vagas`,`vagas_restantes`,`horario_inicio`,`horario_fim`,`es_evento`,`es_responsavel`) VALUES (3,'Mesa Redonda: Técnicas que deram certo',30,30,'20:30','22:30',1,3);
 
 INSERT INTO `atividade` (`id_atividade`,`descricao`,`vagas`,`vagas_restantes`,`horario_inicio`,`horario_fim`,`es_evento`,`es_responsavel`) VALUES (4,'Apresentação das atividade',30,30,'19:00','19:30',2,1);

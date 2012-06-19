@@ -24,11 +24,17 @@ public class AtividadeDAO extends DAO<Atividade> {
     @Override
     public void salvar(Atividade obj) throws SQLException {
 
-        String sql = "INSERT INTO evento() "
-                + "VALUES( ?,?,?,?,?,?,?,?,?,?,? );";
+        String sql = "INSERT INTO atividade ( descricao, vagas, vagas_restantes,"
+                + " horario_inicio, horario_fim, es_evento, es_responsavel) VALUES( ?,?,?,?,?,?,? );";
 
         PreparedStatement stmt = getConnection().prepareStatement(sql);
-        //stmt.setString( 2, obj.getNome() );
+        stmt.setString( 1, obj.getDescricao() );
+        stmt.setInt( 2, obj.getVagas() );
+        stmt.setInt( 3, obj.getVagasRestantes() );
+        stmt.setString( 4, obj.getHorario_inicio() );
+        stmt.setString( 5, obj.getHorario_fim() );
+        stmt.setInt( 6, obj.getCodEvento() );
+        stmt.setInt( 7, obj.getCodResponsavel() );
 
 
         stmt.executeUpdate();

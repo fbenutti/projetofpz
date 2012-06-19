@@ -20,9 +20,8 @@ public class Atividade {
 
     public Atividade() {
     }
-
-    public Atividade(int id, String descricao, int vagas, int vagasRestantes, String horario_inicio, String horario_fim, int codEvento, int codResponsavel) {
-        this.id = id;
+    
+    public Atividade( String descricao, int vagas, int vagasRestantes, String horario_inicio, String horario_fim, int codEvento, int codResponsavel) {
         this.descricao = descricao;
         this.vagas = vagas;
         this.vagasRestantes = vagasRestantes;
@@ -31,7 +30,6 @@ public class Atividade {
         this.codEvento = codEvento;
         this.codResponsavel = codResponsavel;
     }
-    
 
     public int getCodEvento() {
         return codEvento;

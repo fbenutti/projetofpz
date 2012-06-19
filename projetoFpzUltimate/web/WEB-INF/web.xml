@@ -25,8 +25,16 @@
         <servlet-class>servlet.cadastrarEvento</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>cadastrarAtividade</servlet-name>
+        <servlet-class>servlet.cadastrarAtividade</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>RenderizarImagem</servlet-name>
         <servlet-class>servlet.RenderizarImagem</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RenderizarImagem2</servlet-name>
+        <servlet-class>servlet.RenderizarImagem2</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CadastraPessoa</servlet-name>
@@ -61,8 +69,16 @@
         <url-pattern>/cadastrarEvento</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>cadastrarAtividade</servlet-name>
+        <url-pattern>/cadastrarAtividade</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>RenderizarImagem</servlet-name>
         <url-pattern>/RenderizarImagem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenderizarImagem2</servlet-name>
+        <url-pattern>/RenderizarImagem2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

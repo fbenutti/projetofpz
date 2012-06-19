@@ -98,19 +98,26 @@ public class ResponsavelDAO extends DAO<Responsavel> {
     public List<Responsavel> listarTodos() throws SQLException {
 
         List<Responsavel> lista = new ArrayList<Responsavel>();
-        String sql = "SELECT * FROM pais;";
+        String sql = "SELECT * FROM responsavel;";
 
         PreparedStatement stmt = getConnection().prepareStatement( sql );
         ResultSet rs = stmt.executeQuery();
 
         while ( rs.next() ) {
 
-           /* Instituicao inst = new Instituicao();
-            inst.setId( rs.getInt( "id" ) );
-            inst.setNome( rs.getString( "nome" ) );
-            
+            Responsavel resp = new Responsavel();
+            resp.setId( rs.getInt( "id_responsavel" ) );
+            resp.setNome( rs.getString( "nome" ) );
+            resp.setEmail(rs.getString("email"));
+            resp.setCidade(rs.getString("cidade"));
+            resp.setUF(rs.getString("uf"));
+            try {
+                resp.setFoto(RetornaLogo(resp.getId()));
+            } catch (IOException ex) {
+                Logger.getLogger(EventoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-            lista.add( inst );*/
+            lista.add( resp );
 
         }
 
@@ -124,8 +131,8 @@ public class ResponsavelDAO extends DAO<Responsavel> {
     @Override
     public Responsavel obterPorId( int id ) throws SQLException {
 
-        Responsavel pais = null;
-        String sql = "SELECT * FROM pais WHERE id = ?;";
+        Responsavel resp = null;
+        String sql = "SELECT * FROM responsavel WHERE id_responsavel = ?;";
 
         PreparedStatement stmt = getConnection().prepareStatement( sql );
         stmt.setInt( 1, id );
@@ -134,17 +141,24 @@ public class ResponsavelDAO extends DAO<Responsavel> {
 
         if ( rs.next() ) {
 
-           /* inst = new Instituicao();
-            inst.setId( rs.getInt( "id" ) );
-            inst.setNome( rs.getString( "nome" ) );
-            inst.setSigla( rs.getString( "sigla" ) );*/
+            resp = new Responsavel();
+            resp.setId( rs.getInt( "id_responsavel" ) );
+            resp.setNome( rs.getString( "nome" ) );
+            resp.setEmail(rs.getString("email"));
+            resp.setCidade(rs.getString("cidade"));
+            resp.setUF(rs.getString("uf"));
+            try {
+                resp.setFoto(RetornaLogo(resp.getId()));
+            } catch (IOException ex) {
+                Logger.getLogger(EventoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         }
 
         rs.close();
         stmt.close();
 
-        return pais;
+        return resp;
 
     }
     public int obterIdPorDados( String nome, String email, String cidade, String uf ) throws SQLException {
@@ -169,6 +183,26 @@ public class ResponsavelDAO extends DAO<Responsavel> {
 
     }
 
+    public BufferedImage RetornaLogo(int id) throws IOException, SQLException {
+        //BufferedImage logo;
+        File f;
+        f = File.createTempFile("foto", "jpg");
+
+        String sql = "SELECT foto INTO DUMPFILE ? FROM responsavel WHERE id_responsavel = ?";
+        PreparedStatement stmt = getConnection().prepareStatement(sql);
+        stmt.setString(1, f.getAbsolutePath());
+        stmt.setInt(2,id);
+        f.delete();
+        stmt.executeQuery(); 
+       
+        
+        BufferedImage bi = ImageIO.read(f);
+        
+        stmt.close();
+        f.delete();
+
+        return bi;
+    }
     
 }
 
