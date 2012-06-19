@@ -6,6 +6,12 @@ package servlet;
 
 import classes.Evento;
 import dao.EventoDAO;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -32,15 +38,28 @@ public class RenderizarImagem extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    BufferedImage sourceBI;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("image/jpeg");
         OutputStream out = response.getOutputStream();//so o tiago sabe o q isso faz
+        int width=130, height=100;
+        
         try {
             EventoDAO ev = new EventoDAO();
             Evento e = ev.obterPorId(Integer.parseInt(request.getParameter("id")));
-
-            ImageIO.write(e.getFoto(), "jpg", response.getOutputStream());//passa a imagem pra quem requesita o servlet
+            
+            BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g = bi.createGraphics();
+            try {
+                g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+                g.clearRect(0, 0, width, height);
+                g.drawImage(e.getFoto(), 0, 0, width, height, null);
+            } finally{
+                g.dispose();
+            }
+            ImageIO.write(bi, "jpg", response.getOutputStream());//passa a imagem pra quem requesita o servlet
         } catch (Exception ex) {
             ex.printStackTrace();
         } finally {
