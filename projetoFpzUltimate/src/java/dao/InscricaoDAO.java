@@ -82,4 +82,25 @@ public class InscricaoDAO extends DAO<Inscricao> {
     public Inscricao obterPorId(int id) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    //Verifica se a pessoa está inscrita em um evento e retorna true/false
+    public Boolean estaInscrito(int id, String cpf) throws SQLException {
+        
+        String sql = "SELECT count(id_inscricao) as total "+
+                "FROM projetofpz.inscricao "+
+                "where es_cpf = ? "+
+                "and es_atividade = ?;";
+
+        PreparedStatement stmt = getConnection().prepareStatement(sql);
+        stmt.setString(1, cpf);
+        stmt.setInt(2, id);
+
+        ResultSet rs = stmt.executeQuery();
+        
+        if ( rs.next() ) {
+            if (rs.getInt( "total" ) > 0){
+                return true;
+            }
+        }
+        return false;
+    }
 }

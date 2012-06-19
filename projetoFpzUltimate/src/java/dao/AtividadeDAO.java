@@ -195,4 +195,25 @@ public class AtividadeDAO extends DAO<Atividade> {
             return false;
         }
     }
+    
+    //Verifica se ainda existem vagas no evento
+    public Boolean existeVagas(int id) throws SQLException {
+        
+        String sql = "SELECT vagas_restantes "+
+                "FROM projetofpz.atividade "+
+                "where id_atividade = ? ";
+
+        PreparedStatement stmt = getConnection().prepareStatement(sql);
+        stmt.setInt(1, id);
+
+        ResultSet rs = stmt.executeQuery();
+        
+        if ( rs.next() ) {
+            if (rs.getInt( "vagas_restantes" ) > 0){
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }

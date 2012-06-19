@@ -39,10 +39,7 @@
                     url: 'InscrevePessoa',
                     success: function(resultado){
                         $("#inscrever"+id).hide(0);
-                        $("#desinscrever"+id).fadeIn("fast");
                         $("#op"+id).button('reset');
-                        $("#resultado"+id).html(resultado);
-                        $("#resultado"+id).fadeIn("slow").delay(10000000).fadeOut("slow");
                     },
                     error: function(erro, text){
                         $("#op"+id).button('reset');
@@ -51,27 +48,6 @@
                     statusCode:{
                         404: function(){
                             $("#op"+id).button('reset');
-                            $("#resultado"+id).html("Página não encontrada!");
-                        }
-                    }
-           
-                });   
-            }
-            
-            function desinscrever(id){
-                $.ajax({
-                    type: 'post',
-                    data: 'atividade='+id,
-                    url: 'InscrevePessoa',
-                    success: function(resultado){
-                        $("#resultado"+id).html(resultado);
-                        $("#resultado"+id).fadeIn("slow");
-                    },
-                    error: function(erro, text){
-                        $("#resultado"+id).html(text);
-                    },
-                    statusCode:{
-                        404: function(){
                             $("#resultado"+id).html("Página não encontrada!");
                         }
                     }
@@ -100,12 +76,13 @@
                     <td>
                         <div id="inscrever<%=atividades.get(c).getId()%>">
                             <form>
-                                <% int i = 0;
-                                    //for (i = 0; i < inscricoes.size(); i++) {
-                                    //    if (inscricoes.size() > 0 && atividades.get(c).getId() != inscricoes.get(i).getCodAtividade()) {%>
+                                <% if (DAO2.estaInscrito(atividades.get(c).getId(), l.getLogin())) {%>
+                                <input class="btn btn-primary disabled" type="button" name="op" value="Inscrito" />
+                                <%} else if(!dao.existeVagas(atividades.get(c).getId())){%>
+                                <input class="btn btn-danger disabled" type="button" name="op" value="Vagas Esgotadas" />
+                                <%} else {%>
                                 <input class="btn btn-primary" data-loading-text="Inscrevendo..." type="button" name="op" id="op<%=atividades.get(c).getId()%>" value="Inscrever" onclick="inscrever(<%=atividades.get(c).getId()%>)"/>
-                                <%// }
-                                    //}%>
+                                <%}%>
                             </form>
                         </div>
                         <div id="desinscrever<%=atividades.get(c).getId()%>" style="display: none;">
