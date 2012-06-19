@@ -38,8 +38,9 @@
                     data: 'atividade='+id,
                     url: 'InscrevePessoa',
                     success: function(resultado){
-                        $("#inscrever"+id).hide(0);
-                        $("#op"+id).button('reset');
+                        $("#op"+id).button('complete');
+                        $("#op"+id).hide(0);
+                        $("#op2"+id).fadeIn("slow");
                     },
                     error: function(erro, text){
                         $("#op"+id).button('reset');
@@ -51,7 +52,6 @@
                             $("#resultado"+id).html("Página não encontrada!");
                         }
                     }
-           
                 });   
             }
         </script>
@@ -81,13 +81,9 @@
                                 <%} else if(!dao.existeVagas(atividades.get(c).getId())){%>
                                 <input class="btn btn-danger disabled" type="button" name="op" value="Vagas Esgotadas" />
                                 <%} else {%>
-                                <input class="btn btn-primary" data-loading-text="Inscrevendo..." type="button" name="op" id="op<%=atividades.get(c).getId()%>" value="Inscrever" onclick="inscrever(<%=atividades.get(c).getId()%>)"/>
+                                <input class="btn btn-primary" data-loading-text="Inscrevendo..." data-complete-text="Inscrito" type="button" name="op" id="op<%=atividades.get(c).getId()%>" value="Inscrever" onclick="inscrever(<%=atividades.get(c).getId()%>)"/>
+                                <input class="btn btn-primary disabled" type="button" name="op2" id="op2<%=atividades.get(c).getId()%>" value="Inscrito" style="display: none;"/>
                                 <%}%>
-                            </form>
-                        </div>
-                        <div id="desinscrever<%=atividades.get(c).getId()%>" style="display: none;">
-                            <form>
-                                <input class="btn btn-primary" data-loading-text="Excluindo..." type="button" name="op" id="op<%=atividades.get(c).getId()%>" value="Desinscrever" onclick="desinscrever(<%=atividades.get(c).getId()%>)"/>
                             </form>
                         </div>
                         <div class="label label-info span2" id="resultado<%=atividades.get(c).getId()%>" style="display: none;"></div>
